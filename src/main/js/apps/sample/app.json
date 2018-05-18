@@ -1,0 +1,328 @@
+{
+  "properties": {
+    "title": "${apptitle}"
+  },
+  "load": {
+    "bundleLocations": [
+      "localbundles",
+      "bundles"
+    ],
+    "allowedBundles": [
+      "system",
+      "banner",
+      "console",
+      "notifier",
+      "splashscreen",
+      "templatelayout",
+      "template-seasons",
+      "theme-everlasting",
+      "map-init",
+      "toolset",
+      "agssearch",
+      "mapnavigation",
+      "selection-ui",
+      "selection-resultcenter",
+      "dn_selectionservices"
+    ],
+    "require": [
+      "${app}.app"
+    ],
+    "i18n": [
+      "bundle"
+    ]
+  },
+  "bundles": {
+    "dn_selectionservices": {
+      "CircleSpatialInputWidgetModel": {
+        "minRadius": 0,
+        "maxRadius": 500000,
+        "innerRadius": 50000,
+        "outerRadius": 100000,
+        "stepSize": 1000
+      }
+    },
+    "selection-services": {
+      "SearchSourceModel": {
+        "respectLayerVisibility": true,
+        "useScaleForVisibility": true,
+        "useExtentForVisibility": false
+      }
+    },
+    "selection-ui": {
+      "Config": {
+        "selectionMethods": [
+          "*"
+        ],
+        "preselectSources": "all",
+        "activateSelectionMethod": false,
+        "closeOnSelection": false,
+        "selectionOptions": {
+          "point": {
+            "clickTolerance": 3
+          }
+        }
+      }
+    },
+    "agssearch": {
+      "AGSStore": [
+        {
+          "id": "trees",
+          "layerId": "trees",
+          "title": "Trees",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "lines",
+          "layerId": "lines/3",
+          "title": "Lines",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "plants",
+          "layerId": "plants/6",
+          "title": "Plants",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater0",
+          "layerId": "bathingwater/0",
+          "title": "Bathing Water0",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater1",
+          "layerId": "bathingwater/1",
+          "title": "Bathing Water1",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater2",
+          "layerId": "bathingwater/2",
+          "title": "Bathing Water2",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater3",
+          "layerId": "bathingwater/3",
+          "title": "Bathing Water3",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater4",
+          "layerId": "bathingwater/4",
+          "title": "Bathing Water4",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater5",
+          "layerId": "bathingwater/5",
+          "title": "Bathing Water5",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater6",
+          "layerId": "bathingwater/6",
+          "title": "Bathing Water6",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        }
+      ]
+    },
+    "banner": {
+      "BannerWidget": {
+        "label": "Developer Network",
+        "image": "https://www.conterra.de/~/media/conterra/images/site_logos/conterra-logo.ashx",
+        "imagePosition": "above",
+        "link": "http://developernetwork.conterra.de"
+      }
+    },
+    "map-init": {
+      "Config": {
+        "map": {
+          "layers": [
+            {
+              "id": "trees",
+              "type": "AGS_FEATURE",
+              "url": "http://vsdev1477.esri-de.com:6080/arcgis/rest/services/platform_dev/trees/FeatureServer/0",
+              "popupTemplate": {
+                "title": "Tree '{title}' #{objectid}",
+                "content": "<ul><li>Type: {tree_type}</li><li>Size: {tree_size}</li></ul>"
+              },
+              "outFields": [
+                "title",
+                "tree_type",
+                "tree_size"
+              ]
+            },
+            {
+              "id": "lines",
+              "type": "AGS_DYNAMIC",
+              "url": "http://vsdev1477.esri-de.com:6080/arcgis/rest/services/platform_dev/editing/MapServer",
+              "sublayers": [
+                {
+                  "id": 3
+                }
+              ]
+            },
+            {
+              "id": "plants",
+              "type": "AGS_DYNAMIC",
+              "url": "http://vsdev1477.esri-de.com:6080/arcgis/rest/services/platform_dev/grouplayer_plants/MapServer",
+              "sublayers": [
+                {
+                  "id": 4,
+                  "sublayers": [
+                    {
+                      "id": 6,
+                      "maxScale": 250000
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "bathingwater",
+              "type": "AGS_DYNAMIC",
+              "url": "https://water.discomap.eea.europa.eu/arcgis/rest/services/BathingWater/BathingWater_Dyna_WM/MapServer",
+              "sublayers": [
+                {
+                  "id": 0
+                },
+                {
+                  "id": 1
+                },
+                {
+                  "id": 2
+                },
+                {
+                  "id": 3
+                },
+                {
+                  "id": 4
+                },
+                {
+                  "id": 5
+                },
+                {
+                  "id": 6
+                }
+              ]
+            }
+          ],
+          "basemap": "streets",
+          "ground": {
+            "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
+            "type": "ELEVATION"
+          }
+        },
+        "view": {
+          "viewmode": "2D",
+          "extent": {
+            "xmin": 600000,
+            "ymin": 5800000,
+            "xmax": 1700000,
+            "ymax": 7600000,
+            "spatialReference": 3857
+          }
+        }
+      }
+    },
+    "themes": {
+      "ThemeModel": {
+        "_selectedTheme": "everlasting"
+      },
+      "ThemeSelector": {
+        "componentEnabled": false
+      }
+    },
+    "templates": {
+      "TemplateSelector": {
+        "componentEnabled": false
+      },
+      "TemplateModel": {
+        "_selectedTemplate": "seasons",
+        "_templates": [
+          {
+            "name": "seasons",
+            "widgets": [
+              {
+                "widgetRole": "circleSpatialInputWidget",
+                "window": {
+                  "marginBox": {
+                    "t": 60,
+                    "r": 20,
+                    "w": 600,
+                    "h": 230
+                  }
+                }
+              },
+              {
+                "widgetRole": "selection-ui",
+                "window": {
+                  "marginBox": {
+                    "l": 20,
+                    "t": 60,
+                    "w": 550,
+                    "h": 230
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "toolset": {
+      "ToolsetManager": {
+        "toolsets": [
+          {
+            "id": "mapview_tools",
+            "tools": [
+              "zoomInTool",
+              "zoomOutTool",
+              "compassTool",
+              "restoreInitialViewTool",
+              "viewmodeSwitcherTool",
+              "*"
+            ],
+            "registerWidget": {
+              "widgetRole": "mapview_tools"
+            },
+            "container": "ignore",
+            "windowType": "container",
+            "cssClass": "muted"
+          }
+        ]
+      }
+    }
+  }
+}

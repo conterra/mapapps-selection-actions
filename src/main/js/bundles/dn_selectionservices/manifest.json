@@ -1,0 +1,85 @@
+{
+  "name": "dn_selectionservices",
+  "version": "1.0.0",
+  "title": "${bundleName}",
+  "description": "${bundleDescription}",
+  "vendor": "con terra GmbH",
+  "productName": "devnet-mapapps-selectionservices",
+  "dependencies": {
+    "selection-services": "^4.3.0"
+  },
+  "layout-widgets": [
+    {
+      "widgetRole": "circleSpatialInputWidget",
+      "template": "seasons",
+      "window": {
+        "title": "${ui.circle.widgetTitle}",
+        "closable": true,
+        "maximizable": false,
+        "minimizeOnClose": true,
+        "resizable": false,
+        "marginBox": {
+          "t": 60,
+          "r": 20,
+          "w": 600,
+          "h": 230
+        },
+        "windowClass": "noPadding"
+      }
+    }
+  ],
+  "components": [
+    {
+      "name": "MapExtentSpatialInputAction",
+      "provides": "selection-services.SpatialInputAction",
+      "references": [
+        {
+          "name": "_mapWidgetModel",
+          "providing": "map-widget.MapWidgetModel"
+        }
+      ]
+    },
+    {
+      "name": "CircleSpatialInputAction",
+      "provides": [
+        "ct.framework.api.EventHandler",
+        "selection-services.SpatialInputAction"
+      ],
+      "properties": {
+        "Event-Topics": [
+          {
+            "topic": "selection/EXECUTING",
+            "method": "onSelectionExecuting"
+          }
+        ]
+      },
+      "references": [
+        {
+          "name": "_drawing",
+          "providing": "mapdraw-api.DefaultMapDrawing"
+        },
+        {
+          "name": "_mapWidgetModel",
+          "providing": "map-widget.MapWidgetModel"
+        },
+        {
+          "name": "_circleSpatialInputWidgetModel",
+          "providing": "dn_selectionservices.CircleSpatialInputWidgetModel"
+        }
+      ]
+    },
+    {
+      "name": "CircleSpatialInputWidgetModel",
+      "impl": "apprt-core/Mutable",
+      "provides": "dn_selectionservices.CircleSpatialInputWidgetModel",
+      "propertiesConstructor": true,
+      "properties": {
+        "minRadius": 0,
+        "maxRadius": 500000,
+        "innerRadius": 50000,
+        "outerRadius": 100000,
+        "stepSize": 1000
+      }
+    }
+  ]
+}
