@@ -1,7 +1,7 @@
 # Selection Services
 This bundle provides additional selection services for map.apps selection-services bundle.
 
-![Screenshot App](https://github.com/conterra/mapapps-vuetoc/blob/master/Screenshot.PNG)
+![Screenshot App](https://github.com/conterra/mapapps-vuetoc/blob/master/Screenshot.JPG)
 
 Sample App
 ------------------
