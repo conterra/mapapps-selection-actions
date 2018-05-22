@@ -67,27 +67,18 @@
     "agssearch": {
       "AGSStore": [
         {
-          "id": "trees",
-          "layerId": "trees",
-          "title": "Trees",
+          "id": "airtraffic0",
+          "layerId": "airtraffic/0",
+          "title": "Air Traffic0",
           "fetchIdProperty": true,
           "useIn": [
             "selection"
           ]
         },
         {
-          "id": "lines",
-          "layerId": "lines/3",
-          "title": "Lines",
-          "fetchIdProperty": true,
-          "useIn": [
-            "selection"
-          ]
-        },
-        {
-          "id": "plants",
-          "layerId": "plants/6",
-          "title": "Plants",
+          "id": "airtraffic1",
+          "layerId": "airtraffic/1",
+          "title": "Air Traffic1",
           "fetchIdProperty": true,
           "useIn": [
             "selection"
@@ -171,42 +162,15 @@
         "map": {
           "layers": [
             {
-              "id": "trees",
-              "type": "AGS_FEATURE",
-              "url": "http://vsdev1477.esri-de.com:6080/arcgis/rest/services/platform_dev/trees/FeatureServer/0",
-              "popupTemplate": {
-                "title": "Tree '{title}' #{objectid}",
-                "content": "<ul><li>Type: {tree_type}</li><li>Size: {tree_size}</li></ul>"
-              },
-              "outFields": [
-                "title",
-                "tree_type",
-                "tree_size"
-              ]
-            },
-            {
-              "id": "lines",
+              "id": "airtraffic",
               "type": "AGS_DYNAMIC",
-              "url": "http://vsdev1477.esri-de.com:6080/arcgis/rest/services/platform_dev/editing/MapServer",
+              "url": "https://services.conterra.de/arcgis/rest/services/mapapps/airtraffic/MapServer",
               "sublayers": [
                 {
-                  "id": 3
-                }
-              ]
-            },
-            {
-              "id": "plants",
-              "type": "AGS_DYNAMIC",
-              "url": "http://vsdev1477.esri-de.com:6080/arcgis/rest/services/platform_dev/grouplayer_plants/MapServer",
-              "sublayers": [
+                  "id": 0
+                },
                 {
-                  "id": 4,
-                  "sublayers": [
-                    {
-                      "id": 6,
-                      "maxScale": 250000
-                    }
-                  ]
+                  "id": 1
                 }
               ]
             },
