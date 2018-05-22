@@ -13,7 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ".";
-import "./CircleSpatialInputAction";
-import "./CircleSpatialInputWidgetModel";
-import "./MapExtentSpatialInputAction";
+import {declare} from "apprt-core/Mutable";
+
+const CircleSpatialInputWidgetModel = declare({
+
+    activate() {
+        let properties = this._properties;
+        this.minRadius = properties.minRadius;
+        this.maxRadius = properties.maxRadius;
+        this.innerRadius = properties.innerRadius;
+        this.outerRadius = properties.outerRadius;
+        this.stepSize = properties.stepSize;
+    }
+
+});
+
+module.exports = CircleSpatialInputWidgetModel;

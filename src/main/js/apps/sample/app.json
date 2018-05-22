@@ -37,7 +37,7 @@
       "CircleSpatialInputWidgetModel": {
         "minRadius": 0,
         "maxRadius": 500000,
-        "innerRadius": 50000,
+        "innerRadius": 0,
         "outerRadius": 100000,
         "stepSize": 1000
       }
