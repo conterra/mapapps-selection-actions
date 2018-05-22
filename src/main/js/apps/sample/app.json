@@ -20,6 +20,7 @@
       "toolset",
       "agssearch",
       "mapnavigation",
+      "toolrules",
       "selection-ui",
       "selection-resultcenter",
       "dn_selectionservices"
@@ -320,7 +321,33 @@
             "container": "ignore",
             "windowType": "container",
             "cssClass": "muted"
+          },
+          {
+            "id": "selection_tools",
+            "title": "Selection",
+            "container": "map",
+            "windowType": "fixed",
+            "window": {
+              "closable": true
+            },
+            "tooltip": "Selection",
+            "__isDirty": true,
+            "cssClass": "notitle",
+            "position": {
+              "rel_l": 20,
+              "rel_b": 60
+            },
+            "tools": [
+              "selection-ui-tool"
+            ]
           }
+        ]
+      }
+    },
+    "toolrules": {
+      "ToolActiveStateManager": {
+        "activateOnStartToolIds": [
+          "selection-ui-tool"
         ]
       }
     }
