@@ -23,7 +23,7 @@
       "toolrules",
       "selection-ui",
       "selection-resultcenter",
-      "dn_selectionservices"
+      "dn_selectionactions"
     ],
     "require": [
       "${app}.app"
@@ -33,7 +33,7 @@
     ]
   },
   "bundles": {
-    "dn_selectionservices": {
+    "dn_selectionactions": {
       "CircleSpatialInputWidgetModel": {
         "minRadius": 0,
         "maxRadius": 500000,

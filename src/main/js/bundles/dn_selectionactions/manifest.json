@@ -1,10 +1,10 @@
 {
-  "name": "dn_selectionservices",
+  "name": "dn_selectionactions",
   "version": "1.0.1-SNAPSHOT",
   "title": "${bundleName}",
   "description": "${bundleDescription}",
   "vendor": "con terra GmbH",
-  "productName": "devnet-mapapps-selectionservices",
+  "productName": "devnet-mapapps-selectionactions",
   "dependencies": {
     "selection-services": "^4.3.0"
   },
@@ -64,13 +64,13 @@
         },
         {
           "name": "_circleSpatialInputWidgetModel",
-          "providing": "dn_selectionservices.CircleSpatialInputWidgetModel"
+          "providing": "dn_selectionactions.CircleSpatialInputWidgetModel"
         }
       ]
     },
     {
       "name": "CircleSpatialInputWidgetModel",
-      "provides": "dn_selectionservices.CircleSpatialInputWidgetModel",
+      "provides": "dn_selectionactions.CircleSpatialInputWidgetModel",
       "propertiesConstructor": true,
       "properties": {
         "minRadius": 0,

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 module.exports = {
-    bundleName: "Selection Services",
+    bundleName: "Selection Actions",
     bundleDescription: "Dieses Bundle stellt zus\u00e4tzliche Selektionsmethoden zur Verf\u00fcgung",
     ui: {
         current_extent: {

@@ -34,15 +34,7 @@ class CircleSpatialInputAction {
     }
 
     deactivate() {
-        let registration = this._serviceregistration;
-
-        // clear the reference
-        this._serviceregistration = null;
-
-        if (registration) {
-            // call unregister
-            registration.unregister();
-        }
+        this.closeWidget();
     }
 
     trigger(opts) {
@@ -116,7 +108,7 @@ class CircleSpatialInputAction {
 
     onSelectionExecuting() {
         this.removeGraphicFromView();
-        this.closeWidget();
+        //this.closeWidget();
         this.oldGraphic = this.graphic;
     }
 

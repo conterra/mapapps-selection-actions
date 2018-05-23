@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 module.exports = {
-    apptitle: "map.apps 4 Selection Services Sample",
+    apptitle: "map.apps 4 Selection Actions Sample",
     map: {
         esrisites: {
             title: "Standorte der Esri Deutschland Gruppe",

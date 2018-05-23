@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
-    <artifactId>mapapps-selection-services</artifactId>
+    <artifactId>mapapps-selection-actions</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- DISABLE repositories and pluginRepositories if inside the con terra! -->
@@ -489,9 +489,9 @@
         </plugins>
     </build>
     <scm>
-        <connection>scm:git:https://github.com/conterra/mapapps-selection-services.git</connection>
-        <developerConnection>scm:git:https://github.com/conterra/mapapps-selection-services.git</developerConnection>
-        <url>https://github.com/conterra/mapapps-selection-services</url>
+        <connection>scm:git:https://github.com/conterra/mapapps-selection-actions.git</connection>
+        <developerConnection>scm:git:https://github.com/conterra/mapapps-selection-actions.git</developerConnection>
+        <url>https://github.com/conterra/mapapps-selection-actions</url>
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>

@@ -1,19 +1,19 @@
-# Selection Services
-This bundle provides additional selection services for map.apps selection-services bundle.
+# Selection Actions
+This bundle provides additional selection input actions for map.apps selection-services bundle.
 
-![Screenshot App](https://github.com/conterra/mapapps-selection-services/blob/master/Screenshot.JPG)
+![Screenshot App](https://github.com/conterra/mapapps-selection-actions/blob/master/Screenshot.JPG)
 
 Sample App
 ------------------
-https://demos.conterra.de/mapapps/resources/apps/downloads_selectionservices/index.html
+https://demos.conterra.de/mapapps/resources/apps/downloads_selectionactions/index.html
 
 Installation Guide
 ------------------
 **Requirement: map.apps 4.3.0**
 
-Simply add the bundle "dn_selectionservices" to your map.apps 4 app.
+Simply add the bundle "dn_selectionactions" to your map.apps 4 app.
 
-#### Configurable Components of dn_selectionservices:
+#### Configurable Components of dn_selectionactions:
 
 ##### MapContentWidgetFactory:
 ```

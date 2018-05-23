@@ -15,7 +15,7 @@
  */
 module.exports = {
     root: ({
-        bundleName: "Selection Services",
+        bundleName: "Selection Actions",
         bundleDescription: "This bundle provides additional selection methods.",
         ui: {
             current_extent: {

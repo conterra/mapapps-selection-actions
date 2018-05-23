@@ -15,19 +15,7 @@
  */
 module.exports = {
     root: {
-        apptitle: "map.apps 4 Selection Services Sample",
-        map: {
-            esrisites: {
-                title: "Esri Germany Group Sites",
-                popup: {
-                    address: "Address",
-                    contact: "Contact",
-                    tel: "Telephone:",
-                    mail: "Email:",
-                    link: "Internet:"
-                }
-            }
-        }
+        apptitle: "map.apps 4 Selection Actions Sample"
     },
     "de": true
 };
