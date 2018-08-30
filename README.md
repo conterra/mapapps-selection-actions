@@ -11,7 +11,8 @@ Installation Guide
 ------------------
 **Requirement: map.apps 4.3.0**
 
-Simply add the bundle "dn_selectionactions" to your map.apps 4 app.
+Simply add the bundle "dn_selectionactions" to your map.apps 4 app. 
+If you would like to use the SearchInput Option, you have to add the omnisearch bundle, additionally.
 
 #### Configurable Components of dn_selectionactions:
 

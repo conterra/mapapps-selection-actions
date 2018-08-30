@@ -79,6 +79,24 @@
         "outerRadius": 100000,
         "stepSize": 1000
       }
+    },
+    {
+      "name": "SearchInputAction",
+      "provides": [
+        "selection-services.SpatialInputAction",
+        "ct.api.omnisearch.ResultHandler",
+        "ct.framework.api.EventHandler"
+      ],
+      "references": [
+        {
+          "name": "_eventService",
+          "providing": "ct.framework.api.EventService"
+        },
+        {
+          "name": "_logService",
+          "providing": "ct.framework.api.LogService"
+        }
+      ]
     }
   ]
 }
