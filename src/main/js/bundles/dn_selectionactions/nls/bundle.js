@@ -28,10 +28,6 @@ module.exports = {
                 widgetTitle: "Configure circle selection",
                 innerRadius: "Inner Radius",
                 outerRadius: "Outer Radius"
-            },
-            search: {
-                title: "Searchresult",
-                description: "Search an item with the omnisearch first."
             }
         }
     }),
