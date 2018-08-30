@@ -38,6 +38,7 @@ class SearchInputAction {
             if (!inputGeometry) {
                 reject("No Geometry is defined!");
             } else {
+                debugger;
                 resolve(inputGeometry.geometry);
             }
 
