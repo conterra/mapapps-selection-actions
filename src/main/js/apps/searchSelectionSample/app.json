@@ -23,7 +23,8 @@
       "toolrules",
       "selection-ui",
       "selection-resultcenter",
-      "dn_selectionactions"
+      "dn_selectionactions",
+      "omnisearch@^4.3.0"
     ],
     "require": [
       "${app}.app"
@@ -52,15 +53,14 @@
     "selection-ui": {
       "Config": {
         "selectionMethods": [
-          "extent",
-          "point",
-          "polygon",
           "circle",
-          "current_extent"
+          "polygon",
+          "extent",
+          "searchSelect"
         ],
         "preselectSources": "all",
         "activateSelectionMethod": false,
-        "closeOnSelection": false,
+        "closeOnSelection": true,
         "selectionOptions": {
           "point": {
             "clickTolerance": 3
@@ -76,7 +76,8 @@
           "title": "Air Traffic0",
           "fetchIdProperty": true,
           "useIn": [
-            "selection"
+            "selection",
+            "omnisearch"
           ]
         },
         {
@@ -85,7 +86,8 @@
           "title": "Air Traffic1",
           "fetchIdProperty": true,
           "useIn": [
-            "selection"
+            "selection",
+            "omnisearch"
           ]
         },
         {
@@ -150,6 +152,27 @@
           "useIn": [
             "selection"
           ]
+        },
+        {
+          "title": "PLZ Gebiete (PLZ_5_Gebiete_2012_Webmerc)",
+          "description": "",
+          "omniSearchLabelAttr": "PLZ_NAME",
+          "omniSearchSearchAttr": "PLZ_NAME",
+          "idProperty": "OBJECTID",
+          "url": "https://services.arcgis.com/OLiydejKCZTGhvWg/arcgis/rest/services/Infas_PLZ_Gebiete_D_2012/FeatureServer/1",
+          "useIn": [
+            "selection",
+            "omnisearch"
+          ],
+          "filterOptions": {
+            "suggestContains": true
+          },
+          "omniSearchTypingDelay": 500,
+          "omniSearchPageSize": 20,
+          "omniSearchDefaultLabel": "Suchbegriff eingeben...",
+          "fetchIdProperty": true,
+          "enablePagination": false,
+          "id": "plz_gebiete"
         }
       ]
     },
@@ -259,7 +282,7 @@
                 "window": {
                   "marginBox": {
                     "l": 20,
-                    "t": 60,
+                    "t": 130,
                     "w": 550,
                     "h": 230
                   }
@@ -302,8 +325,8 @@
             "__isDirty": true,
             "cssClass": "notitle",
             "position": {
-              "rel_l": 20,
-              "rel_b": 60
+              "rel_l": 430,
+              "rel_t": 25
             },
             "tools": [
               "selection-ui-tool"

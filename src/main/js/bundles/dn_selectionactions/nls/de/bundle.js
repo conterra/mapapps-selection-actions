@@ -27,6 +27,10 @@ module.exports = {
             widgetTitle: "Kreisselektion konfigurieren",
             innerRadius: "Innerer Radius",
             outerRadius: "Äußerer Radius"
+        },
+        search: {
+            title: "Suchergebnis",
+            description: "Suchen sie zuerst ein Feature mit der Omnisuche."
         }
     }
 };

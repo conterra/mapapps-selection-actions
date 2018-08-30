@@ -13,8 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ".";
-import "./CircleSpatialInputAction";
-import "./CircleSpatialInputWidgetModel";
-import "./MapExtentSpatialInputAction";
-import "./SearchInputAction";
+module.exports = {
+    apptitle: "map.apps 4 Selection Actions Sample",
+    map: {
+        esrisites: {
+            title: "Standorte der Esri Deutschland Gruppe",
+            popup: {
+                address: "Adresse",
+                contact: "Kontakt",
+                tel: "Telefon:",
+                mail: "Email:",
+                link: "Internet:"
+            }
+        }
+    }
+};

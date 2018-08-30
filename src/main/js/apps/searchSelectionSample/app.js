@@ -13,8 +13,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ".";
-import "./CircleSpatialInputAction";
-import "./CircleSpatialInputWidgetModel";
-import "./MapExtentSpatialInputAction";
-import "./SearchInputAction";
+import i18n from "dojo/i18n!./nls/bundle";
