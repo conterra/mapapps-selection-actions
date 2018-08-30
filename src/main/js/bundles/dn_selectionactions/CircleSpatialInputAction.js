@@ -37,6 +37,12 @@ class CircleSpatialInputAction {
         this.closeWidget();
     }
 
+    onSelectionExecuting() {
+        this.removeGraphicFromView();
+        //this.closeWidget();
+        this.oldGraphic = this.graphic;
+    }
+
     trigger(opts) {
         return new CancelablePromise((resolve, reject, oncancel) => {
             if (!this._mapWidgetModel) {
@@ -85,11 +91,12 @@ class CircleSpatialInputAction {
                 this.addGraphicToView(circleGeometry);
                 resolve(circleGeometry);
             });
-            oncancel((evt) => {
+            oncancel(() => {
                 handle.remove();
                 drawing.active = false;
                 this.removeGraphicFromView();
                 this.closeWidget();
+                console.debug("CircleSpatialInputAction was canceled...");
             });
         });
     }
@@ -104,12 +111,6 @@ class CircleSpatialInputAction {
             // call unregister
             registration.unregister();
         }
-    }
-
-    onSelectionExecuting() {
-        this.removeGraphicFromView();
-        //this.closeWidget();
-        this.oldGraphic = this.graphic;
     }
 
     static createCircle(center, radius) {
