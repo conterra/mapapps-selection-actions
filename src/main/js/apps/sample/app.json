@@ -1,0 +1,322 @@
+{
+  "properties": {
+    "title": "${apptitle}"
+  },
+  "load": {
+    "bundleLocations": [
+      "localbundles",
+      "bundles"
+    ],
+    "allowedBundles": [
+      "system",
+      "banner",
+      "console",
+      "notifier",
+      "splashscreen",
+      "templatelayout",
+      "template-seasons",
+      "theme-everlasting",
+      "map-init",
+      "toolset",
+      "agssearch",
+      "mapnavigation",
+      "toolrules",
+      "selection-ui",
+      "selection-resultcenter",
+      "dn_selectionactions"
+    ],
+    "require": [
+      "${app}.app"
+    ],
+    "i18n": [
+      "bundle"
+    ]
+  },
+  "bundles": {
+    "dn_selectionactions": {
+      "CircleSpatialInputWidgetModel": {
+        "minRadius": 0,
+        "maxRadius": 500000,
+        "innerRadius": 0,
+        "outerRadius": 100000,
+        "stepSize": 1000
+      }
+    },
+    "selection-services": {
+      "SearchSourceModel": {
+        "respectLayerVisibility": true,
+        "useScaleForVisibility": true,
+        "useExtentForVisibility": false
+      }
+    },
+    "selection-ui": {
+      "Config": {
+        "selectionMethods": [
+          "circle",
+          "polygon",
+          "point",
+          "extent"
+        ],
+        "preselectSources": "all",
+        "activateSelectionMethod": false,
+        "closeOnSelection": false,
+        "selectionOptions": {
+          "point": {
+            "clickTolerance": 3
+          }
+        }
+      }
+    },
+    "agssearch": {
+      "AGSStore": [
+        {
+          "id": "airtraffic0",
+          "layerId": "airtraffic/0",
+          "title": "Air Traffic0",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "airtraffic1",
+          "layerId": "airtraffic/1",
+          "title": "Air Traffic1",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater0",
+          "layerId": "bathingwater/0",
+          "title": "Bathing Water0",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater1",
+          "layerId": "bathingwater/1",
+          "title": "Bathing Water1",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater2",
+          "layerId": "bathingwater/2",
+          "title": "Bathing Water2",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater3",
+          "layerId": "bathingwater/3",
+          "title": "Bathing Water3",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater4",
+          "layerId": "bathingwater/4",
+          "title": "Bathing Water4",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater5",
+          "layerId": "bathingwater/5",
+          "title": "Bathing Water5",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        },
+        {
+          "id": "bathingwater6",
+          "layerId": "bathingwater/6",
+          "title": "Bathing Water6",
+          "fetchIdProperty": true,
+          "useIn": [
+            "selection"
+          ]
+        }
+      ]
+    },
+    "banner": {
+      "BannerWidget": {
+        "label": "Developer Network",
+        "image": "https://www.conterra.de/~/media/conterra/images/site_logos/conterra-logo.ashx",
+        "imagePosition": "above",
+        "link": "http://developernetwork.conterra.de"
+      }
+    },
+    "map-init": {
+      "Config": {
+        "map": {
+          "layers": [
+            {
+              "id": "airtraffic",
+              "type": "AGS_DYNAMIC",
+              "url": "https://services.conterra.de/arcgis/rest/services/mapapps/airtraffic/MapServer",
+              "sublayers": [
+                {
+                  "id": 0
+                },
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "id": "bathingwater",
+              "type": "AGS_DYNAMIC",
+              "url": "https://water.discomap.eea.europa.eu/arcgis/rest/services/BathingWater/BathingWater_Dyna_WM/MapServer",
+              "sublayers": [
+                {
+                  "id": 0
+                },
+                {
+                  "id": 1
+                },
+                {
+                  "id": 2
+                },
+                {
+                  "id": 3
+                },
+                {
+                  "id": 4
+                },
+                {
+                  "id": 5
+                },
+                {
+                  "id": 6
+                }
+              ]
+            }
+          ],
+          "basemap": "streets",
+          "ground": {
+            "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
+            "type": "ELEVATION"
+          }
+        },
+        "view": {
+          "viewmode": "2D",
+          "extent": {
+            "xmin": 600000,
+            "ymin": 5800000,
+            "xmax": 1700000,
+            "ymax": 7600000,
+            "spatialReference": 3857
+          }
+        }
+      }
+    },
+    "themes": {
+      "ThemeModel": {
+        "_selectedTheme": "everlasting"
+      },
+      "ThemeSelector": {
+        "componentEnabled": false
+      }
+    },
+    "templates": {
+      "TemplateSelector": {
+        "componentEnabled": false
+      },
+      "TemplateModel": {
+        "_selectedTemplate": "seasons",
+        "_templates": [
+          {
+            "name": "seasons",
+            "widgets": [
+              {
+                "widgetRole": "circleSpatialInputWidget",
+                "window": {
+                  "marginBox": {
+                    "t": 60,
+                    "r": 20,
+                    "w": 600,
+                    "h": 230
+                  }
+                }
+              },
+              {
+                "widgetRole": "selection-ui",
+                "window": {
+                  "marginBox": {
+                    "l": 20,
+                    "t": 60,
+                    "w": 550,
+                    "h": 230
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "toolset": {
+      "ToolsetManager": {
+        "toolsets": [
+          {
+            "id": "mapview_tools",
+            "tools": [
+              "zoomInTool",
+              "zoomOutTool",
+              "compassTool",
+              "restoreInitialViewTool",
+              "viewmodeSwitcherTool",
+              "*"
+            ],
+            "registerWidget": {
+              "widgetRole": "mapview_tools"
+            },
+            "container": "ignore",
+            "windowType": "container",
+            "cssClass": "muted"
+          },
+          {
+            "id": "selection_tools",
+            "title": "Selection",
+            "container": "map",
+            "windowType": "fixed",
+            "window": {
+              "closable": true
+            },
+            "tooltip": "Selection",
+            "__isDirty": true,
+            "cssClass": "notitle",
+            "position": {
+              "rel_l": 20,
+              "rel_b": 60
+            },
+            "tools": [
+              "selection-ui-tool"
+            ]
+          }
+        ]
+      }
+    },
+    "toolrules": {
+      "ToolActiveStateManager": {
+        "activateOnStartToolIds": [
+          "selection-ui-tool"
+        ]
+      }
+    }
+  }
+}
