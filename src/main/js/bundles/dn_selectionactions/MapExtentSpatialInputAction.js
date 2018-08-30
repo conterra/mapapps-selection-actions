@@ -24,7 +24,7 @@ export default class {
         this.title = i18n.title;
         this.description = i18n.description;
         this.iconClass = "icon-extent";
-        this.interactive = false;
+        this.interactive = true;
     }
 
     trigger() {
