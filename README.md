@@ -11,11 +11,27 @@ Installation Guide
 ------------------
 **Requirement: map.apps 4.3.0**
 
-Simply add the bundle "dn_selectionactions" to your map.apps 4 app.
+Add the bundle "dn_selectionactions" to your map.apps 4 app.
+
+Configure the available selection methods in the selection-ui bundle. The ones added by this bundle are the following:
+- circle
+- omnisearch
+
+```
+"bundles": {
+    ...
+    "selection-ui": {
+        "Config": {
+                "selectionMethods": ["extent", "point"]
+        }
+    }
+    ...
+}
+```
 
 #### Configurable Components of dn_selectionactions:
 
-##### MapContentWidgetFactory:
+##### CircleSpatialInputWidgetModel:
 ```
 "CircleSpatialInputWidgetModel": {
     "minRadius": 0,
@@ -26,7 +42,7 @@ Simply add the bundle "dn_selectionactions" to your map.apps 4 app.
 }
 ```
 
-###### Properties
+###### CircleSpatialInputWidgetModel Properties
 | Property                       | Type    | Possible Values                 | Default    | Description                       |
 |--------------------------------|---------|---------------------------------|------------|---------------------------------- |
 | minRadius                      | number  |                                 | 0          | Minimal radius                    |
