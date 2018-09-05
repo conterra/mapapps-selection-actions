@@ -19,7 +19,7 @@ class SearchInputAction {
 
     activate() {
         let i18n = this.i18n = this._i18n.get().ui.search;
-        this.id = "searchSelect";
+        this.id = "omnisearch";
         this.title = i18n.title;
         this.description = i18n.description;
         this.iconClass = "icon-magnifier";
