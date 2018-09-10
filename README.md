@@ -14,6 +14,7 @@ Installation Guide
 Add the bundle "dn_selectionactions" to your map.apps 4 app.
 
 Configure the available selection methods in the selection-ui bundle. The ones added by this bundle are the following:
+- current_extent
 - circle
 - omnisearch
 
