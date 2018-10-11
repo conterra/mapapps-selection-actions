@@ -31,7 +31,7 @@ module.exports = {
             },
             search: {
                 title: "Searchresult",
-                description: "Search an item with the omnisearch first."
+                description: "Search an item."
             }
         }
     }),

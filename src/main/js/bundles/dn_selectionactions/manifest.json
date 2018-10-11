@@ -87,6 +87,14 @@
         "ct.api.omnisearch.ResultHandler",
         "ct.framework.api.EventHandler"
       ],
+      "properties": {
+        "Event-Topics": [
+          {
+            "topic": "HierarchicalsearchResult",
+            "method": "_handleHierarchicalSearchResult"
+          }
+        ]
+      },
       "references": [
         {
           "name": "_eventService",

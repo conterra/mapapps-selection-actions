@@ -19,7 +19,7 @@ class SearchInputAction {
 
     activate() {
         let i18n = this.i18n = this._i18n.get().ui.search;
-        this.id = "omnisearch";
+        this.id = "searchaction";
         this.title = i18n.title;
         this.description = i18n.description;
         this.iconClass = "icon-magnifier";
@@ -30,6 +30,12 @@ class SearchInputAction {
 
     handle(item) {
         this._inputGeometry = item;
+    }
+
+    _handleHierarchicalSearchResult(evt) {
+        let item = evt.getProperty("geometry");
+        this._inputGeometry = item;
+
     }
 
     trigger() {
