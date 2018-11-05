@@ -279,9 +279,7 @@
               "zoomInTool",
               "zoomOutTool",
               "compassTool",
-              "restoreInitialViewTool",
-              "viewmodeSwitcherTool",
-              "*"
+              "restoreInitialViewTool"
             ],
             "registerWidget": {
               "widgetRole": "mapview_tools"
