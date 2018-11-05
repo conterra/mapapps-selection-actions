@@ -22,7 +22,7 @@ import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
 
-class CircleSpatialInputAction {
+export default class CircleSpatialInputAction {
     activate(componentContext) {
         this._bundleContext = componentContext.getBundleContext();
         let i18n = this.i18n = this._i18n.get().ui.circle;
@@ -152,5 +152,3 @@ class CircleSpatialInputAction {
         }
     }
 }
-
-export default CircleSpatialInputAction;

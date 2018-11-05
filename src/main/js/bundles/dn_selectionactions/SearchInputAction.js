@@ -15,7 +15,7 @@
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
 
-class SearchInputAction {
+export default class SearchInputAction {
 
     activate() {
         let i18n = this.i18n = this._i18n.get().ui.search;
@@ -24,7 +24,6 @@ class SearchInputAction {
         this.description = i18n.description;
         this.iconClass = "icon-magnifier";
         this.interactive = false;
-
         this._inputGeometry = null;
     }
 
@@ -36,7 +35,6 @@ class SearchInputAction {
     // hierarchical search handle method
     _handleHierarchicalSearchResult(evt) {
         this._inputGeometry = evt.getProperty("geometry");
-
     }
 
     trigger() {
@@ -54,5 +52,3 @@ class SearchInputAction {
         });
     }
 }
-
-export default SearchInputAction;
