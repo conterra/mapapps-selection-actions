@@ -28,13 +28,14 @@ class SearchInputAction {
         this._inputGeometry = null;
     }
 
+    // omnisearch handle method
     handle(item) {
         this._inputGeometry = item;
     }
 
+    // hierarchical search handle method
     _handleHierarchicalSearchResult(evt) {
-        let item = evt.getProperty("geometry");
-        this._inputGeometry = item;
+        this._inputGeometry = evt.getProperty("geometry");
 
     }
 
