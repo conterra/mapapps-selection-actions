@@ -1,110 +1,110 @@
 {
-  "name": "dn_selectionactions",
-  "version": "1.2.1-SNAPSHOT",
-  "title": "${bundleName}",
-  "description": "${bundleDescription}",
-  "vendor": "con terra GmbH",
-  "productName": "devnet-mapapps-selectionactions",
-  "dependencies": {
-    "selection-services": "^4.3.0"
-  },
-  "layout-widgets": [
-    {
-      "widgetRole": "circleSpatialInputWidget",
-      "template": "seasons",
-      "window": {
-        "title": "${ui.circle.widgetTitle}",
-        "closable": true,
-        "maximizable": false,
-        "minimizeOnClose": true,
-        "resizable": false,
-        "marginBox": {
-          "t": 60,
-          "r": 20,
-          "w": 600,
-          "h": 230
-        },
-        "windowClass": "noPadding"
-      }
-    }
-  ],
-  "components": [
-    {
-      "name": "MapExtentSpatialInputAction",
-      "provides": "selection-services.SpatialInputAction",
-      "references": [
-        {
-          "name": "_mapWidgetModel",
-          "providing": "map-widget.MapWidgetModel"
-        }
-      ]
+    "name": "dn_selectionactions",
+    "version": "1.2.1-SNAPSHOT",
+    "title": "${bundleName}",
+    "description": "${bundleDescription}",
+    "vendor": "con terra GmbH",
+    "productName": "devnet-mapapps-selectionactions",
+    "dependencies": {
+        "selection-services": "^4.3.0"
     },
-    {
-      "name": "CircleSpatialInputAction",
-      "provides": [
-        "ct.framework.api.EventHandler",
-        "selection-services.SpatialInputAction"
-      ],
-      "properties": {
-        "Event-Topics": [
-          {
-            "topic": "selection/EXECUTING",
-            "method": "onSelectionExecuting"
-          }
-        ]
-      },
-      "references": [
+    "layout-widgets": [
         {
-          "name": "_drawing",
-          "providing": "mapdraw-api.DefaultMapDrawing"
-        },
-        {
-          "name": "_mapWidgetModel",
-          "providing": "map-widget.MapWidgetModel"
-        },
-        {
-          "name": "_circleSpatialInputWidgetModel",
-          "providing": "dn_selectionactions.CircleSpatialInputWidgetModel"
+            "widgetRole": "circleSpatialInputWidget",
+            "template": "seasons",
+            "window": {
+                "title": "${ui.circle.widgetTitle}",
+                "closable": true,
+                "maximizable": false,
+                "minimizeOnClose": true,
+                "resizable": false,
+                "marginBox": {
+                    "t": 60,
+                    "r": 20,
+                    "w": 600,
+                    "h": 230
+                },
+                "windowClass": "noPadding"
+            }
         }
-      ]
-    },
-    {
-      "name": "CircleSpatialInputWidgetModel",
-      "provides": "dn_selectionactions.CircleSpatialInputWidgetModel",
-      "propertiesConstructor": true,
-      "properties": {
-        "minRadius": 0,
-        "maxRadius": 500000,
-        "innerRadius": 0,
-        "outerRadius": 100000,
-        "stepSize": 1000
-      }
-    },
-    {
-      "name": "SearchInputAction",
-      "provides": [
-        "selection-services.SpatialInputAction",
-        "ct.api.omnisearch.ResultHandler",
-        "ct.framework.api.EventHandler"
-      ],
-      "properties": {
-        "Event-Topics": [
-          {
-            "topic": "HierarchicalsearchResult",
-            "method": "_handleHierarchicalSearchResult"
-          }
-        ]
-      },
-      "references": [
+    ],
+    "components": [
         {
-          "name": "_eventService",
-          "providing": "ct.framework.api.EventService"
+            "name": "MapExtentSpatialInputAction",
+            "provides": "selection-services.SpatialInputAction",
+            "references": [
+                {
+                    "name": "_mapWidgetModel",
+                    "providing": "map-widget.MapWidgetModel"
+                }
+            ]
         },
         {
-          "name": "_logService",
-          "providing": "ct.framework.api.LogService"
+            "name": "CircleSpatialInputAction",
+            "provides": [
+                "ct.framework.api.EventHandler",
+                "selection-services.SpatialInputAction"
+            ],
+            "properties": {
+                "Event-Topics": [
+                    {
+                        "topic": "selection/EXECUTING",
+                        "method": "onSelectionExecuting"
+                    }
+                ]
+            },
+            "references": [
+                {
+                    "name": "_drawing",
+                    "providing": "mapdraw-api.DefaultMapDrawing"
+                },
+                {
+                    "name": "_mapWidgetModel",
+                    "providing": "map-widget.MapWidgetModel"
+                },
+                {
+                    "name": "_circleSpatialInputWidgetModel",
+                    "providing": "dn_selectionactions.CircleSpatialInputWidgetModel"
+                }
+            ]
+        },
+        {
+            "name": "CircleSpatialInputWidgetModel",
+            "provides": "dn_selectionactions.CircleSpatialInputWidgetModel",
+            "propertiesConstructor": true,
+            "properties": {
+                "minRadius": 0,
+                "maxRadius": 500000,
+                "innerRadius": 0,
+                "outerRadius": 100000,
+                "stepSize": 1000
+            }
+        },
+        {
+            "name": "SearchInputAction",
+            "provides": [
+                "selection-services.SpatialInputAction",
+                "ct.api.omnisearch.ResultHandler",
+                "ct.framework.api.EventHandler"
+            ],
+            "properties": {
+                "Event-Topics": [
+                    {
+                        "topic": "dn_hierarchicalsearch/RESULT",
+                        "method": "_handleHierarchicalSearchResult"
+                    }
+                ]
+            },
+            "references": [
+                {
+                    "name": "_eventService",
+                    "providing": "ct.framework.api.EventService"
+                },
+                {
+                    "name": "_logService",
+                    "providing": "ct.framework.api.LogService"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
