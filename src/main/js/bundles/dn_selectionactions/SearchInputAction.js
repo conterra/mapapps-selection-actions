@@ -29,7 +29,7 @@ export default class SearchInputAction {
 
     // omnisearch handle method
     handle(item) {
-        this._inputGeometry = item;
+        this._inputGeometry = item.geometry;
     }
 
     // hierarchical search handle method
