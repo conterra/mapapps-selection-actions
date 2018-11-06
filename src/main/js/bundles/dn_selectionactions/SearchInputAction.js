@@ -43,7 +43,7 @@ export default class SearchInputAction {
             if (!inputGeometry) {
                 reject("No SearchInputActionGeometry was is defined");
             } else {
-                resolve(inputGeometry.geometry);
+                resolve(inputGeometry);
             }
 
             oncancel(() => {
