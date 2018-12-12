@@ -37,6 +37,10 @@ export default class SearchInputAction {
         this._inputGeometry = evt.getProperty("geometry");
     }
 
+    getInputGeometry() {
+        return this._inputGeometry;
+    }
+
     trigger() {
         return new CancelablePromise((resolve, reject, oncancel) => {
             let inputGeometry = this._inputGeometry;
