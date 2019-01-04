@@ -24,26 +24,26 @@ export default class SearchInputAction {
         this.description = i18n.description;
         this.iconClass = "icon-magnifier";
         this.interactive = false;
-        this._inputGeometry = null;
+        this._input = null;
     }
 
     // omnisearch handle method
     handle(item) {
-        this._inputGeometry = item.geometry;
+        this._input = item;
     }
 
     // hierarchical search handle method
     _handleHierarchicalSearchResult(evt) {
-        this._inputGeometry = evt.getProperty("geometry");
+        this._input = evt.getProperty("result");
     }
 
-    getInputGeometry() {
-        return this._inputGeometry;
+    getInput() {
+        return this._input;
     }
 
     trigger() {
         return new CancelablePromise((resolve, reject, oncancel) => {
-            let inputGeometry = this._inputGeometry;
+            let inputGeometry = this._input.geometry;
             if (!inputGeometry) {
                 reject("No SearchInputActionGeometry was is defined");
             } else {
