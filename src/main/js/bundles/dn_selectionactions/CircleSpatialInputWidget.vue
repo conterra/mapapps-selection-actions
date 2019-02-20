@@ -1,8 +1,8 @@
 <template>
-    <v-container grid-list-md pa-3>
+    <v-container grid-list-md pa-1>
         <div>{{i18n.innerRadius}}</div>
         <v-layout row wrap justify-space-between>
-            <v-flex md10>
+            <v-flex md10 px-3>
                 <v-slider v-model="innerRadius" v-bind:min="minRadius" v-bind:max="maxRadius" v-bind:step="stepSize"
                           hide-details></v-slider>
             </v-flex>
@@ -14,7 +14,7 @@
         </v-layout>
         <div>{{i18n.outerRadius}}</div>
         <v-layout row wrap justify-space-between>
-            <v-flex md10>
+            <v-flex md10 px-3>
                 <v-slider v-model="outerRadius" v-bind:min="minRadius" v-bind:max="maxRadius" v-bind:step="stepSize"
                           hide-details></v-slider>
             </v-flex>
