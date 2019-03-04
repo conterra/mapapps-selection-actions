@@ -6,7 +6,11 @@
     "vendor": "con terra GmbH",
     "productName": "devnet-mapapps-selectionactions",
     "dependencies": {
-        "selection-services": "^4.3.0"
+        "selection-services": "^4.3.0",
+        "apprt-vue": "^4.2.2",
+        "apprt-binding": "^4.2.2",
+        "apprt-vuetify": "^4.2.2",
+        "resultcenter": "^4.2.2"
     },
     "layout-widgets": [
         {

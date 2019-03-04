@@ -1,27 +1,55 @@
 <template>
-    <v-container grid-list-md pa-1>
-        <div>{{i18n.innerRadius}}</div>
-        <v-layout row wrap justify-space-between>
-            <v-flex md10 px-3>
-                <v-slider v-model="innerRadius" v-bind:min="minRadius" v-bind:max="maxRadius" v-bind:step="stepSize"
-                          hide-details></v-slider>
+    <v-container
+        grid-list-md
+        pa-1>
+        <div>{{ i18n.innerRadius }}</div>
+        <v-layout
+            row
+            wrap
+            justify-space-between>
+            <v-flex
+                md10
+                px-3>
+                <v-slider
+                    v-model="innerRadius"
+                    :min="minRadius"
+                    :max="maxRadius"
+                    :step="stepSize"
+                    hide-details/>
             </v-flex>
             <v-flex md2>
                 <v-text-field
-                        v-model="innerRadius" v-bind:step="stepSize" type="number" suffix="m" hide-details
-                ></v-text-field>
+                    v-model="innerRadius"
+                    :step="stepSize"
+                    type="number"
+                    suffix="m"
+                    hide-details
+                />
             </v-flex>
         </v-layout>
-        <div>{{i18n.outerRadius}}</div>
-        <v-layout row wrap justify-space-between>
-            <v-flex md10 px-3>
-                <v-slider v-model="outerRadius" v-bind:min="minRadius" v-bind:max="maxRadius" v-bind:step="stepSize"
-                          hide-details></v-slider>
+        <div>{{ i18n.outerRadius }}</div>
+        <v-layout
+            row
+            wrap
+            justify-space-between>
+            <v-flex
+                md10
+                px-3>
+                <v-slider
+                    v-model="outerRadius"
+                    :min="minRadius"
+                    :max="maxRadius"
+                    :step="stepSize"
+                    hide-details/>
             </v-flex>
             <v-flex md2>
                 <v-text-field
-                        v-model="outerRadius" v-bind:step="stepSize" type="number" suffix="m" hide-details
-                ></v-text-field>
+                    v-model="outerRadius"
+                    :step="stepSize"
+                    type="number"
+                    suffix="m"
+                    hide-details
+                />
             </v-flex>
         </v-layout>
     </v-container>

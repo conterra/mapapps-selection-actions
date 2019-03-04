@@ -15,7 +15,7 @@
  */
 import {declare} from "apprt-core/Mutable";
 
-export const CircleSpatialInputWidgetModel = declare({
+export default declare({
 
     activate() {
         let properties = this._properties;
