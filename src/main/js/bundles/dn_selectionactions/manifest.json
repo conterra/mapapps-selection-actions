@@ -23,7 +23,7 @@
                 "minimizeOnClose": true,
                 "resizable": false,
                 "marginBox": {
-                    "t": 60,
+                    "t": 125,
                     "r": 20,
                     "w": 600,
                     "h": 230
