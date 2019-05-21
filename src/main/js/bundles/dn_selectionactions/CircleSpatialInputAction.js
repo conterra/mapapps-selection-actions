@@ -36,15 +36,15 @@ export default class CircleSpatialInputAction {
 
     deactivate() {
         this.closeWidget();
+        this.removeGraphicFromView();
     }
 
     onSelectionExecuting() {
         this.removeGraphicFromView();
-        //this.closeWidget();
         this.oldGraphic = this.graphic;
     }
 
-    trigger(opts) {
+    trigger() {
         return new CancelablePromise((resolve, reject, oncancel) => {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
@@ -116,7 +116,10 @@ export default class CircleSpatialInputAction {
 
     static createCircle(center, radius) {
         let geodesic = false;
-        if (center.spatialReference.wkid === 3857 || center.spatialReference.wkid === 4326 || center.spatialReference.latestWkid === 3857 || center.spatialReference.latestWkid === 4326) {
+        if (center.spatialReference.wkid === 3857
+            || center.spatialReference.wkid === 4326
+            || center.spatialReference.latestWkid === 3857
+            || center.spatialReference.latestWkid === 4326) {
             geodesic = true;
         }
 
@@ -126,9 +129,9 @@ export default class CircleSpatialInputAction {
             radius: radius,
             radiusUnit: "meters"
         });
-    };
+    }
 
-    addGraphicToView(circle) {
+    addGraphicToView(geometry) {
         let view = this._mapWidgetModel.get("view");
         let symbol = {
             type: "simple-fill",
@@ -140,11 +143,11 @@ export default class CircleSpatialInputAction {
             }
         };
         let graphic = this.graphic = new Graphic({
-            geometry: circle,
+            geometry: geometry,
             symbol: symbol
         });
         view.graphics.add(graphic);
-    };
+    }
 
     removeGraphicFromView() {
         if (this.oldGraphic) {
