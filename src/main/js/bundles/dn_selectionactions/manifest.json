@@ -64,9 +64,9 @@
             ]
         },
         {
-            "name": "SearchInputAction",
+            "name": "SearchSpatialInputAction",
             "provides": [
-                "dn_selectionactions.SearchInputAction",
+                "dn_selectionactions.SearchSpatialInputAction",
                 "selection-services.SpatialInputAction",
                 "ct.api.omnisearch.ResultHandler",
                 "ct.framework.api.EventHandler"

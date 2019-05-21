@@ -15,7 +15,7 @@
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
 
-export default class SearchInputAction {
+export default class SearchSpatialInputAction {
 
     activate() {
         let i18n = this.i18n = this._i18n.get().ui.search;
