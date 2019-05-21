@@ -7,10 +7,10 @@
     "productName": "devnet-mapapps-selectionactions",
     "dependencies": {
         "selection-services": "^4.3.0",
-        "apprt-vue": "^4.2.2",
-        "apprt-binding": "^4.2.2",
-        "apprt-vuetify": "^4.2.2",
-        "resultcenter": "^4.2.2"
+        "apprt-vue": "^4.3.0",
+        "apprt-binding": "^4.3.0",
+        "apprt-vuetify": "^4.3.0",
+        "resultcenter": "^4.3.0"
     },
     "layout-widgets": [
         {
