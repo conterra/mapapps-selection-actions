@@ -43,6 +43,27 @@
             ]
         },
         {
+            "name": "GraphicSpatialInputAction",
+            "provides": [
+                "selection-services.SpatialInputAction",
+                "ct.framework.api.EventHandler"
+            ],
+            "properties": {
+                "Event-Topics": [
+                    {
+                        "topic": "selection/EXECUTING",
+                        "method": "onSelectionExecuting"
+                    }
+                ]
+            },
+            "references": [
+                {
+                    "name": "_mapWidgetModel",
+                    "providing": "map-widget.MapWidgetModel"
+                }
+            ]
+        },
+        {
             "name": "SearchInputAction",
             "provides": [
                 "dn_selectionactions.SearchInputAction",

@@ -31,6 +31,10 @@ module.exports = {
         search: {
             title: "Suchergebnis",
             description: "Finden Sie ein Feature \u00fcber die Omnisuche und verwenden Sie dessen Geometrie, um Objekte auszuw\u00e4hlen."
+        },
+        graphic: {
+            title: "Grafik",
+            description: "Klicken Sie auf eine Grafik in der Karte, um Objekte auszuw\u00e4hlen."
         }
     }
 };

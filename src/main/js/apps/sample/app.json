@@ -53,11 +53,12 @@
         "selection-ui": {
             "Config": {
                 "selectionMethods": [
-                    "extent",
                     "point",
                     "polygon",
+                    "rectangle",
                     "circle",
                     "current_extent",
+                    "graphic",
                     "searchaction"
                 ],
                 "preselectSources": "all",
