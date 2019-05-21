@@ -43,7 +43,7 @@ export default class SearchInputAction {
 
     trigger() {
         return new CancelablePromise((resolve, reject, oncancel) => {
-            let inputGeometry = this._input.geometry;
+            let inputGeometry = this._input && this._input.geometry;
             if (!inputGeometry) {
                 reject("No SearchInputActionGeometry was is defined");
             } else {

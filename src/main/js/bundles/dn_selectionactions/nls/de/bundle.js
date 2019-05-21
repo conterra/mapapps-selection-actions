@@ -30,7 +30,7 @@ module.exports = {
         },
         search: {
             title: "Suchergebnis",
-            description: "Suchen sie ein Feature."
+            description: "Finden Sie ein Feature \u00fcber die Omnisuche und verwenden Sie dessen Geometrie, um Objekte auszuw\u00e4hlen."
         }
     }
 };

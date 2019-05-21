@@ -31,7 +31,7 @@ module.exports = {
             },
             search: {
                 title: "Searchresult",
-                description: "Search an item."
+                description: "Find a feature via the omnisearch and use it's geometry to select objects."
             }
         }
     }),
