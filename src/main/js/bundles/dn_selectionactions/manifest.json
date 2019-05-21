@@ -43,6 +43,29 @@
             ]
         },
         {
+            "name": "SearchInputAction",
+            "provides": [
+                "dn_selectionactions.SearchInputAction",
+                "selection-services.SpatialInputAction",
+                "ct.api.omnisearch.ResultHandler",
+                "ct.framework.api.EventHandler"
+            ],
+            "properties": {
+                "Event-Topics": [
+                    {
+                        "topic": "dn_hierarchicalsearch/RESULT",
+                        "method": "_handleHierarchicalSearchResult"
+                    }
+                ]
+            },
+            "references": [
+                {
+                    "name": "_logService",
+                    "providing": "ct.framework.api.LogService"
+                }
+            ]
+        },
+        {
             "name": "CircleSpatialInputAction",
             "provides": [
                 "ct.framework.api.EventHandler",
@@ -82,29 +105,6 @@
                 "outerRadius": 100000,
                 "stepSize": 1000
             }
-        },
-        {
-            "name": "SearchInputAction",
-            "provides": [
-                "dn_selectionactions.SearchInputAction",
-                "selection-services.SpatialInputAction",
-                "ct.api.omnisearch.ResultHandler",
-                "ct.framework.api.EventHandler"
-            ],
-            "properties": {
-                "Event-Topics": [
-                    {
-                        "topic": "dn_hierarchicalsearch/RESULT",
-                        "method": "_handleHierarchicalSearchResult"
-                    }
-                ]
-            },
-            "references": [
-                {
-                    "name": "_logService",
-                    "providing": "ct.framework.api.LogService"
-                }
-            ]
         }
     ]
 }
