@@ -3,12 +3,10 @@ This bundle provides additional selection input actions for map.apps selection-s
 
 ![Screenshot App](https://github.com/conterra/mapapps-selection-actions/blob/master/Screenshot.JPG)
 
-Sample App
-------------------
+## Sample App
 https://demos.conterra.de/mapapps/resources/apps/downloads_selectionactions/index.html
 
-Installation Guide
-------------------
+## Installation Guide
 **Requirement: map.apps 4.3.0**
 
 Add the bundle "dn_selectionactions" to your map.apps 4 app.
@@ -19,20 +17,16 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 - searchaction
 
 ```
-"bundles": {
-    ...
-    "selection-ui": {
-        "Config": {
-                "selectionMethods": ["extent", "point"]
-        }
+"selection-ui": {
+    "Config": {
+        "selectionMethods": ["extent", "point"]
     }
-    ...
 }
 ```
 
-#### Configurable Components of dn_selectionactions:
+### Configurable Components of dn_selectionactions:
 
-##### CircleSpatialInputWidgetModel:
+#### CircleSpatialInputWidgetModel:
 ```
 "CircleSpatialInputWidgetModel": {
     "minRadius": 0,
@@ -43,7 +37,7 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 }
 ```
 
-###### CircleSpatialInputWidgetModel Properties
+##### CircleSpatialInputWidgetModel properties
 | Property                       | Type    | Possible Values                 | Default    | Description                       |
 |--------------------------------|---------|---------------------------------|------------|---------------------------------- |
 | minRadius                      | number  |                                 | 0          | Minimal radius                    |
@@ -52,13 +46,12 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 | outerRadius                    | number  |                                 | 100000     | Initial outer radius              |
 | stepSize                       | number  |                                 | 1000       | Step size                         |
 
-Development Guide
-------------------
+## Development Guide
 ### Define the mapapps remote base
 Before you can run the project you have to define the mapapps.remote.base property in the pom.xml-file:
 `<mapapps.remote.base>http://%YOURSERVER%/ct-mapapps-webapp-%VERSION%</mapapps.remote.base>`
 
-##### Other methods to to define the mapapps.remote.base property.
+### Other methods to to define the mapapps.remote.base property.
 1. Goal parameters
 `mvn install -Dmapapps.remote.base=http://%YOURSERVER%/ct-mapapps-webapp-%VERSION%`
 
