@@ -22,6 +22,7 @@
             "mapnavigation",
             "toolrules",
             "selection-ui",
+            "selection-tools",
             "selection-resultcenter",
             "omnisearch@^4.3.0",
             "dn_selectionactions"
@@ -69,6 +70,32 @@
                         "clickTolerance": 3
                     }
                 }
+            }
+        },
+        "selection-tools": {
+            "Config": {
+                "tools": [
+                    {
+                        "id": "searchSelection",
+                        "title": "SearchSelection",
+                        "selectionMethod": "circle",
+                        "sourceIds": [
+                            "kreise1",
+                            "airtraffic0"
+                        ],
+                        "deactivateOnSelection": false
+                    },
+                    {
+                        "id": "searchSelection1",
+                        "title": "SearchSelection",
+                        "selectionMethod": "searchaction",
+                        "sourceIds": [
+                            "kreise1",
+                            "airtraffic0"
+                        ],
+                        "deactivateOnSelection": false
+                    }
+                ]
             }
         },
         "agssearch": {
@@ -331,7 +358,9 @@
                             "rel_b": 60
                         },
                         "tools": [
-                            "selection-ui-tool"
+                            "selection-ui-tool",
+                            "searchSelection",
+                            "searchSelection1"
                         ]
                     }
                 ]
