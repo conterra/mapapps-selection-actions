@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
     <artifactId>mapapps-selection-actions</artifactId>
-    <version>1.4.1-SNAPSHOT</version>
+    <version>1.5.0</version>
     <packaging>jar</packaging>
     <repositories>
         <repository>
@@ -529,7 +529,7 @@
         <connection>scm:git:https://github.com/conterra/mapapps-selection-actions.git</connection>
         <developerConnection>scm:git:https://github.com/conterra/mapapps-selection-actions.git</developerConnection>
         <url>https://github.com/conterra/mapapps-selection-actions</url>
-        <tag>HEAD</tag>
+        <tag>1.5.0</tag>
     </scm>
     <distributionManagement>
         <repository>
