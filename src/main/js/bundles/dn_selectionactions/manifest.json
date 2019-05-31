@@ -43,6 +43,20 @@
             ]
         },
         {
+            "name": "FullExtentSpatialInputAction",
+            "provides": "selection-services.SpatialInputAction",
+            "references": [
+                {
+                    "name": "_mapWidgetModel",
+                    "providing": "map-widget.MapWidgetModel"
+                },
+                {
+                    "name": "_basemapModel",
+                    "providing": "map-basemaps-api.BasemapsModel"
+                }
+            ]
+        },
+        {
             "name": "GraphicSpatialInputAction",
             "provides": [
                 "selection-services.SpatialInputAction",

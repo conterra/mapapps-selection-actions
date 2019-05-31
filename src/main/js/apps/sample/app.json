@@ -59,6 +59,7 @@
                     "rectangle",
                     "circle",
                     "current_extent",
+                    "full_extent",
                     "graphic",
                     "searchaction"
                 ],
@@ -211,6 +212,26 @@
         },
         "map-init": {
             "Config": {
+                "basemaps": [
+                    {
+                        "id": "streets",
+                        "title": "${map.basemaps.streets}",
+                        "basemap": "streets",
+                        "selected": true
+                    },
+                    {
+                        "id": "topo",
+                        "title": "${map.basemaps.topo}",
+                        "basemap": "topo",
+                        "icon": "filter_hdr"
+                    },
+                    {
+                        "id": "satellite",
+                        "title": "${map.basemaps.satellite}",
+                        "basemap": "satellite",
+                        "icon": "photo_camera"
+                    }
+                ],
                 "map": {
                     "layers": [
                         {
@@ -261,7 +282,6 @@
                             ]
                         }
                     ],
-                    "basemap": "streets",
                     "ground": {
                         "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
                         "type": "ELEVATION"

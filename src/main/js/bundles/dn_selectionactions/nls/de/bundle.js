@@ -21,6 +21,10 @@ module.exports = {
             title: "Kartenausschnitt",
             description: "Verwendet den aktuellen Kartenausschnitt, um Objekte auszuw\u00e4hlen."
         },
+        full_extent: {
+            title: "\u00dcberall",
+            description: "\u00dcberall nach Objekten suchen."
+        },
         circle: {
             title: "Kreis",
             description: "Klicken Sie in die Karte, um anhand eines Kreises Objekte auszuw\u00e4hlen.",

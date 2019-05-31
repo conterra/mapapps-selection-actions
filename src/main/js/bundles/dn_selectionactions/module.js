@@ -17,5 +17,6 @@ import ".";
 import "./CircleSpatialInputAction";
 import "./CircleSpatialInputWidgetModel";
 import "./MapExtentSpatialInputAction";
+import "./FullExtentSpatialInputAction";
 import "./SearchSpatialInputAction";
 import "./GraphicSpatialInputAction";

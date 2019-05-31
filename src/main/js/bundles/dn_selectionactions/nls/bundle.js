@@ -22,6 +22,10 @@ module.exports = {
                 title: "Map Extent",
                 description: "Use the current map extent to select objects."
             },
+            full_extent: {
+                title: "Everywhere",
+                description: "Select objects everywhere."
+            },
             circle: {
                 title: "Circle",
                 description: "Click on the map to select objects using a circle.",
