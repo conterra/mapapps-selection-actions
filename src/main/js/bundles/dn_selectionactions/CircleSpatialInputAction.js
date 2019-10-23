@@ -26,7 +26,7 @@ export default class CircleSpatialInputAction {
 
     activate(componentContext) {
         this._bundleContext = componentContext.getBundleContext();
-        let i18n = this.i18n = this._i18n.get().ui.circle;
+        const i18n = this.i18n = this._i18n.get().ui.circle;
         this.id = "circle";
         this.title = i18n.title;
         this.description = i18n.description;

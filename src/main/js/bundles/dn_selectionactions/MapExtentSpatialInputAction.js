@@ -19,7 +19,7 @@ import Observers from "apprt-core/Observers";
 export default class {
 
     activate() {
-        let i18n = this._i18n.get().ui.current_extent;
+        const i18n = this._i18n.get().ui.current_extent;
         this.id = "current_extent";
         this.title = i18n.title;
         this.description = i18n.description;
@@ -29,7 +29,7 @@ export default class {
 
     trigger() {
         return new CancelablePromise((resolve, reject, oncancel) => {
-            let model = this._mapWidgetModel;
+            const model = this._mapWidgetModel;
             if (!model) {
                 reject("MapWidgetModel not available!");
             }
@@ -37,7 +37,7 @@ export default class {
             const observers = Observers();
 
             function connectToView(view) {
-                let group = observers.group("view");
+                const group = observers.group("view");
                 group.clean();
                 if (!view) {
                     return;

@@ -19,7 +19,7 @@ import Observers from "apprt-core/Observers";
 export default class {
 
     activate() {
-        let i18n = this._i18n.get().ui.full_extent;
+        const i18n = this._i18n.get().ui.full_extent;
         this.id = "full_extent";
         this.title = i18n.title;
         this.description = i18n.description;
@@ -29,8 +29,8 @@ export default class {
 
     trigger() {
         return new CancelablePromise((resolve, reject, oncancel) => {
-            let model = this._mapWidgetModel;
-            let basemapModel = this._basemapModel;
+            const model = this._mapWidgetModel;
+            const basemapModel = this._basemapModel;
             if (!model) {
                 reject("MapWidgetModel not available!");
             }
@@ -41,7 +41,7 @@ export default class {
             const observers = Observers();
 
             function connectToView(view) {
-                let group = observers.group("view");
+                const group = observers.group("view");
                 group.clean();
                 if (!view) {
                     return;
@@ -50,9 +50,9 @@ export default class {
                     // prevent popup
                     evt.stopPropagation();
                     observers.destroy();
-                    let selectedBasemap = basemapModel.selected.basemap;
-                    let baseLayers = selectedBasemap.baseLayers;
-                    let firstBasemapLayer = baseLayers.getItemAt(0);
+                    const selectedBasemap = basemapModel.selected.basemap;
+                    const baseLayers = selectedBasemap.baseLayers;
+                    const firstBasemapLayer = baseLayers.getItemAt(0);
                     resolve(firstBasemapLayer.fullExtent);
                 }));
             }

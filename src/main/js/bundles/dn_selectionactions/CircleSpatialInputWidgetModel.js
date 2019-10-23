@@ -18,7 +18,7 @@ import {declare} from "apprt-core/Mutable";
 export default declare({
 
     activate() {
-        let properties = this._properties;
+        const properties = this._properties;
         this.minRadius = properties.minRadius;
         this.maxRadius = properties.maxRadius;
         this.innerRadius = properties.innerRadius;

@@ -19,7 +19,7 @@ import Graphic from "esri/Graphic";
 export default class {
 
     activate() {
-        let i18n = this._i18n.get().ui.graphic;
+        const i18n = this._i18n.get().ui.graphic;
         this.id = "graphic";
         this.title = i18n.title;
         this.description = i18n.description;
@@ -42,16 +42,16 @@ export default class {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
-            let view = this._mapWidgetModel.get("view");
-            let handle = view.on("click", (evt) => {
+            const view = this._mapWidgetModel.get("view");
+            const handle = view.on("click", (evt) => {
                 handle.remove();
                 // prevent popup
                 evt.stopPropagation();
                 view.hitTest(evt).then((response) => {
-                    let results = response.results;
+                    const results = response.results;
                     if (results.length) {
-                        let graphic = results[0].graphic;
-                        let geometry = graphic.geometry;
+                        const graphic = results[0].graphic;
+                        const geometry = graphic.geometry;
                         this.addGraphicToView(geometry);
                         resolve(geometry);
                     } else {
@@ -73,7 +73,7 @@ export default class {
     }
 
     addGraphicToView(geometry) {
-        let view = this._mapWidgetModel.get("view");
+        const view = this._mapWidgetModel.get("view");
         let symbol;
         switch (geometry.type) {
             case "point":
@@ -106,7 +106,7 @@ export default class {
                 };
                 break;
         }
-        let graphic = this.graphic = new Graphic({
+        const graphic = this.graphic = new Graphic({
             geometry: geometry,
             symbol: symbol
         });
@@ -115,7 +115,7 @@ export default class {
 
     removeGraphicFromView() {
         if (this.oldGraphic) {
-            let view = this._mapWidgetModel.get("view");
+            const view = this._mapWidgetModel.get("view");
             view.graphics.remove(this.oldGraphic);
         }
     }

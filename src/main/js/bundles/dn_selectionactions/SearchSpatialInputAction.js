@@ -18,7 +18,7 @@ import CancelablePromise from "apprt-core/CancelablePromise";
 export default class SearchSpatialInputAction {
 
     activate() {
-        let i18n = this.i18n = this._i18n.get().ui.search;
+        const i18n = this.i18n = this._i18n.get().ui.search;
         this.id = "searchaction";
         this.title = i18n.title;
         this.description = i18n.description;
@@ -43,7 +43,7 @@ export default class SearchSpatialInputAction {
 
     trigger() {
         return new CancelablePromise((resolve, reject, oncancel) => {
-            let inputGeometry = this._input && this._input.geometry;
+            const inputGeometry = this._input && this._input.geometry;
             if (!inputGeometry) {
                 reject("No SearchInputActionGeometry was is defined");
             } else {
