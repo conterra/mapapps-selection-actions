@@ -9,44 +9,7 @@ https://demos.conterra.de/mapapps/resources/apps/downloads_selectionactions/inde
 ## Installation Guide
 **Requirement: map.apps 4.3.0**
 
-Add the bundle "dn_selectionactions" to your map.apps 4 app.
-
-Configure the available selection methods in the selection-ui bundle. The ones added by this bundle are the following:
-- current_extent
-- full_extent
-- circle
-- graphic
-- searchaction
-
-```
-"selection-ui": {
-    "Config": {
-        "selectionMethods": ["extent", "point"]
-    }
-}
-```
-
-### Configurable Components of dn_selectionactions:
-
-#### CircleSpatialInputWidgetModel:
-```
-"CircleSpatialInputWidgetModel": {
-    "minRadius": 0,
-    "maxRadius": 500000,
-    "innerRadius": 50000,
-    "outerRadius": 100000,
-    "stepSize": 1000
-}
-```
-
-##### CircleSpatialInputWidgetModel properties
-| Property                       | Type    | Possible Values                 | Default    | Description                       |
-|--------------------------------|---------|---------------------------------|------------|---------------------------------- |
-| minRadius                      | number  |                                 | 0          | Minimal radius                    |
-| maxRadius                      | number  |                                 | 500000     | Maximum radius                    |
-| innerRadius                    | number  |                                 | 50000      | Initial inner radius              |
-| outerRadius                    | number  |                                 | 100000     | Initial outer radius              |
-| stepSize                       | number  |                                 | 1000       | Step size                         |
+[dn_selectionactions Documentation](https://github.com/conterra/mapapps-selection-actions/tree/master/src/main/js/bundles/dn_selectionactions)
 
 ## Development Guide
 ### Define the mapapps remote base
