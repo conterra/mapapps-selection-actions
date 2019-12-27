@@ -20,11 +20,11 @@ module.exports = {
         ui: {
             current_extent: {
                 title: "Map Extent",
-                description: "Use the current map extent to select objects."
+                description: "Click on the map to use the current map extent to select objects."
             },
             full_extent: {
                 title: "Everywhere",
-                description: "Select objects everywhere."
+                description: "Click on the map to select objects everywhere."
             },
             circle: {
                 title: "Circle",
@@ -39,7 +39,7 @@ module.exports = {
             },
             graphic: {
                 title: "Graphic",
-                description: "Select a graphic in the map to select objects.."
+                description: "Select a graphic in the map to select objects."
             }
         }
     }),

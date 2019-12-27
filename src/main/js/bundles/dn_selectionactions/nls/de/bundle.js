@@ -19,11 +19,11 @@ module.exports = {
     ui: {
         current_extent: {
             title: "Kartenausschnitt",
-            description: "Verwendet den aktuellen Kartenausschnitt, um Objekte auszuw\u00e4hlen."
+            description: "Klicken Sie in die Karte, um Objekte im aktuellen Kartenausschnitt auszuw\u00e4hlen."
         },
         full_extent: {
             title: "\u00dcberall",
-            description: "\u00dcberall nach Objekten suchen."
+            description: "Klicken Sie in die Karte, um \u00fcberall nach Objekten suchen."
         },
         circle: {
             title: "Kreis",
