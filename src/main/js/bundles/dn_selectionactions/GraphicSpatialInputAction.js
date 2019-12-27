@@ -33,7 +33,6 @@ export default class {
     }
 
     onSelectionExecuting() {
-        this.removeGraphicFromView();
         this.oldGraphic = this.graphic;
     }
 
@@ -41,6 +40,10 @@ export default class {
         return new CancelablePromise((resolve, reject, oncancel) => {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
+            }
+            if (this.oldGraphic) {
+                const view = this._mapWidgetModel.get("view");
+                view.graphics.add(this.oldGraphic);
             }
             const view = this._mapWidgetModel.get("view");
             const handle = view.on("click", (evt) => {
@@ -73,6 +76,7 @@ export default class {
     }
 
     addGraphicToView(geometry) {
+        this.removeGraphicFromView();
         const view = this._mapWidgetModel.get("view");
         let symbol;
         switch (geometry.type) {
