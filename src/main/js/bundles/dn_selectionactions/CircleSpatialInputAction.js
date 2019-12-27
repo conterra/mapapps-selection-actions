@@ -40,7 +40,6 @@ export default class CircleSpatialInputAction {
     }
 
     onSelectionExecuting() {
-        this.removeGraphicFromView();
         this.oldGraphic = this.graphic;
     }
 
@@ -48,6 +47,10 @@ export default class CircleSpatialInputAction {
         return new CancelablePromise((resolve, reject, oncancel) => {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
+            }
+            if (this.oldGraphic) {
+                const view = this._mapWidgetModel.get("view");
+                view.graphics.add(this.oldGraphic);
             }
             const drawing = this._drawing;
             drawing.mode = "point";
@@ -132,6 +135,7 @@ export default class CircleSpatialInputAction {
     }
 
     addGraphicToView(geometry) {
+        this.removeGraphicFromView();
         const view = this._mapWidgetModel.get("view");
         const symbol = {
             type: "simple-fill",
