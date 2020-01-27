@@ -28,7 +28,6 @@ export default class {
     }
 
     deactivate() {
-        this.closeWidget();
         this.removeGraphicFromView();
     }
 
@@ -69,10 +68,6 @@ export default class {
                 console.debug("GraphicSpatialInputAction was canceled...");
             });
         });
-    }
-
-    hitTest() {
-
     }
 
     addGraphicToView(geometry) {
