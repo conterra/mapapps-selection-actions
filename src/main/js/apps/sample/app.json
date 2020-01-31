@@ -24,7 +24,8 @@
             "selection-ui",
             "selection-tools",
             "selection-resultcenter",
-            "omnisearch@^4.3.0",
+            "omnisearch",
+            "popups-default",
             "dn_selectionactions"
         ],
         "require": [
