@@ -22,6 +22,9 @@ import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
 
+const _graphic = Symbol("_graphic");
+const _oldGraphic = Symbol("_graphic");
+
 export default class CircleSpatialInputAction {
 
     activate(componentContext) {
@@ -40,21 +43,18 @@ export default class CircleSpatialInputAction {
     }
 
     onSelectionExecuting() {
-        this.oldGraphic = this.graphic;
+        this[_oldGraphic] = this[_graphic];
     }
 
-    trigger() {
+    trigger(args) {
         return new CancelablePromise((resolve, reject, oncancel) => {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
-            if (this.oldGraphic) {
+            if (this[_oldGraphic]) {
                 const view = this._mapWidgetModel.get("view");
-                view.graphics.add(this.oldGraphic);
+                view.graphics.add(this[_oldGraphic]);
             }
-            const drawing = this._drawing;
-            drawing.mode = "point";
-            drawing.active = true;
 
             const model = this._circleSpatialInputWidgetModel;
             const vm = new Vue(CircleSpatialInputWidget);
@@ -80,24 +80,24 @@ export default class CircleSpatialInputAction {
                 this._serviceregistration = this._bundleContext.registerService(interfaces, widget, serviceProperties);
             }
 
-            const handle = drawing.watch("graphic", evt => {
-                handle.remove();
-                drawing.active = false;
-                const point = evt.value.geometry;
-                const innerCircle = CircleSpatialInputAction.createCircle(point, model.innerRadius);
-                const outerCircle = CircleSpatialInputAction.createCircle(point, model.outerRadius);
-                const circleGeometry = new Polygon({
-                    spatialReference: point.spatialReference
-                });
-                circleGeometry.addRing(innerCircle.rings[0]);
-                circleGeometry.addRing(outerCircle.rings[0]);
-
-                this.addGraphicToView(circleGeometry);
+            const view = this._mapWidgetModel.get("view");
+            const clickHandle = view.on("click", (evt) => {
+                this.removeGraphicFromView();
+                clickHandle.remove();
+                // prevent popup
+                evt.stopPropagation();
+                const point = view.toMap({x: evt.x, y: evt.y});
+                const circleGeometry = this.createDonut(point);
+                if (args.queryBuilderSelection) {
+                    this.closeWidget();
+                } else {
+                    this.addGraphicToView(circleGeometry);
+                }
                 resolve(circleGeometry);
             });
+
             oncancel(() => {
-                handle.remove();
-                drawing.active = false;
+                clickHandle.remove();
                 this.removeGraphicFromView();
                 this.closeWidget();
                 console.debug("CircleSpatialInputAction was canceled...");
@@ -117,7 +117,19 @@ export default class CircleSpatialInputAction {
         }
     }
 
-    static createCircle(center, radius) {
+    createDonut(point) {
+        const model = this._circleSpatialInputWidgetModel;
+        const innerCircle = this.createCircle(point, model.innerRadius);
+        const outerCircle = this.createCircle(point, model.outerRadius);
+        const circleGeometry = new Polygon({
+            spatialReference: point.spatialReference
+        });
+        circleGeometry.addRing(innerCircle.rings[0]);
+        circleGeometry.addRing(outerCircle.rings[0]);
+        return circleGeometry;
+    }
+
+    createCircle(center, radius) {
         let geodesic = false;
         if (center.spatialReference.wkid === 3857
             || center.spatialReference.wkid === 4326
@@ -146,7 +158,7 @@ export default class CircleSpatialInputAction {
                 width: "2px"
             }
         };
-        const graphic = this.graphic = new Graphic({
+        const graphic = this[_graphic] = new Graphic({
             geometry: geometry,
             symbol: symbol
         });
@@ -154,9 +166,13 @@ export default class CircleSpatialInputAction {
     }
 
     removeGraphicFromView() {
-        if (this.oldGraphic) {
-            const view = this._mapWidgetModel.get("view");
-            view.graphics.remove(this.oldGraphic);
+        const view = this._mapWidgetModel.get("view");
+        if (this[_oldGraphic]) {
+            view.graphics.remove(this[_oldGraphic]);
+        }
+        if (this[_graphic]) {
+            view.graphics.remove(this[_graphic]);
+            this[_graphic] = null;
         }
     }
 }

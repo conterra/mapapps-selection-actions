@@ -116,10 +116,6 @@
             },
             "references": [
                 {
-                    "name": "_drawing",
-                    "providing": "mapdraw-api.DefaultMapDrawing"
-                },
-                {
                     "name": "_mapWidgetModel",
                     "providing": "map-widget.MapWidgetModel"
                 },
