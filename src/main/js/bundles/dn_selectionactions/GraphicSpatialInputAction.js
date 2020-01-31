@@ -16,6 +16,9 @@
 import CancelablePromise from "apprt-core/CancelablePromise";
 import Graphic from "esri/Graphic";
 
+const _moveHandle = Symbol("_moveHandle");
+const _graphic = Symbol("_graphic");
+
 export default class {
 
     activate() {
@@ -32,21 +35,18 @@ export default class {
     }
 
     onSelectionExecuting() {
-        this.oldGraphic = this.graphic;
+        if (this[_moveHandle]) {
+            this[_moveHandle].remove();
+        }
     }
 
-    trigger() {
+    trigger(args) {
         return new CancelablePromise((resolve, reject, oncancel) => {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
-            if (this.oldGraphic) {
-                const view = this._mapWidgetModel.get("view");
-                view.graphics.add(this.oldGraphic);
-            }
             const view = this._mapWidgetModel.get("view");
-            const handle = view.on("click", (evt) => {
-                handle.remove();
+            this[_moveHandle] = view.on("pointer-move", (evt) => {
                 // prevent popup
                 evt.stopPropagation();
                 view.hitTest(evt).then((response) => {
@@ -55,6 +55,19 @@ export default class {
                         const graphic = results[0].graphic;
                         const geometry = graphic.geometry;
                         this.addGraphicToView(geometry);
+                    }
+                });
+            });
+            const clickHandle = view.on("click", (evt) => {
+                this.removeGraphicFromView();
+                clickHandle.remove();
+                // prevent popup
+                evt.stopPropagation();
+                view.hitTest(evt).then((response) => {
+                    const results = response.results;
+                    if (results.length) {
+                        const graphic = results[0].graphic;
+                        const geometry = graphic.geometry;
                         resolve(geometry);
                     } else {
                         resolve(null);
@@ -63,7 +76,8 @@ export default class {
             });
 
             oncancel(() => {
-                handle.remove();
+                this[_moveHandle].remove();
+                clickHandle.remove();
                 this.removeGraphicFromView();
                 console.debug("GraphicSpatialInputAction was canceled...");
             });
@@ -105,7 +119,7 @@ export default class {
                 };
                 break;
         }
-        const graphic = this.graphic = new Graphic({
+        const graphic = this[_graphic] = new Graphic({
             geometry: geometry,
             symbol: symbol
         });
@@ -113,9 +127,9 @@ export default class {
     }
 
     removeGraphicFromView() {
-        if (this.oldGraphic) {
+        if (this[_graphic]) {
             const view = this._mapWidgetModel.get("view");
-            view.graphics.remove(this.oldGraphic);
+            view.graphics.remove(this[_graphic]);
         }
     }
 }
