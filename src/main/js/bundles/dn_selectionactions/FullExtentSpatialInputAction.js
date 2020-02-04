@@ -15,6 +15,8 @@
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
 import Observers from "apprt-core/Observers";
+import when from "apprt-core/when";
+import Extent from "esri/geometry/Extent";
 
 export default class {
 
@@ -29,13 +31,10 @@ export default class {
 
     trigger() {
         return new CancelablePromise((resolve, reject, oncancel) => {
-            const model = this._mapWidgetModel;
-            const basemapModel = this._basemapModel;
+            const that = this;
+            const model = that._mapWidgetModel;
             if (!model) {
                 reject("MapWidgetModel not available!");
-            }
-            if (!basemapModel) {
-                reject("BasemapModel not available!");
             }
 
             const observers = Observers();
@@ -49,11 +48,21 @@ export default class {
                 group.add(view.on("click", (evt) => {
                     // prevent popup
                     evt.stopPropagation();
+
                     observers.destroy();
-                    const selectedBasemap = basemapModel.selected.basemap;
-                    const baseLayers = selectedBasemap.baseLayers;
-                    const firstBasemapLayer = baseLayers.getItemAt(0);
-                    resolve(firstBasemapLayer.fullExtent);
+                    const fullExtent = new Extent({
+                        "xmin": -20037507.067161843,
+                        "ymin": -19971868.880408604,
+                        "xmax": 20037507.067161843,
+                        "ymax": 19971868.8804085,
+                        "spatialReference": {
+                            "wkid": 102100,
+                            "latestWkid": 3857
+                        }
+                    });
+                    return when(that._coordinateTransformer.transform(fullExtent, view.spatialReference.wkid), (transformedExtent) => {
+                        resolve(transformedExtent);
+                    })
                 }));
             }
 

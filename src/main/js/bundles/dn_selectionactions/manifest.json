@@ -51,8 +51,8 @@
                     "providing": "map-widget.MapWidgetModel"
                 },
                 {
-                    "name": "_basemapModel",
-                    "providing": "map-basemaps-api.BasemapsModel"
+                    "name": "_coordinateTransformer",
+                    "providing": "ct.api.coordinatetransformer.CoordinateTransformer"
                 }
             ]
         },
