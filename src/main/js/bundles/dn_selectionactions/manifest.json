@@ -33,8 +33,25 @@
                 "marginBox": {
                     "t": 125,
                     "r": 20,
-                    "w": 500,
+                    "w": 400,
                     "h": 230
+                }
+            }
+        },
+        {
+            "widgetRole": "areaSelectSpatialInputWidget",
+            "template": "seasons",
+            "window": {
+                "title": "${ui.area_select.widgetTitle}",
+                "closable": true,
+                "maximizable": false,
+                "minimizeOnClose": true,
+                "resizable": true,
+                "marginBox": {
+                    "t": 125,
+                    "r": 20,
+                    "w": 300,
+                    "h": 130
                 }
             }
         }
@@ -150,6 +167,48 @@
                 "outerRadius": 100000,
                 "stepSize": 1000
             }
+        },
+        {
+            "name": "AreaSelectSpatialInputAction",
+            "impl": "./actions/AreaSelectSpatialInputAction",
+            "provides": [
+                "ct.framework.api.EventHandler",
+                "selection-services.SpatialInputAction"
+            ],
+            "properties": {
+                "Event-Topics": [
+                    {
+                        "topic": "selection/EXECUTING",
+                        "method": "onSelectionExecuting"
+                    }
+                ]
+            },
+            "references": [
+                {
+                    "name": "_mapWidgetModel",
+                    "providing": "map-widget.MapWidgetModel"
+                },
+                {
+                    "name": "_areaSelectSpatialInputWidgetModel",
+                    "providing": "dn_selectionactions.AreaSelectSpatialInputWidgetModel"
+                }
+            ]
+        },
+        {
+            "name": "AreaSelectSpatialInputWidgetModel",
+            "impl": "./widgets/AreaSelectSpatialInputWidgetModel",
+            "provides": "dn_selectionactions.AreaSelectSpatialInputWidgetModel",
+            "propertiesConstructor": true,
+            "properties": {
+                "storeIds": []
+            },
+            "references": [
+                {
+                    "name": "store",
+                    "providing": "ct.api.Store",
+                    "cardinality": "0..n"
+                }
+            ]
         }
     ]
 }

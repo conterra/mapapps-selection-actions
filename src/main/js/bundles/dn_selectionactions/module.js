@@ -20,3 +20,5 @@ import "./actions/SearchSpatialInputAction";
 import "./actions/GraphicSpatialInputAction";
 import "./actions/CircleSpatialInputAction";
 import "./widgets/CircleSpatialInputWidgetModel";
+import "./actions/AreaSelectSpatialInputAction";
+import "./widgets/AreaSelectSpatialInputWidgetModel";

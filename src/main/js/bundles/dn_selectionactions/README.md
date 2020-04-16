@@ -9,6 +9,7 @@ Add the bundle "dn_selectionactions" to your map.apps 4 app.
 Configure the available selection methods in the selection-ui bundle. The ones added by this bundle are the following:
 - current_extent
 - full_extent
+- area_select
 - circle
 - graphic
 - searchaction
@@ -16,7 +17,7 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 ```json
 "selection-ui": {
     "Config": {
-        "selectionMethods": ["extent", "point"]
+        "selectionMethods": ["extent", "point", "area_select"]
     }
 }
 ```
@@ -41,3 +42,17 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 | innerRadius                    | number  |                                 | 50000      | Initial inner radius              |
 | outerRadius                    | number  |                                 | 100000     | Initial outer radius              |
 | stepSize                       | number  |                                 | 1000       | Step size                         |
+
+### AreaSelectSpatialInputWidgetModel:
+```json
+"AreaSelectSpatialInputWidgetModel": {
+    "storeIds": [
+        "kreise1",
+        "bundeslaender"
+    ]
+}
+```
+
+| Property                       | Type    | Possible Values                 | Default    | Description                       |
+|--------------------------------|---------|---------------------------------|------------|---------------------------------- |
+| storeIds                       | Array   |                                 | []         | Array of available store ids      |

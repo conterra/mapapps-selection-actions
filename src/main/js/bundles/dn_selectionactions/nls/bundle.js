@@ -26,6 +26,12 @@ module.exports = {
                 title: "Everywhere",
                 description: "Click on the map to select objects everywhere."
             },
+            area_select: {
+                title: "Area",
+                description: "Click on the map to select an area.",
+                widgetTitle: "Configure area selection",
+                source: "Select source"
+            },
             circle: {
                 title: "Circle",
                 description: "Click on the map to select objects using a circle.",

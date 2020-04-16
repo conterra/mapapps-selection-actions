@@ -43,6 +43,12 @@
                 "innerRadius": 0,
                 "outerRadius": 100000,
                 "stepSize": 1000
+            },
+            "AreaSelectSpatialInputWidgetModel": {
+                "storeIds": [
+                    "kreise1",
+                    "bundeslaender"
+                ]
             }
         },
         "selection-services": {
@@ -61,6 +67,7 @@
                     "circle",
                     "current_extent",
                     "full_extent",
+                    "area_select",
                     "graphic",
                     "searchaction"
                 ],
@@ -119,6 +126,19 @@
                     "omniSearchTypingDelay": 500,
                     "omniSearchPageSize": 20,
                     "omniSearchDefaultLabel": "Kreis suchen ..."
+                },
+                {
+                    "id": "bundeslaender",
+                    "url": "https://services.conterra.de/arcgis/rest/services/common/grenzen/FeatureServer/2",
+                    "title": "Bundesländer",
+                    "description": "Bundesländer",
+                    "fetchIdProperty": true,
+                    "filterOptions": {
+                        "suggestContains": true
+                    },
+                    "useIn": [
+                        "selection"
+                    ]
                 },
                 {
                     "id": "airtraffic0",
@@ -325,8 +345,19 @@
                                     "marginBox": {
                                         "t": 60,
                                         "r": 20,
-                                        "w": 600,
+                                        "w": 400,
                                         "h": 230
+                                    }
+                                }
+                            },
+                            {
+                                "widgetRole": "areaSelectSpatialInputWidget",
+                                "window": {
+                                    "marginBox": {
+                                        "t": 60,
+                                        "r": 20,
+                                        "w": 300,
+                                        "h": 130
                                     }
                                 }
                             },

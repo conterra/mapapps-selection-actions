@@ -25,6 +25,12 @@ module.exports = {
             title: "\u00dcberall",
             description: "Klicken Sie in die Karte, um \u00fcberall nach Objekten suchen."
         },
+        area_select: {
+            title: "Gebiet",
+            description: "Klicken Sie in die Karte, um ein Gebiet auszuw\u00e4hlen.",
+            widgetTitle: "Gebietsauswahl konfigurieren",
+            source: "Datenquelle ausw\u00e4hlen"
+        },
         circle: {
             title: "Kreis",
             description: "Klicken Sie in die Karte, um anhand eines Kreises Objekte auszuw\u00e4hlen.",
