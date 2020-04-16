@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 import ".";
-import "./CircleSpatialInputAction";
+import "./actions/MapExtentSpatialInputAction";
+import "./actions/FullExtentSpatialInputAction";
+import "./actions/SearchSpatialInputAction";
+import "./actions/GraphicSpatialInputAction";
+import "./actions/CircleSpatialInputAction";
 import "./CircleSpatialInputWidgetModel";
-import "./MapExtentSpatialInputAction";
-import "./FullExtentSpatialInputAction";
-import "./SearchSpatialInputAction";
-import "./GraphicSpatialInputAction";

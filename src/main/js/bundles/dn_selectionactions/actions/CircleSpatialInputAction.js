@@ -17,7 +17,7 @@ import CancelablePromise from "apprt-core/CancelablePromise";
 import Graphic from "esri/Graphic";
 import Polygon from "esri/geometry/Polygon";
 import Circle from "esri/geometry/Circle";
-import CircleSpatialInputWidget from "./CircleSpatialInputWidget.vue";
+import CircleSpatialInputWidget from "../CircleSpatialInputWidget.vue";
 import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";

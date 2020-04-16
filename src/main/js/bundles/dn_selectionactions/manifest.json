@@ -34,6 +34,7 @@
     "components": [
         {
             "name": "MapExtentSpatialInputAction",
+            "impl": "./actions/MapExtentSpatialInputAction",
             "provides": "selection-services.SpatialInputAction",
             "references": [
                 {
@@ -44,6 +45,7 @@
         },
         {
             "name": "FullExtentSpatialInputAction",
+            "impl": "./actions/FullExtentSpatialInputAction",
             "provides": "selection-services.SpatialInputAction",
             "references": [
                 {
@@ -58,6 +60,7 @@
         },
         {
             "name": "GraphicSpatialInputAction",
+            "impl": "./actions/GraphicSpatialInputAction",
             "provides": [
                 "selection-services.SpatialInputAction",
                 "ct.framework.api.EventHandler"
@@ -79,6 +82,7 @@
         },
         {
             "name": "SearchSpatialInputAction",
+            "impl": "./actions/SearchSpatialInputAction",
             "provides": [
                 "dn_selectionactions.SearchSpatialInputAction",
                 "selection-services.SpatialInputAction",
@@ -102,6 +106,7 @@
         },
         {
             "name": "CircleSpatialInputAction",
+            "impl": "./actions/CircleSpatialInputAction",
             "provides": [
                 "ct.framework.api.EventHandler",
                 "selection-services.SpatialInputAction"
