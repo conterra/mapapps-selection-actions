@@ -25,11 +25,13 @@ import Binding from "apprt-binding/Binding";
 const _graphic = Symbol("_graphic");
 const _oldGraphic = Symbol("_graphic");
 const _binding = Symbol("_binding");
+const _serviceregistration = Symbol("_serviceregistration");
+const _bundleContext = Symbol("_bundleContext");
 
 export default class CircleSpatialInputAction {
 
     activate(componentContext) {
-        this._bundleContext = componentContext.getBundleContext();
+        this[_bundleContext] = componentContext.getBundleContext();
         const i18n = this.i18n = this._i18n.get().ui.circle;
         this.id = "circle";
         this.title = i18n.title;
@@ -77,8 +79,8 @@ export default class CircleSpatialInputAction {
                 "widgetRole": "circleSpatialInputWidget"
             };
             const interfaces = ["dijit.Widget"];
-            if (!this._serviceregistration) {
-                this._serviceregistration = this._bundleContext.registerService(interfaces, widget, serviceProperties);
+            if (!this[_serviceregistration]) {
+                this[_serviceregistration] = this[_bundleContext].registerService(interfaces, widget, serviceProperties);
             }
 
             const view = this._mapWidgetModel.get("view");
@@ -107,10 +109,10 @@ export default class CircleSpatialInputAction {
     }
 
     closeWidget() {
-        const registration = this._serviceregistration;
+        const registration = this[_serviceregistration];
 
         // clear the reference
-        this._serviceregistration = null;
+        this[_serviceregistration] = null;
 
         if (registration) {
             // call unregister

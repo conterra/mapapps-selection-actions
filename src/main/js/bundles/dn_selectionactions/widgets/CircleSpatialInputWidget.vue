@@ -76,22 +76,24 @@
 
     export default {
         mixins: [Bindable],
-        data: function () {
-            return {
-                innerRadius: 0,
-                outerRadius: 100,
-                i18n: {
-                    type: Object,
-                    default: function () {
-                        return {
-                            title: "Circle",
-                            description: "Click on the map to select objects using a circle."
-                        }
+        props: {
+            innerRadius: {
+                type: Number,
+                default: 0
+            },
+            outerRadius: {
+                type: Number,
+                default: 100
+            },
+            i18n: {
+                type: Object,
+                default: () => {
+                    return {
+                        title: "Circle",
+                        description: "Click on the map to select objects using a circle."
                     }
                 }
-            };
-        },
-        methods: {}
-
+            }
+        }
     };
 </script>
