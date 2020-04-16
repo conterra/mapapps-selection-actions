@@ -12,6 +12,14 @@
         "apprt-vuetify": "^4.3.0",
         "resultcenter": "^4.3.0"
     },
+    "CSS-Themes-Extension": [
+        {
+            "name": "*",
+            "files": [
+                "./css/styles.css"
+            ]
+        }
+    ],
     "layout-widgets": [
         {
             "widgetRole": "circleSpatialInputWidget",
@@ -21,11 +29,11 @@
                 "closable": true,
                 "maximizable": false,
                 "minimizeOnClose": true,
-                "resizable": false,
+                "resizable": true,
                 "marginBox": {
                     "t": 125,
                     "r": 20,
-                    "w": 600,
+                    "w": 500,
                     "h": 230
                 }
             }

@@ -25,7 +25,7 @@
             wrap
             justify-space-between>
             <v-flex
-                md10
+                grow
                 px-3>
                 <v-slider
                     v-model="innerRadius"
@@ -34,7 +34,7 @@
                     :step="stepSize"
                     hide-details/>
             </v-flex>
-            <v-flex md2>
+            <v-flex shrink>
                 <v-text-field
                     v-model="innerRadius"
                     :step="stepSize"
@@ -50,7 +50,7 @@
             wrap
             justify-space-between>
             <v-flex
-                md10
+                grow
                 px-3>
                 <v-slider
                     v-model="outerRadius"
@@ -59,7 +59,7 @@
                     :step="stepSize"
                     hide-details/>
             </v-flex>
-            <v-flex md2>
+            <v-flex shrink>
                 <v-text-field
                     v-model="outerRadius"
                     :step="stepSize"

@@ -24,6 +24,7 @@ import Binding from "apprt-binding/Binding";
 
 const _graphic = Symbol("_graphic");
 const _oldGraphic = Symbol("_graphic");
+const _binding = Symbol("_binding");
 
 export default class CircleSpatialInputAction {
 
@@ -38,6 +39,8 @@ export default class CircleSpatialInputAction {
     }
 
     deactivate() {
+        this[_binding].unbind();
+        this[_binding] = undefined;
         this.closeWidget();
         this.removeGraphicFromView();
     }
@@ -65,10 +68,8 @@ export default class CircleSpatialInputAction {
             vm.outerRadius = model.outerRadius;
             vm.stepSize = model.stepSize;
 
-            Binding
-                .create()
-                .bindTo(vm, model)
-                .syncAll("innerRadius", "outerRadius")
+            this[_binding] = Binding.for(vm, model)
+                .syncAllToRight("innerRadius", "outerRadius")
                 .enable();
 
             const widget = new VueDijit(vm);
