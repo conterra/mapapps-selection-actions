@@ -19,4 +19,4 @@ import "./actions/FullExtentSpatialInputAction";
 import "./actions/SearchSpatialInputAction";
 import "./actions/GraphicSpatialInputAction";
 import "./actions/CircleSpatialInputAction";
-import "./CircleSpatialInputWidgetModel";
+import "./widgets/CircleSpatialInputWidgetModel";

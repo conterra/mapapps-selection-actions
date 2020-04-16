@@ -132,6 +132,7 @@
         },
         {
             "name": "CircleSpatialInputWidgetModel",
+            "impl": "./widgets/CircleSpatialInputWidgetModel",
             "provides": "dn_selectionactions.CircleSpatialInputWidgetModel",
             "propertiesConstructor": true,
             "properties": {
