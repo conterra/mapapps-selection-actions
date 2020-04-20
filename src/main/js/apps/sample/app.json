@@ -119,7 +119,8 @@
                         "suggestContains": true
                     },
                     "useIn": [
-                        "omnisearch"
+                        "omnisearch",
+                        "selection-actions-area"
                     ],
                     "omniSearchLabelAttr": "kreis_name",
                     "omniSearchSearchAttr": "kreis_name",
@@ -137,7 +138,8 @@
                         "suggestContains": true
                     },
                     "useIn": [
-                        "selection"
+                        "selection",
+                        "selection-actions-area"
                     ]
                 },
                 {

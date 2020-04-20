@@ -44,15 +44,21 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 | stepSize                       | number  |                                 | 1000       | Step size                         |
 
 ### AreaSelectSpatialInputWidgetModel:
+Use _selection-actions-area_ useIn-property to show stores in the area selection widget.
+
 ```json
-"AreaSelectSpatialInputWidgetModel": {
-    "storeIds": [
-        "kreise1",
-        "bundeslaender"
+{
+    "id": "bundeslaender",
+    "url": "https://services.conterra.de/arcgis/rest/services/common/grenzen/FeatureServer/2",
+    "title": "Bundesländer",
+    "description": "Bundesländer",
+    "fetchIdProperty": true,
+    "filterOptions": {
+        "suggestContains": true
+    },
+    "useIn": [
+        "selection",
+        "selection-actions-area"
     ]
 }
 ```
-
-| Property                       | Type    | Possible Values                 | Default    | Description                       |
-|--------------------------------|---------|---------------------------------|------------|---------------------------------- |
-| storeIds                       | Array   |                                 | []         | Array of available store ids      |

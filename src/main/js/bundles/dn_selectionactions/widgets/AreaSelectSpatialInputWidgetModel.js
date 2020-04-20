@@ -34,7 +34,7 @@ export default declare({
     },
 
     _getStoreData() {
-        const filteredStores = this._getFilteredStores();
+        const filteredStores = this.stores;
         const promises = filteredStores.map((store) => new Promise((resolve, reject) => {
             when(store.getMetadata(), (metadata) => {
                 resolve({

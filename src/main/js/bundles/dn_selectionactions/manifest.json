@@ -199,13 +199,12 @@
             "impl": "./widgets/AreaSelectSpatialInputWidgetModel",
             "provides": "dn_selectionactions.AreaSelectSpatialInputWidgetModel",
             "propertiesConstructor": true,
-            "properties": {
-                "storeIds": []
-            },
+            "properties": {},
             "references": [
                 {
                     "name": "store",
                     "providing": "ct.api.Store",
+                    "filter": "(useIn=selection-actions-area)",
                     "cardinality": "0..n"
                 }
             ]
