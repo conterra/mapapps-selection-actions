@@ -38,8 +38,8 @@
                 <v-text-field
                     v-model="innerRadius"
                     :step="stepSize"
+                    :suffix="unitSuffix"
                     type="number"
-                    suffix="m"
                     hide-details
                 />
             </v-flex>
@@ -63,8 +63,8 @@
                 <v-text-field
                     v-model="outerRadius"
                     :step="stepSize"
+                    :suffix="unitSuffix"
                     type="number"
-                    suffix="m"
                     hide-details
                 />
             </v-flex>
@@ -83,7 +83,23 @@
             },
             outerRadius: {
                 type: Number,
-                default: 100
+                default: 100000
+            },
+            minRadius: {
+                type: Number,
+                default: 0
+            },
+            maxRadius: {
+                type: Number,
+                default: 500000
+            },
+            stepSize: {
+                type: Number,
+                default: 1000
+            },
+            unit: {
+                type: String,
+                default: "meters"
             },
             i18n: {
                 type: Object,
@@ -92,6 +108,26 @@
                         title: "Circle",
                         description: "Click on the map to select objects using a circle."
                     }
+                }
+            }
+        },
+        computed: {
+            unitSuffix: function () {
+                switch (this.unit) {
+                    case "meters":
+                        return "m";
+                    case "kilometers":
+                        return "km";
+                    case "feet":
+                        return "ft";
+                    case "miles":
+                        return "mi";
+                    case "nautical-miles":
+                        return "nmi";
+                    case "yards":
+                        return "yd";
+                    default:
+                        return "";
                 }
             }
         }

@@ -165,7 +165,8 @@
                 "maxRadius": 500000,
                 "innerRadius": 0,
                 "outerRadius": 100000,
-                "stepSize": 1000
+                "stepSize": 1000,
+                "unit": "meters"
             }
         },
         {

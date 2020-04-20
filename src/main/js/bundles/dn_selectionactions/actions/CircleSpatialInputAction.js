@@ -69,6 +69,7 @@ export default class CircleSpatialInputAction {
             vm.innerRadius = model.innerRadius;
             vm.outerRadius = model.outerRadius;
             vm.stepSize = model.stepSize;
+            vm.unit = model.unit;
 
             this[_binding] = Binding.for(vm, model)
                 .syncAllToRight("innerRadius", "outerRadius")
@@ -133,6 +134,8 @@ export default class CircleSpatialInputAction {
     }
 
     createCircle(center, radius) {
+        const model = this._circleSpatialInputWidgetModel;
+        const unit = model.unit;
         let geodesic = false;
         if (center.spatialReference.wkid === 3857
             || center.spatialReference.wkid === 4326
@@ -145,7 +148,7 @@ export default class CircleSpatialInputAction {
             geodesic: geodesic,
             center: center,
             radius: radius,
-            radiusUnit: "meters"
+            radiusUnit: unit
         });
     }
 

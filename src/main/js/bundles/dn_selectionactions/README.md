@@ -31,17 +31,19 @@ Configure the available selection methods in the selection-ui bundle. The ones a
     "maxRadius": 500000,
     "innerRadius": 50000,
     "outerRadius": 100000,
-    "stepSize": 1000
+    "stepSize": 1000,
+    "unit": "meters"
 }
 ```
 
-| Property                       | Type    | Possible Values                 | Default    | Description                       |
-|--------------------------------|---------|---------------------------------|------------|---------------------------------- |
-| minRadius                      | number  |                                 | 0          | Minimal radius                    |
-| maxRadius                      | number  |                                 | 500000     | Maximum radius                    |
-| innerRadius                    | number  |                                 | 50000      | Initial inner radius              |
-| outerRadius                    | number  |                                 | 100000     | Initial outer radius              |
-| stepSize                       | number  |                                 | 1000       | Step size                         |
+| Property                       | Type    | Possible Values                                        | Default    | Description                                                                                                             |
+|--------------------------------|---------|--------------------------------------------------------|------------|------------------------------------------------------------------------------------------------------------------------ |
+| minRadius                      | number  |                                                        | 0          | Minimal radius                                                                                                          |
+| maxRadius                      | number  |                                                        | 500000     | Maximum radius                                                                                                          |
+| innerRadius                    | number  |                                                        | 50000      | Initial inner radius                                                                                                    |
+| outerRadius                    | number  |                                                        | 100000     | Initial outer radius                                                                                                    |
+| stepSize                       | number  |                                                        | 1000       | Step size                                                                                                               |
+| unit                           | number  | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | meters       | Circle radius unit (https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-Circle.html#radiusUnit) |
 
 ### AreaSelectSpatialInputWidgetModel:
 Use _selection-actions-area_ useIn-property to show stores in the area selection widget.
