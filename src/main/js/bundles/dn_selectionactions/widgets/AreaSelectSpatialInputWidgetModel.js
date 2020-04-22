@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 import {declare} from "apprt-core/Mutable";
-import when from "apprt-core/when";
 
 export default declare({
 
@@ -28,27 +27,55 @@ export default declare({
         this._getStoreData();
     },
 
-    addStore(store) {
-        this.stores.push(store);
+    addStore(store, properties) {
+        properties = properties || {};
+        const id = store && store.id;
+        if (!id) {
+            console.debug("Store has no id and will be ignored!");
+            return;
+        }
+        const newStores = this.stores.slice(0);
+        const index = newStores.findIndex((s) => s.id === id);
+        if (index >= 0) {
+            console.warn(`Store with id '${id}' was already registered! It is replaced by the new store.`);
+            newStores.splice(index, 1);
+        }
+        newStores.push({
+            id: id,
+            title: store.title || properties.title || id,
+            description: store.description || properties.description || ""
+        });
+        this.stores = newStores;
+        this._getStoreData();
+    },
+
+    removeStore(store) {
+        const id = store && store.id;
+        if (!id) {
+            return;
+        }
+        const stores = this.stores;
+        const index = stores.findIndex((s) => s.id === id);
+        if (index < 0) {
+            return;
+        }
+        const newStores = stores.slice(0);
+        newStores.splice(index, 1);
+        this.stores = newStores;
         this._getStoreData();
     },
 
     _getStoreData() {
-        const filteredStores = this.stores;
-        const promises = filteredStores.map((store) => new Promise((resolve, reject) => {
-            when(store.getMetadata(), (metadata) => {
-                resolve({
-                    id: store.id,
-                    name: metadata.name
-                });
-            })
-        }));
-        Promise.all(promises).then((storeData) => {
-            this.storeData = storeData;
-            if (this.storeData.length && !this.selectedStoreId) {
-                this.selectedStoreId = this.storeData[0].id;
-            }
-        })
+        const stores = this.stores;
+        this.storeData = stores.map((store) => {
+            return {
+                id: store.id,
+                name: store.title
+            };
+        });
+        if (this.storeData.length && !this.selectedStoreId) {
+            this.selectedStoreId = this.storeData[0].id;
+        }
     },
 
     _getFilteredStores() {
