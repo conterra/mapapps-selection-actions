@@ -36,7 +36,8 @@ module.exports = {
             description: "Klicken Sie in die Karte, um anhand eines Kreises Objekte auszuw\u00e4hlen.",
             widgetTitle: "Kreisselektion konfigurieren",
             innerRadius: "Innerer Radius",
-            outerRadius: "Äußerer Radius"
+            outerRadius: "Äußerer Radius",
+            radius: "Radius"
         },
         search: {
             title: "Suchergebnis",

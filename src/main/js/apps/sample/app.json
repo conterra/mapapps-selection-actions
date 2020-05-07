@@ -38,6 +38,7 @@
     "bundles": {
         "dn_selectionactions": {
             "CircleSpatialInputWidgetModel": {
+                "enableDonut": true,
                 "minRadius": 0,
                 "maxRadius": 500,
                 "innerRadius": 0,

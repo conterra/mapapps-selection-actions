@@ -19,8 +19,9 @@
     <v-container
         grid-list-md
         pa-1>
-        <div>{{ i18n.innerRadius }}</div>
+        <div v-if="enableDonut">{{ i18n.innerRadius }}</div>
         <v-layout
+            v-if="enableDonut"
             row
             wrap
             justify-space-between>
@@ -44,7 +45,8 @@
                 />
             </v-flex>
         </v-layout>
-        <div>{{ i18n.outerRadius }}</div>
+        <div v-if="enableDonut">{{ i18n.outerRadius }}</div>
+        <div v-else>{{ i18n.radius }}</div>
         <v-layout
             row
             wrap
@@ -100,6 +102,10 @@
             unit: {
                 type: String,
                 default: "meters"
+            },
+            enableDonut: {
+                type: Boolean,
+                default: true
             },
             i18n: {
                 type: Object,

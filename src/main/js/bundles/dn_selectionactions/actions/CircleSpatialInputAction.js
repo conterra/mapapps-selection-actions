@@ -62,8 +62,13 @@ export default class CircleSpatialInputAction {
             }
 
             const model = this._circleSpatialInputWidgetModel;
+            if (!model.enableDonut) {
+                model.innerRadius = 0;
+            }
+
             const vm = new Vue(CircleSpatialInputWidget);
             vm.i18n = this.i18n;
+            vm.enableDonut = model.enableDonut;
             vm.minRadius = model.minRadius;
             vm.maxRadius = model.maxRadius;
             vm.innerRadius = model.innerRadius;

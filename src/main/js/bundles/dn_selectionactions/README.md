@@ -27,6 +27,7 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 ### CircleSpatialInputWidgetModel:
 ```json
 "CircleSpatialInputWidgetModel": {
+    "enableDonut": true,
     "minRadius": 0,
     "maxRadius": 500000,
     "innerRadius": 50000,
@@ -36,14 +37,15 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 }
 ```
 
-| Property                       | Type    | Possible Values                                        | Default    | Description                                                                                                             |
-|--------------------------------|---------|--------------------------------------------------------|------------|------------------------------------------------------------------------------------------------------------------------ |
-| minRadius                      | number  |                                                        | 0          | Minimal radius                                                                                                          |
-| maxRadius                      | number  |                                                        | 500000     | Maximum radius                                                                                                          |
-| innerRadius                    | number  |                                                        | 50000      | Initial inner radius                                                                                                    |
-| outerRadius                    | number  |                                                        | 100000     | Initial outer radius                                                                                                    |
-| stepSize                       | number  |                                                        | 1000       | Step size                                                                                                               |
-| unit                           | number  | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | meters       | Circle radius unit (https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-Circle.html#radiusUnit) |
+| Property                       | Type    | Possible Values                                        | Default      | Description                                                                                                             |
+|--------------------------------|---------|--------------------------------------------------------|--------------|------------------------------------------------------------------------------------------------------------------------ |
+| enableDonut                    | Number  | ```true``` &#124; ```false```                          | ```true```   | Enable inner and outer radius. If disabled only outer radius will be used.                                              |
+| minRadius                      | Number  |                                                        | ```0```      | Minimal radius                                                                                                          |
+| maxRadius                      | Number  |                                                        | ```500000``` | Maximum radius                                                                                                          |
+| innerRadius                    | Number  |                                                        | ```50000```  | Initial inner radius                                                                                                    |
+| outerRadius                    | Number  |                                                        | ```100000``` | Initial outer radius                                                                                                    |
+| stepSize                       | Number  |                                                        | ```1000```   | Step size                                                                                                               |
+| unit                           | String  | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | ```meters``` | Circle radius unit (https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-Circle.html#radiusUnit) |
 
 ### AreaSelectSpatialInputWidgetModel:
 Use _selection-actions-area_ useIn-property to show stores in the area selection widget.

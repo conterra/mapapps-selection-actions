@@ -161,6 +161,7 @@
             "provides": "dn_selectionactions.CircleSpatialInputWidgetModel",
             "propertiesConstructor": true,
             "properties": {
+                "enableDonut": true,
                 "minRadius": 0,
                 "maxRadius": 500000,
                 "innerRadius": 0,

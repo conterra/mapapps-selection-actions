@@ -17,6 +17,7 @@ import {declare} from "apprt-core/Mutable";
 
 export default declare({
 
+    enableDonut: true,
     minRadius: 0,
     maxRadius: 0,
     innerRadius: 0,

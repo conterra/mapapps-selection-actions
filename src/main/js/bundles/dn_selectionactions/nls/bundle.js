@@ -37,7 +37,8 @@ module.exports = {
                 description: "Click on the map to select objects using a circle.",
                 widgetTitle: "Configure circle selection",
                 innerRadius: "Inner Radius",
-                outerRadius: "Outer Radius"
+                outerRadius: "Outer Radius",
+                radius: "Radius"
             },
             search: {
                 title: "Searchresult",
