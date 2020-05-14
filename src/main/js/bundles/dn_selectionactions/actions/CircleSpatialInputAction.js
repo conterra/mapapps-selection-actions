@@ -127,13 +127,15 @@ export default class CircleSpatialInputAction {
     }
 
     createDonut(point) {
-        const model = this._circleSpatialInputWidgetModel;
-        const innerCircle = this.createCircle(point, model.innerRadius);
-        const outerCircle = this.createCircle(point, model.outerRadius);
         const circleGeometry = new Polygon({
             spatialReference: point.spatialReference
         });
-        circleGeometry.addRing(innerCircle.rings[0]);
+        const model = this._circleSpatialInputWidgetModel;
+        if (model.innerRadius > 0) {
+            const innerCircle = this.createCircle(point, model.innerRadius);
+            circleGeometry.addRing(innerCircle.rings[0]);
+        }
+        const outerCircle = this.createCircle(point, model.outerRadius);
         circleGeometry.addRing(outerCircle.rings[0]);
         return circleGeometry;
     }
