@@ -39,7 +39,7 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 
 | Property                       | Type    | Possible Values                                        | Default      | Description                                                                                                             |
 |--------------------------------|---------|--------------------------------------------------------|--------------|------------------------------------------------------------------------------------------------------------------------ |
-| enableDonut                    | Number  | ```true``` &#124; ```false```                          | ```true```   | Enable inner and outer radius. If disabled only outer radius will be used.                                              |
+| enableDonut                    | Boolean | ```true``` &#124; ```false```                          | ```true```   | Enable inner and outer radius. If disabled only outer radius will be used.                                              |
 | minRadius                      | Number  |                                                        | ```0```      | Minimal radius                                                                                                          |
 | maxRadius                      | Number  |                                                        | ```500000``` | Maximum radius                                                                                                          |
 | innerRadius                    | Number  |                                                        | ```50000```  | Initial inner radius                                                                                                    |
