@@ -10,7 +10,8 @@
         "apprt-vue": "^4.3.0",
         "apprt-binding": "^4.3.0",
         "apprt-vuetify": "^4.3.0",
-        "resultcenter": "^4.3.0"
+        "resultcenter": "^4.3.0",
+        "highlights": "^4.3.0"
     },
     "CSS-Themes-Extension": [
         {
@@ -100,6 +101,10 @@
                 {
                     "name": "_mapWidgetModel",
                     "providing": "map-widget.MapWidgetModel"
+                },
+                {
+                    "name": "_highlighterFactory",
+                    "providing": "highlights.HighlighterFactory"
                 }
             ]
         },
@@ -131,17 +136,8 @@
             "name": "CircleSpatialInputAction",
             "impl": "./actions/CircleSpatialInputAction",
             "provides": [
-                "ct.framework.api.EventHandler",
                 "selection-services.SpatialInputAction"
             ],
-            "properties": {
-                "Event-Topics": [
-                    {
-                        "topic": "selection/EXECUTING",
-                        "method": "onSelectionExecuting"
-                    }
-                ]
-            },
             "references": [
                 {
                     "name": "_mapWidgetModel",
@@ -150,6 +146,10 @@
                 {
                     "name": "_circleSpatialInputWidgetModel",
                     "providing": "dn_selectionactions.CircleSpatialInputWidgetModel"
+                },
+                {
+                    "name": "_highlighterFactory",
+                    "providing": "highlights.HighlighterFactory"
                 }
             ]
         },
@@ -172,17 +172,8 @@
             "name": "AreaSelectSpatialInputAction",
             "impl": "./actions/AreaSelectSpatialInputAction",
             "provides": [
-                "ct.framework.api.EventHandler",
                 "selection-services.SpatialInputAction"
             ],
-            "properties": {
-                "Event-Topics": [
-                    {
-                        "topic": "selection/EXECUTING",
-                        "method": "onSelectionExecuting"
-                    }
-                ]
-            },
             "references": [
                 {
                     "name": "_mapWidgetModel",
@@ -191,6 +182,10 @@
                 {
                     "name": "_areaSelectSpatialInputWidgetModel",
                     "providing": "dn_selectionactions.AreaSelectSpatialInputWidgetModel"
+                },
+                {
+                    "name": "_highlighterFactory",
+                    "providing": "highlights.HighlighterFactory"
                 }
             ]
         },

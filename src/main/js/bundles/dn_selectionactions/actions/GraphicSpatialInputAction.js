@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
-import Graphic from "esri/Graphic";
 
 const _moveHandle = Symbol("_moveHandle");
-const _graphic = Symbol("_graphic");
+const _geometry = Symbol("_geometry");
+const _highlighter = Symbol("_highlight");
 
 export default class {
 
@@ -28,6 +28,7 @@ export default class {
         this.description = i18n.description;
         this.iconClass = "icon-cursor";
         this.interactive = true;
+        this[_highlighter] = this._highlighterFactory.forMapWidgetModel(this._mapWidgetModel);
     }
 
     deactivate() {
@@ -119,17 +120,14 @@ export default class {
                 };
                 break;
         }
-        const graphic = this[_graphic] = new Graphic({
+        const graphic = {
             geometry: geometry,
             symbol: symbol
-        });
-        view.graphics.add(graphic);
+        };
+        this[_highlighter].highlight(graphic);
     }
 
     removeGraphicFromView() {
-        if (this[_graphic]) {
-            const view = this._mapWidgetModel.get("view");
-            view.graphics.remove(this[_graphic]);
-        }
+        this[_highlighter].clear();
     }
 }

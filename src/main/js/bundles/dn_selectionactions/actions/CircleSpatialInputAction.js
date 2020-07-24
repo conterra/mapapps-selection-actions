@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
-import Graphic from "esri/Graphic";
 import Polygon from "esri/geometry/Polygon";
 import Circle from "esri/geometry/Circle";
 import CircleSpatialInputWidget from "../widgets/CircleSpatialInputWidget.vue";
@@ -22,8 +21,8 @@ import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
 
-const _graphic = Symbol("_graphic");
-const _oldGraphic = Symbol("_graphic");
+const _geometry = Symbol("_geometry");
+const _highlighter = Symbol("_highlight");
 const _binding = Symbol("_binding");
 const _serviceregistration = Symbol("_serviceregistration");
 const _bundleContext = Symbol("_bundleContext");
@@ -38,6 +37,7 @@ export default class CircleSpatialInputAction {
         this.description = i18n.description;
         this.iconClass = "icon-selection-circle";
         this.interactive = true;
+        this[_highlighter] = this._highlighterFactory.forMapWidgetModel(this._mapWidgetModel);
     }
 
     deactivate() {
@@ -45,10 +45,7 @@ export default class CircleSpatialInputAction {
         this[_binding] = undefined;
         this.closeWidget();
         this.removeGraphicFromView();
-    }
-
-    onSelectionExecuting() {
-        this[_oldGraphic] = this[_graphic];
+        this[_highlighter].destroy();
     }
 
     trigger(args) {
@@ -56,9 +53,8 @@ export default class CircleSpatialInputAction {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
-            if (this[_oldGraphic]) {
-                const view = this._mapWidgetModel.get("view");
-                view.graphics.add(this[_oldGraphic]);
+            if (this[_geometry]) {
+                this.addGraphicToView(this[_geometry]);
             }
 
             const model = this._circleSpatialInputWidgetModel;
@@ -96,7 +92,7 @@ export default class CircleSpatialInputAction {
                 // prevent popup
                 evt.stopPropagation();
                 const point = view.toMap({x: evt.x, y: evt.y});
-                const circleGeometry = this.createDonut(point);
+                const circleGeometry = this[_geometry] = this.createDonut(point);
                 if (args.queryBuilderSelection) {
                     this.closeWidget();
                 } else {
@@ -161,7 +157,6 @@ export default class CircleSpatialInputAction {
 
     addGraphicToView(geometry) {
         this.removeGraphicFromView();
-        const view = this._mapWidgetModel.get("view");
         const symbol = {
             type: "simple-fill",
             color: [255, 0, 0, 0.25],
@@ -171,21 +166,14 @@ export default class CircleSpatialInputAction {
                 width: "2px"
             }
         };
-        const graphic = this[_graphic] = new Graphic({
+        const graphic = {
             geometry: geometry,
             symbol: symbol
-        });
-        view.graphics.add(graphic);
+        };
+        this[_highlighter].highlight(graphic);
     }
 
     removeGraphicFromView() {
-        const view = this._mapWidgetModel.get("view");
-        if (this[_oldGraphic]) {
-            view.graphics.remove(this[_oldGraphic]);
-        }
-        if (this[_graphic]) {
-            view.graphics.remove(this[_graphic]);
-            this[_graphic] = null;
-        }
+        this[_highlighter].clear();
     }
 }
