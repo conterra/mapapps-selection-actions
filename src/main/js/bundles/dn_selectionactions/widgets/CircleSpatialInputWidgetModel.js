@@ -22,15 +22,6 @@ export default declare({
     maxRadius: 0,
     innerRadius: 0,
     outerRadius: 0,
-    stepSize: 1,
-
-    activate() {
-        const properties = this._properties;
-        this.minRadius = properties.minRadius;
-        this.maxRadius = properties.maxRadius;
-        this.innerRadius = properties.innerRadius;
-        this.outerRadius = properties.outerRadius;
-        this.stepSize = properties.stepSize;
-    }
+    stepSize: 1
 
 });
