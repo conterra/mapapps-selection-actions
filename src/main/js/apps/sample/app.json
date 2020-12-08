@@ -124,6 +124,7 @@
                         "omnisearch",
                         "selection-actions-area"
                     ],
+                    "priority": 1000,
                     "omniSearchLabelAttr": "kreis_name",
                     "omniSearchSearchAttr": "kreis_name",
                     "omniSearchTypingDelay": 500,
