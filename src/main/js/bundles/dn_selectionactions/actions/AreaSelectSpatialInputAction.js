@@ -31,9 +31,8 @@ export default class AreaSelectSpatialInputAction {
 
     activate(componentContext) {
         const serviceResolver = this[_serviceResolver] = new ServiceResolver();
-        const bundleCtx = componentContext.getBundleContext();
+        const bundleCtx = this[_bundleContext] = componentContext.getBundleContext();
         serviceResolver.setBundleCtx(bundleCtx);
-        this[_bundleContext] = componentContext.getBundleContext();
         const i18n = this.i18n = this._i18n.get().ui.area_select;
         this.id = "area_select";
         this.title = i18n.title;
