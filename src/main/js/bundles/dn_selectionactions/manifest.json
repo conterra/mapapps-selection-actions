@@ -24,7 +24,6 @@
     "layout-widgets": [
         {
             "widgetRole": "circleSpatialInputWidget",
-            "template": "seasons",
             "window": {
                 "title": "${ui.circle.widgetTitle}",
                 "closable": true,
@@ -40,7 +39,6 @@
         },
         {
             "widgetRole": "areaSelectSpatialInputWidget",
-            "template": "seasons",
             "window": {
                 "title": "${ui.area_select.widgetTitle}",
                 "closable": true,
