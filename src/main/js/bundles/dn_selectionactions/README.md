@@ -49,6 +49,7 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 
 ### AreaSelectSpatialInputWidgetModel:
 Use _selection-actions-area_ useIn-property to show stores in the area selection widget.
+Use the priority property to to define an order of the stores (Stores with a higher priority are placed at the top of the store selection list).
 
 ```json
 {
@@ -60,6 +61,7 @@ Use _selection-actions-area_ useIn-property to show stores in the area selection
     "filterOptions": {
         "suggestContains": true
     },
+    "priority": 2,
     "useIn": [
         "selection",
         "selection-actions-area"

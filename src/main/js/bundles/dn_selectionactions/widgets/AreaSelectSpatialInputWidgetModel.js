@@ -43,7 +43,8 @@ export default declare({
         newStores.push({
             id: id,
             title: store.title || properties.title || id,
-            description: store.description || properties.description || ""
+            description: store.description || properties.description || "",
+            priority: properties.priority || 0
         });
         this.stores = newStores;
         this._getStoreData();
@@ -67,12 +68,23 @@ export default declare({
 
     _getStoreData() {
         const stores = this.stores;
-        this.storeData = stores.map((store) => {
+        const storeData = stores.map((store) => {
             return {
                 id: store.id,
-                name: store.title
+                name: store.title,
+                priority: store.priority
             };
         });
+        storeData.sort((a, b) => {
+            if (a.priority > b.priority) {
+                return -1;
+            }
+            if (a.priority < b.priority) {
+                return 1;
+            }
+            return 0;
+        });
+        this.storeData = storeData;
         if (this.storeData.length && !this.selectedStoreId) {
             this.selectedStoreId = this.storeData[0].id;
         }
