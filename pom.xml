@@ -16,11 +16,12 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
-    <artifactId>mapapps-selection-actions</artifactId>
-    <version>1.9.2-SNAPSHOT</version>
+    <artifactId>mapapps-remote-project-blueprint</artifactId>
+    <version>4.10.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <repositories>
         <repository>
@@ -168,8 +169,8 @@
                     <artifactId>frontend-maven-plugin</artifactId>
                     <version>1.10.0</version>
                     <configuration>
-                        <nodeVersion>v12.18.3</nodeVersion>
-                        <npmVersion>6.14.6</npmVersion>
+                        <nodeVersion>v14.15.1</nodeVersion>
+                        <npmVersion>6.14.9</npmVersion>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -522,9 +523,10 @@
         </plugins>
     </build>
     <scm>
-        <connection>scm:git:https://github.com/conterra/mapapps-selection-actions.git</connection>
-        <developerConnection>scm:git:https://github.com/conterra/mapapps-selection-actions.git</developerConnection>
-        <url>https://github.com/conterra/mapapps-selection-actions</url>
+        <connection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</connection>
+        <developerConnection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git
+        </developerConnection>
+        <url>https://github.com/conterra/mapapps-remote-project-blueprint</url>
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>
@@ -545,11 +547,11 @@
         <root.build.outputPath>${project.build.directory}/webapp</root.build.outputPath>
         <js.build.outputPath>${root.build.outputPath}/js</js.build.outputPath>
 
-        <mapapps.version>4.9.2</mapapps.version>
+        <mapapps.version>4.10.0</mapapps.version>
         <!-- JS lib versions -->
         <apprt.version>${mapapps.version}</apprt.version>
         <!-- java lib versions -->
-        <ct.jsregistry.version>1.3.8</ct.jsregistry.version>
+        <ct.jsregistry.version>1.3.10</ct.jsregistry.version>
         <ct.jsrt-test.version>1.1.5</ct.jsrt-test.version>
 
         <!-- the default app, replaced in the *.html files to switch app names-->
@@ -875,6 +877,9 @@
         </profile>
         <profile>
             <id>compress</id>
+            <properties>
+                <gulp.task>compress</gulp.task>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -908,23 +913,6 @@
                                             <exclude>**/tests/**</exclude>
                                         </excludes>
                                     </jsFiles>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>optimize CSS</id>
-                                <goals>
-                                    <goal>optimizeCSS</goal>
-                                </goals>
-                                <phase>compile</phase>
-                                <configuration>
-                                    <cssFiles>
-                                        <includes>
-                                            <include>bundles/*/*/*.css</include>
-                                        </includes>
-                                        <excludes>
-                                            <exclude>**/themeSettings.css</exclude>
-                                        </excludes>
-                                    </cssFiles>
                                 </configuration>
                             </execution>
                         </executions>
