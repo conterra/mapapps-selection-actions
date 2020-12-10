@@ -16,12 +16,11 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
-    <artifactId>mapapps-remote-project-blueprint</artifactId>
-    <version>4.10.1-SNAPSHOT</version>
+    <artifactId>mapapps-selection-actions</artifactId>
+    <version>1.9.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <repositories>
         <repository>
@@ -523,10 +522,9 @@
         </plugins>
     </build>
     <scm>
-        <connection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git</connection>
-        <developerConnection>scm:git:https://github.com/conterra/mapapps-remote-project-blueprint.git
-        </developerConnection>
-        <url>https://github.com/conterra/mapapps-remote-project-blueprint</url>
+        <connection>scm:git:https://github.com/conterra/mapapps-selection-actions.git</connection>
+        <developerConnection>scm:git:https://github.com/conterra/mapapps-selection-actions.git</developerConnection>
+        <url>https://github.com/conterra/mapapps-selection-actions</url>
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>
