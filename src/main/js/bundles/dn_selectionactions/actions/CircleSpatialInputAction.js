@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
-import Polygon from "esri/geometry/Polygon";
 import Circle from "esri/geometry/Circle";
+import {difference} from "esri/geometry/geometryEngine"
 import CircleSpatialInputWidget from "../widgets/CircleSpatialInputWidget.vue";
 import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
@@ -92,7 +92,7 @@ export default class CircleSpatialInputAction {
                 // prevent popup
                 evt.stopPropagation();
                 const point = view.toMap({x: evt.x, y: evt.y});
-                const circleGeometry = this[_geometry] = this.createDonut(point);
+                const circleGeometry = this[_geometry] = this.createDonutOrCircle(point);
                 if (args.queryBuilderSelection) {
                     this.closeWidget();
                 } else {
@@ -122,17 +122,13 @@ export default class CircleSpatialInputAction {
         }
     }
 
-    createDonut(point) {
-        const circleGeometry = new Polygon({
-            spatialReference: point.spatialReference
-        });
+    createDonutOrCircle(point) {
         const model = this._circleSpatialInputWidgetModel;
+        let circleGeometry = this.createCircle(point, model.outerRadius);
         if (model.innerRadius > 0) {
             const innerCircle = this.createCircle(point, model.innerRadius);
-            circleGeometry.addRing(innerCircle.rings[0]);
+            circleGeometry = difference(circleGeometry, innerCircle);
         }
-        const outerCircle = this.createCircle(point, model.outerRadius);
-        circleGeometry.addRing(outerCircle.rings[0]);
         return circleGeometry;
     }
 
