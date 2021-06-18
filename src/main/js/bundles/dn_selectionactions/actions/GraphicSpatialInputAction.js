@@ -15,11 +15,10 @@
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
 
-const _moveHandle = Symbol("_moveHandle");
-const _geometry = Symbol("_geometry");
-const _highlighter = Symbol("_highlight");
-
 export default class {
+
+    #moveHandle = undefined;
+    #highlighter = undefined;
 
     activate() {
         const i18n = this._i18n.get().ui.graphic;
@@ -28,7 +27,7 @@ export default class {
         this.description = i18n.description;
         this.iconClass = "icon-cursor";
         this.interactive = true;
-        this[_highlighter] = this._highlighterFactory.forMapWidgetModel(this._mapWidgetModel);
+        this.#highlighter = this._highlighterFactory.forMapWidgetModel(this._mapWidgetModel);
     }
 
     deactivate() {
@@ -36,8 +35,8 @@ export default class {
     }
 
     onSelectionExecuting() {
-        if (this[_moveHandle]) {
-            this[_moveHandle].remove();
+        if (this.#moveHandle) {
+            this.#moveHandle.remove();
         }
     }
 
@@ -47,7 +46,7 @@ export default class {
                 reject("MapWidgetModel not available!");
             }
             const view = this._mapWidgetModel.get("view");
-            this[_moveHandle] = view.on("pointer-move", (evt) => {
+            this.#moveHandle = view.on("pointer-move", (evt) => {
                 // prevent popup
                 evt.stopPropagation();
                 view.hitTest(evt).then((response) => {
@@ -77,7 +76,7 @@ export default class {
             });
 
             oncancel(() => {
-                this[_moveHandle].remove();
+                this.#moveHandle.remove();
                 clickHandle.remove();
                 this.removeGraphicFromView();
                 console.debug("GraphicSpatialInputAction was canceled...");
@@ -124,10 +123,10 @@ export default class {
             geometry: geometry,
             symbol: symbol
         };
-        this[_highlighter].highlight(graphic);
+        this.#highlighter.highlight(graphic);
     }
 
     removeGraphicFromView() {
-        this[_highlighter].clear();
+        this.#highlighter.clear();
     }
 }

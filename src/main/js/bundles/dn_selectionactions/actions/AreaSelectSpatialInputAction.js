@@ -20,19 +20,18 @@ import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
 import ServiceResolver from "apprt/ServiceResolver";
 
-const _geometry = Symbol("_geometry");
-const _highlighter = Symbol("_highlight");
-const _serviceResolver = Symbol("_serviceResolver");
-const _serviceregistration = Symbol("_serviceregistration");
-const _bundleContext = Symbol("_bundleContext");
-
 export default class AreaSelectSpatialInputAction {
 
     #binding = undefined;
+    #geometry = undefined;
+    #highlighter = undefined;
+    #serviceResolver = undefined;
+    #serviceRegistration = undefined;
+    #bundleContext = undefined;
 
     activate(componentContext) {
-        const serviceResolver = this[_serviceResolver] = new ServiceResolver();
-        const bundleCtx = this[_bundleContext] = componentContext.getBundleContext();
+        const serviceResolver = this.#serviceResolver = new ServiceResolver();
+        const bundleCtx = this.#bundleContext = componentContext.getBundleContext();
         serviceResolver.setBundleCtx(bundleCtx);
         const i18n = this.i18n = this._i18n.get().ui.area_select;
         this.id = "area_select";
@@ -40,7 +39,7 @@ export default class AreaSelectSpatialInputAction {
         this.description = i18n.description;
         this.iconClass = "icon-selection-freehand-polygon";
         this.interactive = true;
-        this[_highlighter] = this._highlighterFactory.forMapWidgetModel(this._mapWidgetModel);
+        this.#highlighter = this._highlighterFactory.forMapWidgetModel(this._mapWidgetModel);
     }
 
     deactivate() {
@@ -48,7 +47,7 @@ export default class AreaSelectSpatialInputAction {
         this.#binding = undefined;
         this.closeWidget();
         this.removeGraphicFromView();
-        this[_highlighter]?.destroy();
+        this.#highlighter?.destroy();
     }
 
     trigger(args) {
@@ -56,8 +55,8 @@ export default class AreaSelectSpatialInputAction {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
-            if (this[_geometry]) {
-                this.addGraphicToView(this[_geometry]);
+            if (this.#geometry) {
+                this.addGraphicToView(this.#geometry);
             }
 
             const model = this._areaSelectSpatialInputWidgetModel;
@@ -75,8 +74,8 @@ export default class AreaSelectSpatialInputAction {
                 "widgetRole": "areaSelectSpatialInputWidget"
             };
             const interfaces = ["dijit.Widget"];
-            if (!this[_serviceregistration]) {
-                this[_serviceregistration] = this[_bundleContext].registerService(interfaces, widget, serviceProperties);
+            if (!this.#serviceRegistration) {
+                this.#serviceRegistration = this.#bundleContext.registerService(interfaces, widget, serviceProperties);
             }
 
             const view = this._mapWidgetModel.get("view");
@@ -90,7 +89,7 @@ export default class AreaSelectSpatialInputAction {
                     if (!featureGeometry) {
                         resolve(null);
                     }
-                    this[_geometry] = featureGeometry;
+                    this.#geometry = featureGeometry;
                     if (args.queryBuilderSelection) {
                         this.closeWidget();
                     } else {
@@ -110,10 +109,10 @@ export default class AreaSelectSpatialInputAction {
     }
 
     closeWidget() {
-        const registration = this[_serviceregistration];
+        const registration = this.#serviceRegistration;
 
         // clear the reference
-        this[_serviceregistration] = null;
+        this.#serviceRegistration = null;
 
         if (registration) {
             // call unregister
@@ -149,7 +148,7 @@ export default class AreaSelectSpatialInputAction {
     }
 
     getStore(id) {
-        return this[_serviceResolver].getService("ct.api.Store", "(id=" + id + ")");
+        return this.#serviceResolver.getService("ct.api.Store", "(id=" + id + ")");
     }
 
     addGraphicToView(geometry) {
@@ -167,10 +166,10 @@ export default class AreaSelectSpatialInputAction {
             geometry: geometry,
             symbol: symbol
         };
-        this[_highlighter].highlight(graphic);
+        this.#highlighter.highlight(graphic);
     }
 
     removeGraphicFromView() {
-        this[_highlighter].clear();
+        this.#highlighter.clear();
     }
 }

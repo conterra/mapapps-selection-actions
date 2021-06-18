@@ -21,24 +21,23 @@ import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
 
-const _geometry = Symbol("_geometry");
-const _highlighter = Symbol("_highlight");
-const _serviceregistration = Symbol("_serviceregistration");
-const _bundleContext = Symbol("_bundleContext");
-
 export default class CircleSpatialInputAction {
 
     #binding = undefined;
+    #geometry = undefined;
+    #highlighter = undefined;
+    #serviceRegistration = undefined;
+    #bundleContext = undefined;
 
     activate(componentContext) {
-        this[_bundleContext] = componentContext.getBundleContext();
+        this.#bundleContext = componentContext.getBundleContext();
         const i18n = this.i18n = this._i18n.get().ui.circle;
         this.id = "circle";
         this.title = i18n.title;
         this.description = i18n.description;
         this.iconClass = "icon-selection-circle";
         this.interactive = true;
-        this[_highlighter] = this._highlighterFactory.forMapWidgetModel(this._mapWidgetModel);
+        this.#highlighter = this._highlighterFactory.forMapWidgetModel(this._mapWidgetModel);
     }
 
     deactivate() {
@@ -46,7 +45,7 @@ export default class CircleSpatialInputAction {
         this.#binding = undefined;
         this.closeWidget();
         this.removeGraphicFromView();
-        this[_highlighter]?.destroy();
+        this.#highlighter?.destroy();
     }
 
     trigger(args) {
@@ -54,8 +53,8 @@ export default class CircleSpatialInputAction {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
-            if (this[_geometry]) {
-                this.addGraphicToView(this[_geometry]);
+            if (this.#geometry) {
+                this.addGraphicToView(this.#geometry);
             }
 
             const model = this._circleSpatialInputWidgetModel;
@@ -82,8 +81,8 @@ export default class CircleSpatialInputAction {
                 "widgetRole": "circleSpatialInputWidget"
             };
             const interfaces = ["dijit.Widget"];
-            if (!this[_serviceregistration]) {
-                this[_serviceregistration] = this[_bundleContext].registerService(interfaces, widget, serviceProperties);
+            if (!this.#serviceRegistration) {
+                this.#serviceRegistration = this.#bundleContext.registerService(interfaces, widget, serviceProperties);
             }
 
             const view = this._mapWidgetModel.get("view");
@@ -93,7 +92,7 @@ export default class CircleSpatialInputAction {
                 // prevent popup
                 evt.stopPropagation();
                 const point = view.toMap({x: evt.x, y: evt.y});
-                const circleGeometry = this[_geometry] = this.createDonutOrCircle(point);
+                const circleGeometry = this.#geometry = this.createDonutOrCircle(point);
                 if (args.queryBuilderSelection) {
                     this.closeWidget();
                 } else {
@@ -112,10 +111,10 @@ export default class CircleSpatialInputAction {
     }
 
     closeWidget() {
-        const registration = this[_serviceregistration];
+        const registration = this.#serviceRegistration;
 
         // clear the reference
-        this[_serviceregistration] = null;
+        this.#serviceRegistration = null;
 
         if (registration) {
             // call unregister
@@ -167,10 +166,10 @@ export default class CircleSpatialInputAction {
             geometry: geometry,
             symbol: symbol
         };
-        this[_highlighter].highlight(graphic);
+        this.#highlighter.highlight(graphic);
     }
 
     removeGraphicFromView() {
-        this[_highlighter].clear();
+        this.#highlighter.clear();
     }
 }
