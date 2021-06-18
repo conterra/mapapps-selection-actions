@@ -1,6 +1,6 @@
 {
     "name": "dn_selectionactions",
-    "version": "1.10.2",
+    "version": "1.10.3-SNAPSHOT",
     "title": "${bundleName}",
     "description": "${bundleDescription}",
     "vendor": "con terra GmbH",
