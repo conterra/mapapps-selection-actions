@@ -22,12 +22,13 @@ import ServiceResolver from "apprt/ServiceResolver";
 
 const _geometry = Symbol("_geometry");
 const _highlighter = Symbol("_highlight");
-const _binding = Symbol("_binding");
 const _serviceResolver = Symbol("_serviceResolver");
 const _serviceregistration = Symbol("_serviceregistration");
 const _bundleContext = Symbol("_bundleContext");
 
 export default class AreaSelectSpatialInputAction {
+
+    #binding = undefined;
 
     activate(componentContext) {
         const serviceResolver = this[_serviceResolver] = new ServiceResolver();
@@ -43,11 +44,11 @@ export default class AreaSelectSpatialInputAction {
     }
 
     deactivate() {
-        this[_binding].unbind();
-        this[_binding] = undefined;
+        this.#binding?.unbind();
+        this.#binding = undefined;
         this.closeWidget();
         this.removeGraphicFromView();
-        this[_highlighter].destroy();
+        this[_highlighter]?.destroy();
     }
 
     trigger(args) {
@@ -63,7 +64,7 @@ export default class AreaSelectSpatialInputAction {
             const vm = new Vue(AreaSelectSpatialInputWidget);
             vm.i18n = this.i18n;
 
-            this[_binding] = Binding.for(vm, model)
+            this.#binding = Binding.for(vm, model)
                 .syncAllToLeft("storeData")
                 .syncAll("selectedStoreId")
                 .enable()

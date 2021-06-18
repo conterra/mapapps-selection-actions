@@ -23,11 +23,12 @@ import Binding from "apprt-binding/Binding";
 
 const _geometry = Symbol("_geometry");
 const _highlighter = Symbol("_highlight");
-const _binding = Symbol("_binding");
 const _serviceregistration = Symbol("_serviceregistration");
 const _bundleContext = Symbol("_bundleContext");
 
 export default class CircleSpatialInputAction {
+
+    #binding = undefined;
 
     activate(componentContext) {
         this[_bundleContext] = componentContext.getBundleContext();
@@ -41,11 +42,11 @@ export default class CircleSpatialInputAction {
     }
 
     deactivate() {
-        this[_binding].unbind();
-        this[_binding] = undefined;
+        this.#binding?.unbind();
+        this.#binding = undefined;
         this.closeWidget();
         this.removeGraphicFromView();
-        this[_highlighter].destroy();
+        this[_highlighter]?.destroy();
     }
 
     trigger(args) {
@@ -72,7 +73,7 @@ export default class CircleSpatialInputAction {
             vm.stepSize = model.stepSize;
             vm.unit = model.unit;
 
-            this[_binding] = Binding.for(vm, model)
+            this.#binding = Binding.for(vm, model)
                 .syncAllToRight("innerRadius", "outerRadius")
                 .enable();
 
