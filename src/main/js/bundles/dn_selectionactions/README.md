@@ -17,7 +17,7 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 ```json
 "selection-ui": {
     "Config": {
-        "selectionMethods": ["extent", "point", "area_select"]
+        "selectionMethods": ["rectangle", "polygon", "circle", "area_select"]
     }
 }
 ```
