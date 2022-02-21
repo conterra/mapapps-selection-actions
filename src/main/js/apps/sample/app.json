@@ -244,13 +244,13 @@
                     {
                         "id": "streets",
                         "title": "${map.basemaps.streets}",
-                        "basemap": "streets",
+                        "basemap": "streets-vector",
                         "selected": true
                     },
                     {
                         "id": "topo",
                         "title": "${map.basemaps.topo}",
-                        "basemap": "topo",
+                        "basemap": "topo-vector",
                         "icon": "filter_hdr"
                     },
                     {
