@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2022 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import {declare} from "apprt-core/Mutable";
 
 export default declare({
@@ -91,9 +92,7 @@ export default declare({
     },
 
     _getFilteredStores() {
-        return this.stores.filter((store) => {
-            return this.storeIds.includes(store.id);
-        });
+        return this.stores.filter((store) => this.storeIds.includes(store.id));
     }
 
 });

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2022 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import ".";
-import "./actions/MapExtentSpatialInputAction";
-import "./actions/FullExtentSpatialInputAction";
-import "./actions/SearchSpatialInputAction";
-import "./actions/GraphicSpatialInputAction";
-import "./actions/CircleSpatialInputAction";
-import "./widgets/CircleSpatialInputWidgetModel";
 import "./actions/AreaSelectSpatialInputAction";
+import "./actions/CircleSpatialInputAction";
+import "./actions/FullExtentSpatialInputAction";
+import "./actions/GraphicSpatialInputAction";
+import "./actions/MapExtentSpatialInputAction";
+import "./actions/SearchSpatialInputAction";
 import "./widgets/AreaSelectSpatialInputWidgetModel";
+import "./widgets/CircleSpatialInputWidgetModel";

@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (C) 2020 con terra GmbH (info@conterra.de)
+    Copyright (C) 2022 con terra GmbH (info@conterra.de)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -15,10 +15,12 @@
     limitations under the License.
 
 -->
+
 <template>
     <v-container
         grid-list-md
-        pa-1>
+        pa-1
+    >
         <v-select
             v-model="selectedStoreId"
             :items="storeData"
@@ -26,7 +28,7 @@
             item-value="id"
             :label="i18n.source"
             hide-details
-        ></v-select>
+        />
     </v-container>
 </template>
 <script>
@@ -48,10 +50,9 @@
                 default: () => {
                     return {
                         source: "Datenquelle"
-                    }
+                    };
                 }
             }
         }
-
     };
 </script>

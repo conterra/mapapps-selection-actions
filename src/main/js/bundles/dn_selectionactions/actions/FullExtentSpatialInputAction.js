@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2022 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import CancelablePromise from "apprt-core/CancelablePromise";
 import Observers from "apprt-core/Observers";
 import when from "apprt-core/when";
@@ -60,9 +61,10 @@ export default class {
                             "latestWkid": 3857
                         }
                     });
-                    return when(that._coordinateTransformer.transform(fullExtent, view.spatialReference.wkid), (transformedExtent) => {
-                        resolve(transformedExtent);
-                    })
+                    return when(that._coordinateTransformer.transform(fullExtent, view.spatialReference.wkid),
+                        (transformedExtent) => {
+                            resolve(transformedExtent);
+                        });
                 }));
             }
 

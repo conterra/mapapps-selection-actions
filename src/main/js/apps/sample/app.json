@@ -15,6 +15,7 @@
             "splashscreen",
             "templatelayout",
             "template-seasons",
+            "theme-autumn",
             "theme-everlasting",
             "map-init",
             "toolset",
@@ -91,8 +92,7 @@
                         "title": "SearchSelection",
                         "selectionMethod": "circle",
                         "sourceIds": [
-                            "kreise1",
-                            "airtraffic0"
+                            "kreise1"
                         ],
                         "deactivateOnSelection": false
                     },
@@ -101,8 +101,7 @@
                         "title": "SearchSelection",
                         "selectionMethod": "searchaction",
                         "sourceIds": [
-                            "kreise1",
-                            "airtraffic0"
+                            "kreise1"
                         ],
                         "deactivateOnSelection": false
                     }
@@ -144,24 +143,6 @@
                     "useIn": [
                         "selection",
                         "selection-actions-area"
-                    ]
-                },
-                {
-                    "id": "airtraffic0",
-                    "layerId": "airtraffic/0",
-                    "title": "Air Traffic0",
-                    "fetchIdProperty": true,
-                    "useIn": [
-                        "selection"
-                    ]
-                },
-                {
-                    "id": "airtraffic1",
-                    "layerId": "airtraffic/1",
-                    "title": "Air Traffic1",
-                    "fetchIdProperty": true,
-                    "useIn": [
-                        "selection"
                     ]
                 },
                 {
@@ -269,19 +250,6 @@
                             "layerId": 1
                         },
                         {
-                            "id": "airtraffic",
-                            "type": "AGS_DYNAMIC",
-                            "url": "https://services.conterra.de/arcgis/rest/services/mapapps/airtraffic/MapServer",
-                            "sublayers": [
-                                {
-                                    "id": 0
-                                },
-                                {
-                                    "id": 1
-                                }
-                            ]
-                        },
-                        {
                             "id": "bathingwater",
                             "type": "AGS_DYNAMIC",
                             "url": "https://water.discomap.eea.europa.eu/arcgis/rest/services/BathingWater/BathingWater_Dyna_WM/MapServer",
@@ -309,11 +277,7 @@
                                 }
                             ]
                         }
-                    ],
-                    "ground": {
-                        "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
-                        "type": "ELEVATION"
-                    }
+                    ]
                 },
                 "view": {
                     "viewmode": "2D",
@@ -329,16 +293,13 @@
         },
         "themes": {
             "ThemeModel": {
-                "_selectedTheme": "everlasting"
+                "_selectedTheme": "autumn"
             },
             "ThemeSelector": {
-                "componentEnabled": false
+                "componentEnabled": true
             }
         },
         "templates": {
-            "TemplateSelector": {
-                "componentEnabled": false
-            },
             "TemplateModel": {
                 "_selectedTemplate": "seasons",
                 "_templates": [

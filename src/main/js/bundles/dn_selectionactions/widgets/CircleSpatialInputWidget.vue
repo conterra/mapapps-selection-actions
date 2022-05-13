@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (C) 2020 con terra GmbH (info@conterra.de)
+    Copyright (C) 2022 con terra GmbH (info@conterra.de)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -15,25 +15,32 @@
     limitations under the License.
 
 -->
+
 <template>
     <v-container
         grid-list-md
-        pa-1>
-        <div v-if="enableDonut">{{ i18n.innerRadius }}</div>
+        pa-1
+    >
+        <div v-if="enableDonut">
+            {{ i18n.innerRadius }}
+        </div>
         <v-layout
             v-if="enableDonut"
             row
             wrap
-            justify-space-between>
+            justify-space-between
+        >
             <v-flex
                 grow
-                px-3>
+                px-3
+            >
                 <v-slider
                     v-model="innerRadius"
                     :min="minRadius"
                     :max="maxRadius"
                     :step="stepSize"
-                    hide-details/>
+                    hide-details
+                />
             </v-flex>
             <v-flex shrink>
                 <v-text-field
@@ -45,21 +52,28 @@
                 />
             </v-flex>
         </v-layout>
-        <div v-if="enableDonut">{{ i18n.outerRadius }}</div>
-        <div v-else>{{ i18n.radius }}</div>
+        <div v-if="enableDonut">
+            {{ i18n.outerRadius }}
+        </div>
+        <div v-else>
+            {{ i18n.radius }}
+        </div>
         <v-layout
             row
             wrap
-            justify-space-between>
+            justify-space-between
+        >
             <v-flex
                 grow
-                px-3>
+                px-3
+            >
                 <v-slider
                     v-model="outerRadius"
                     :min="minRadius"
                     :max="maxRadius"
                     :step="stepSize"
-                    hide-details/>
+                    hide-details
+                />
             </v-flex>
             <v-flex shrink>
                 <v-text-field
@@ -113,7 +127,7 @@
                     return {
                         title: "Circle",
                         description: "Click on the map to select objects using a circle."
-                    }
+                    };
                 }
             }
         },
