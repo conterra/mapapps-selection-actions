@@ -1,0 +1,21 @@
+name: devnet-bundle-snapshot
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: conterra/devnet-bundle-snapshot-action@main
+       with:
+         nexus_id: ${{secrets.NEXUS_ID}}
+         nexus_user: ${{secrets.NEXUS_USER}}
+         nexus_user_pw: ${{secrets.NEXUS_USER_PW}}
+         nexus_url: ${{secrets.NEXUS_URL}}
+         nexus_url_release: ${{secrets.NEXUS_URL_RELEASE}}
+         nexus_url_snapshots: ${{secrets.NEXUS_URL_SNAPSHOTS}}
+         release_token: ${{secrets.RELEASE_TOKEN}}

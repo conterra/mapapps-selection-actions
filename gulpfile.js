@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2022 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@ mapapps.registerTasks({
     themes: [/*"sample-theme"*/],
     /* state that the custom theme will be dependant from map.apps everlasting theme that provides the base styles */
     hasBaseThemes: true,
-    /* state that we want to support vuetify components and therefore need the the vuetify core styles*/
-    hasVuetify: true,
+    /* state that we want to support vuetify components and therefore need the vuetify core styles*/
+    hasVuetify: true
     /*themeChangeTargets: {
         "vuetify": [
             "sample_theme"
@@ -35,34 +35,18 @@ gulp.task("default",
     gulp.series(
         "copy-resources",
         "themes-copy",
-        gulp.parallel("js-transpile", "themes-compile")
+        gulp.parallel(
+            //"js-lint",
+            //"style-lint",
+            "js-transpile",
+            "themes-compile"
+        )
     )
 );
 
 gulp.task("compress",
     gulp.series(
-        "copy-resources",
-        "themes-copy",
-        gulp.parallel(
-            "js-transpile",
-            gulp.series(
-                "themes-compile",
-                "themes-compress"
-            )
-        )
+        "default",
+        "themes-compress"
     )
 );
-
-gulp.task("run-js-tests", function (done) {
-    const initialWait = 10000;
-    setTimeout(() => {
-        const trigger = gulp.series("run-browser-tests");
-        trigger(done);
-    }, initialWait);
-});
-
-gulp.task("skip", function (done) {
-    setTimeout(() => {
-        done();
-    }, 1);
-});

@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Initialize",
+            "type": "shell",
+            "command": "mvn initialize",
+            "group": "build"
+        },
+        {
+            "label": "Run HTTP Server",
+            "type": "shell",
+            "command": "mvn jetty:run -Denv=dev '-Dlocal.configfile=./build.properties'",
+            "group": "build"
+        },
+        {
+            "label": "Run stand-alone HTTP Server",
+            "type": "shell",
+            "command": "mvn jetty:run -Denv=dev '-Dlocal.configfile=./build.properties' -Pinclude-mapapps-deps",
+            "group": "build"
+        },
+        {
+            "label": "Compress",
+            "type": "shell",
+            "command": "mvn install -P compress",
+            "group": "build"
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "mvn clean",
+            "group": "build"
+        }
+    ]
+}

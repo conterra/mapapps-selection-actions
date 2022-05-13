@@ -1,0 +1,30 @@
+name: devnet-bundle-release
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseVersion:
+        description: "Release version"
+        required: true
+      nextDevVersion:
+        description: "Next SNAPSHOT version"
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: conterra/devnet-bundle-release-action@main
+       with:
+         nexus_id: ${{secrets.NEXUS_ID}}
+         nexus_user: ${{secrets.NEXUS_USER}}
+         nexus_user_pw: ${{secrets.NEXUS_USER_PW}}
+         nexus_url: ${{secrets.NEXUS_URL}}
+         nexus_url_release: ${{secrets.NEXUS_URL_RELEASE}}
+         nexus_url_snapshots: ${{secrets.NEXUS_URL_SNAPSHOTS}}
+         release_token: ${{secrets.RELEASE_TOKEN}}
+         git_mail: ${{secrets.GIT_MAIL}}
+         git_user: ${{secrets.GIT_USER}}
+         release_version: ${{ github.event.inputs.releaseVersion }}
+         next_dev_version: ${{ github.event.inputs.nextDevVersion }}
+         ms_teams_webhook_uri: ${{secrets.MS_TEAMS_WEBHOOK_URI}}
