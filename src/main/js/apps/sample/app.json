@@ -8,25 +8,27 @@
             "bundles"
         ],
         "allowedBundles": [
-            "system",
             "banner",
             "console",
+            "agssearch",
+            "map-init",
+            "mapnavigation",
             "notifier",
+            "omnisearch",
+            "popups-default",
+            "selection-resultcenter",
+            "selection-tools",
+            "selection-ui",
+            "sketching",
             "splashscreen",
+            "system",
             "templatelayout",
             "template-seasons",
             "theme-autumn",
             "theme-everlasting",
-            "map-init",
-            "toolset",
-            "agssearch",
-            "mapnavigation",
+            "toc",
             "toolrules",
-            "selection-ui",
-            "selection-tools",
-            "selection-resultcenter",
-            "omnisearch",
-            "popups-default",
+            "toolset",
             "dn_selectionactions"
         ],
         "require": [
@@ -348,6 +350,7 @@
                     {
                         "id": "mapview_tools",
                         "tools": [
+                            "sketchToggleTool",
                             "zoomInTool",
                             "zoomOutTool",
                             "compassTool",
@@ -379,6 +382,30 @@
                             "selection-ui-tool",
                             "searchSelection",
                             "searchSelection1"
+                        ]
+                    },
+                    {
+                        "id": "sketchingTools",
+                        "title": "Zeichnen",
+                        "activationTool": "sketchToggleTool",
+                        "container": "map",
+                        "window": {
+                            "closable": true,
+                            "resizable": false,
+                            "dndDraggable": false
+                        },
+                        "position": {
+                            "rel_l": 22,
+                            "rel_t": 100
+                        },
+                        "tools": [
+                            "rectangleSketchTool",
+                            "polygonSketchTool",
+                            "circleSketchTool",
+                            "deleteSelectedSketchTool",
+                            "deleteAllSketchTool",
+                            "pointSketchTool",
+                            "lineSketchTool"
                         ]
                     }
                 ]

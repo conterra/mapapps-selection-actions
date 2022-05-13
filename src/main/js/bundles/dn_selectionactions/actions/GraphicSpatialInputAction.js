@@ -55,7 +55,9 @@ export default class {
                     if (results.length) {
                         const graphic = results[0].graphic;
                         const geometry = graphic.geometry;
-                        this.addGraphicToView(geometry);
+                        if (geometry) {
+                            this.addGraphicToView(geometry);
+                        }
                     }
                 });
             });
