@@ -74,7 +74,8 @@
                     "full_extent",
                     "area_select",
                     "graphic",
-                    "searchaction"
+                    "searchaction",
+                    "multipoint"
                 ],
                 "preselectSources": "all",
                 "activateSelectionMethod": false,
