@@ -13,7 +13,7 @@
         "resultcenter": "^4.3.0",
         "highlights": "^4.3.0"
     },
-    "CSS-Themes-Extension": [
+    "cssThemesExtension": [
         {
             "name": "*",
             "files": ["./css/styles.css"]
