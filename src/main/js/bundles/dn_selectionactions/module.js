@@ -21,5 +21,6 @@ import "./actions/FullExtentSpatialInputAction";
 import "./actions/GraphicSpatialInputAction";
 import "./actions/MapExtentSpatialInputAction";
 import "./actions/SearchSpatialInputAction";
+import "./actions/MultiPointSpatialInputAction";
 import "./widgets/AreaSelectSpatialInputWidgetModel";
 import "./widgets/CircleSpatialInputWidgetModel";

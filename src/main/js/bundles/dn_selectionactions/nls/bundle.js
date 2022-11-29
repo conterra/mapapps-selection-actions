@@ -48,6 +48,10 @@ module.exports = {
             graphic: {
                 title: "Graphic",
                 description: "Select a graphic in the map to select objects."
+            },
+            multipoint: {
+                title: "Multiselect",
+                description: "Click on the map to add multiple points to select objects."
             }
         }
     }),

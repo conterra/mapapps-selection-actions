@@ -47,6 +47,10 @@ module.exports = {
         graphic: {
             title: "Grafik",
             description: "Klicken Sie auf eine Grafik in der Karte, um Objekte auszuw\u00e4hlen."
+        },
+        multipoint: {
+            title: "Multiselect",
+            description: "Click on the map to add multiple points to select objects."
         }
     }
 };

@@ -195,6 +195,25 @@
                     "cardinality": "0..n"
                 }
             ]
+        },
+        {
+            "name": "MultiPointSpatialInputAction",
+            "impl": "./actions/MultiPointSpatialInputAction",
+            "provides": [
+                "selection-services.SpatialInputAction",
+                "ct.framework.api.EventHandler"
+            ],
+            "properties": {},
+            "references": [
+                {
+                    "name": "_mapWidgetModel",
+                    "providing": "map-widget.MapWidgetModel"
+                },
+                {
+                    "name": "_highlighterFactory",
+                    "providing": "highlights.HighlighterFactory"
+                }
+            ]
         }
     ]
 }
