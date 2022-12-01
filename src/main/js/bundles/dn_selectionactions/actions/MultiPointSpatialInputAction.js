@@ -15,13 +15,14 @@
  */
 
 import CancelablePromise from "apprt-core/CancelablePromise";
-import Point from "esri/geometry/Point";
-import {difference} from "esri/geometry/geometryEngine";
+import Circle from "esri/geometry/Circle";
+import * as geometryEngine from "esri/geometry/geometryEngine";
 
 export default class MultiPointSpatialInputAction {
 
     #geometry = undefined;
-    #highlighter = undefined;
+    #clickHandle = undefined;
+    #doubleClickHandle = undefined;
 
     activate() {
         const i18n = this.i18n = this._i18n.get().ui.multipoint;
@@ -29,13 +30,13 @@ export default class MultiPointSpatialInputAction {
         this.title = i18n.title;
         this.description = i18n.description;
         this.iconClass = "icon-more-horizontal";
-        this.interactive = true;
-        this.#highlighter = this._highlighterFactory.forMapWidgetModel(this._mapWidgetModel);
     }
 
     deactivate() {
-        this.removeGraphicFromView();
-        this.#highlighter?.destroy();
+        this.#clickHandle.remove();
+        this.#doubleClickHandle.remove();
+        this.#geometry = undefined;
+        this._highlighter.clear();
     }
 
     trigger(args) {
@@ -43,64 +44,65 @@ export default class MultiPointSpatialInputAction {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
-            if (this.#geometry) {
-                this.addGraphicToView(this.#geometry);
-            }
-
             const view = this._mapWidgetModel.get("view");
-            const clickHandle = view.on("click", (evt) => {
-                this.removeGraphicFromView();
-                clickHandle.remove();
-                // prevent popup
+
+            this.#doubleClickHandle = view.on("double-click", (evt) => {
                 evt.stopPropagation();
-                const point = view.toMap({x: evt.x, y: evt.y});
-                const pointGeometry = this.#geometry = this.createPoint(point);
-                this.addGraphicToView(pointGeometry);
-                resolve(pointGeometry);
+                resolve(this.#geometry);
+
+                this.#clickHandle.remove();
+                this.#doubleClickHandle.remove();
+                this.#geometry = undefined;
+                this._highlighter.clear();
+            })
+
+            this.#clickHandle = view.on("click", (evt) => {
+                evt.stopPropagation();
+
+                const clickedPoint = view.toMap({x: evt.x, y: evt.y});
+                const pointGeometry = this.createGeometryWithTolerance(clickedPoint);
+
+                if (this.#geometry) {
+                    this.#geometry = geometryEngine.union([this.#geometry, clickedPoint]);
+                } else {
+                    this.#geometry = pointGeometry;
+                }
+
+                this._highlighter.clear();
+                this._highlighter.highlight({geometry: this.#geometry});
             });
 
             oncancel(() => {
-                clickHandle.remove();
-                this.removeGraphicFromView();
+                this.#clickHandle.remove();
+                this.#doubleClickHandle.remove();
+                this._highlighter.clear();
                 console.debug("MultiPointSpatialInputAction was canceled...");
             });
         });
     }
 
-    createPoint(center) {
-        let geodesic = false;
-        if (center.spatialReference.wkid === 3857
-            || center.spatialReference.wkid === 4326
-            || center.spatialReference.latestWkid === 3857
-            || center.spatialReference.latestWkid === 4326) {
-            geodesic = true;
+    createGeometryWithTolerance(clickedPoint) {
+        const props = this._properties;
+        const spatialRef = clickedPoint.spatialReference;
+
+        if (!props.clickTolerance || props.clickTolerance === 0) {
+            return clickedPoint;
+        } else {
+            return new Circle({
+                center: clickedPoint,
+                radius: 5000,
+                geodesic: (spatialRef.wkid === 3857
+                    || spatialRef.wkid === 4326
+                    || spatialRef.latestWkid === 3857
+                    || spatialRef.latestWkid === 4326)
+            });
         }
-
-        return new Point({
-            geodesic: geodesic,
-            center: center
-        });
-    }
-
-    addGraphicToView(geometry) {
-        this.removeGraphicFromView();
-        const symbol = {
-            type: "simple-fill",
-            color: [255, 0, 0, 0.25],
-            style: "solid",
-            outline: {
-                color: [255, 0, 0, 1],
-                width: "2px"
-            }
-        };
-        const graphic = {
-            geometry: geometry,
-            symbol: symbol
-        };
-        this.#highlighter.highlight(graphic);
-    }
-
-    removeGraphicFromView() {
-        this.#highlighter.clear();
     }
 }
+
+
+// document.addEventListener('keyup', (event) => {
+//     if(event.key === "Control"){
+//         resolve(this.geometry);
+//     }
+// }, false);

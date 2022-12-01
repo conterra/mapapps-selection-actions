@@ -200,18 +200,19 @@
             "name": "MultiPointSpatialInputAction",
             "impl": "./actions/MultiPointSpatialInputAction",
             "provides": [
-                "selection-services.SpatialInputAction",
-                "ct.framework.api.EventHandler"
+                "selection-services.SpatialInputAction"
             ],
-            "properties": {},
+            "properties": {
+//                "clickTolerance": 5
+            },
             "references": [
                 {
                     "name": "_mapWidgetModel",
                     "providing": "map-widget.MapWidgetModel"
                 },
                 {
-                    "name": "_highlighterFactory",
-                    "providing": "highlights.HighlighterFactory"
+                    "name": "_highlighter",
+                    "providing": "highlights.HighlightService"
                 }
             ]
         }
