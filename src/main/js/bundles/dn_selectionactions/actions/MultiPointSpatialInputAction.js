@@ -60,7 +60,7 @@ export default class MultiPointSpatialInputAction {
                 evt.stopPropagation();
 
                 const clickedPoint = view.toMap({x: evt.x, y: evt.y});
-                const pointGeometry = this.createGeometryWithTolerance(clickedPoint);
+                const pointGeometry = this.createGeometryWithTolerance(clickedPoint, view);
 
                 if (this.#geometry) {
                     this.#geometry = geometryEngine.union([this.#geometry, pointGeometry]);
@@ -81,22 +81,30 @@ export default class MultiPointSpatialInputAction {
         });
     }
 
-    createGeometryWithTolerance(clickedPoint) {
+    createGeometryWithTolerance(clickedPoint, view) {
         const props = this._properties;
         const spatialRef = clickedPoint.spatialReference;
 
         if (!props.clickTolerance || props.clickTolerance === 0) {
             return clickedPoint;
         } else {
+            const toleranceMapUnits = this.convertClickToleranceToMapUnits(props.clickTolerance, view);
+
             return new Circle({
                 center: clickedPoint,
-                radius: props.clickTolerance,
+                radius: toleranceMapUnits,
                 geodesic: (spatialRef.wkid === 3857
                     || spatialRef.wkid === 4326
                     || spatialRef.latestWkid === 3857
                     || spatialRef.latestWkid === 4326)
             });
         }
+    }
+
+    convertClickToleranceToMapUnits(clickTolerance, view){
+        const pixelWidth = view.width;
+        const mapUnitWidth = view.extent.width;
+        return mapUnitWidth / pixelWidth * (clickTolerance);
     }
 }
 
