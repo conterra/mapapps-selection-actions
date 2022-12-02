@@ -54,6 +54,9 @@
                     "kreise1",
                     "bundeslaender"
                 ]
+            },
+            "MultiPointSpatialInputAction": {
+                "clickTolerance": 5
             }
         },
         "selection-services": {
