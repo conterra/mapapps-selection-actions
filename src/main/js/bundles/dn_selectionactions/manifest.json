@@ -203,7 +203,7 @@
                 "selection-services.SpatialInputAction"
             ],
             "properties": {
-//                "clickTolerance": 5
+                "clickTolerance": 5
             },
             "references": [
                 {
