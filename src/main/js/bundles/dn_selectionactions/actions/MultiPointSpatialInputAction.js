@@ -29,7 +29,7 @@ export default class MultiPointSpatialInputAction {
         this.id = "multipoint";
         this.title = i18n.title;
         this.description = i18n.description;
-        this.iconClass = "icon-more-horizontal";
+        this.iconClass = "icon-selection-circle";
     }
 
     deactivate() {
@@ -107,10 +107,3 @@ export default class MultiPointSpatialInputAction {
         return mapUnitWidth / pixelWidth * (clickTolerance);
     }
 }
-
-
-// document.addEventListener('keyup', (event) => {
-//     if(event.key === "Control"){
-//         resolve(this.geometry);
-//     }
-// }, false);
