@@ -63,7 +63,7 @@ export default class MultiPointSpatialInputAction {
                 const pointGeometry = this.createGeometryWithTolerance(clickedPoint);
 
                 if (this.#geometry) {
-                    this.#geometry = geometryEngine.union([this.#geometry, clickedPoint]);
+                    this.#geometry = geometryEngine.union([this.#geometry, pointGeometry]);
                 } else {
                     this.#geometry = pointGeometry;
                 }
@@ -90,7 +90,7 @@ export default class MultiPointSpatialInputAction {
         } else {
             return new Circle({
                 center: clickedPoint,
-                radius: 5000,
+                radius: props.clickTolerance,
                 geodesic: (spatialRef.wkid === 3857
                     || spatialRef.wkid === 4326
                     || spatialRef.latestWkid === 3857
