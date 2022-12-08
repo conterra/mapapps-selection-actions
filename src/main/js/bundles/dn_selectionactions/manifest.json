@@ -211,8 +211,8 @@
                     "providing": "map-widget.MapWidgetModel"
                 },
                 {
-                    "name": "_highlighter",
-                    "providing": "highlights.HighlightService"
+                    "name": "_highlighterFactory",
+                    "providing": "highlights.HighlighterFactory"
                 }
             ]
         }
