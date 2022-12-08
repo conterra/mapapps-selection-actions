@@ -21,6 +21,7 @@ import * as geometryEngine from "esri/geometry/geometryEngine";
 export default class MultiPointSpatialInputAction {
 
     #geometry = undefined;
+    #highlighter = undefined;
     #clickHandle = undefined;
     #doubleClickHandle = undefined;
 
@@ -31,13 +32,15 @@ export default class MultiPointSpatialInputAction {
         this.description = i18n.description;
         this.iconClass = "icon-location-marker";
         this.interactive = true;
+        this.#highlighter = this._highlighterFactory.forMapWidgetModel(this._mapWidgetModel);
     }
 
     deactivate() {
         this.#clickHandle.remove();
         this.#doubleClickHandle.remove();
         this.#geometry = undefined;
-        this._highlighter.clear();
+        this.removeGraphicFromView();
+        this.#highlighter?.destroy();
     }
 
     trigger(args) {
@@ -54,8 +57,8 @@ export default class MultiPointSpatialInputAction {
                 this.#clickHandle.remove();
                 this.#doubleClickHandle.remove();
                 this.#geometry = undefined;
-                this._highlighter.clear();
-            })
+                this.removeGraphicFromView();
+            });
 
             this.#clickHandle = view.on("click", (evt) => {
                 evt.stopPropagation();
@@ -69,8 +72,8 @@ export default class MultiPointSpatialInputAction {
                     this.#geometry = pointGeometry;
                 }
 
-                this._highlighter.clear();
-                this._highlighter.highlight({geometry: this.#geometry});
+                this.removeGraphicFromView();
+                this.addGraphicToView(this.#geometry);
             });
 
             oncancel(() => {
@@ -102,9 +105,31 @@ export default class MultiPointSpatialInputAction {
         }
     }
 
-    convertClickToleranceToMapUnits(clickTolerance, view){
+    convertClickToleranceToMapUnits(clickTolerance, view) {
         const pixelWidth = view.width;
         const mapUnitWidth = view.extent.width;
         return mapUnitWidth / pixelWidth * (clickTolerance);
+    }
+
+    addGraphicToView(geometry) {
+        this.removeGraphicFromView();
+        const symbol = {
+            type: "simple-fill",
+            color: [255, 0, 0, 0.25],
+            style: "solid",
+            outline: {
+                color: [255, 0, 0, 1],
+                width: "2px"
+            }
+        };
+        const graphic = {
+            geometry: geometry,
+            symbol: symbol
+        };
+        this.#highlighter.highlight(graphic);
+    }
+
+    removeGraphicFromView() {
+        this.#highlighter.clear();
     }
 }
