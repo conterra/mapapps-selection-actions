@@ -29,7 +29,8 @@ export default class MultiPointSpatialInputAction {
         this.id = "multipoint";
         this.title = i18n.title;
         this.description = i18n.description;
-        this.iconClass = "icon-selection-circle";
+        this.iconClass = "icon-location-marker";
+        this.interactive = true;
     }
 
     deactivate() {
