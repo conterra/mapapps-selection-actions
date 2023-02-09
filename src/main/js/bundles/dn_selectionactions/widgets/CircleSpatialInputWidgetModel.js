@@ -23,6 +23,7 @@ export default declare({
     maxRadius: 0,
     innerRadius: 0,
     outerRadius: 0,
-    stepSize: 1
+    stepSize: 1,
+    adjustStepSize: false
 
 });

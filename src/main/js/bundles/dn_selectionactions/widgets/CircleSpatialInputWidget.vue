@@ -84,6 +84,14 @@
                     hide-details
                 />
             </v-flex>
+            <v-flex md12>
+                <v-switch
+                    v-model="adjustStepSize"
+                    :label="i18n.adjustStepSize"
+                    color="primary"
+                    @change="$emit('adjustStepSize-changed', adjustStepSize)"
+                />
+            </v-flex>
         </v-layout>
     </v-container>
 </template>
@@ -120,6 +128,10 @@
             enableDonut: {
                 type: Boolean,
                 default: true
+            },
+            adjustStepSize: {
+                type: Boolean,
+                default: false
             },
             i18n: {
                 type: Object,

@@ -39,7 +39,8 @@ module.exports = {
                 widgetTitle: "Configure circle selection",
                 innerRadius: "Inner Radius",
                 outerRadius: "Outer Radius",
-                radius: "Radius"
+                radius: "Radius",
+                adjustStepSize: "Adjust Step Size to Scale"
             },
             search: {
                 title: "Searchresult",

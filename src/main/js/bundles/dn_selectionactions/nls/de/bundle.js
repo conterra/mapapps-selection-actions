@@ -38,7 +38,8 @@ module.exports = {
             widgetTitle: "Kreisselektion konfigurieren",
             innerRadius: "Innerer Radius",
             outerRadius: "Äußerer Radius",
-            radius: "Radius"
+            radius: "Radius",
+            adjustStepSize: "Schrittweite an Maßstab anpassen"
         },
         search: {
             title: "Suchergebnis",
