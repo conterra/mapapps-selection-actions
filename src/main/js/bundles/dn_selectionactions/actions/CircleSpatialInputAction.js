@@ -80,20 +80,18 @@ export default class CircleSpatialInputAction {
 
             vm.$on("adjustStepSize-changed", adjustStepSize => {
                 if (adjustStepSize) {
-                    this.#scaleWatcher = reactiveUtils.watch(
-                        () => [view.scale], ([scale]) => {
-                            const adjustedStepSize = this._adjustStepSize(scale, model);
-                            vm.stepSize = adjustedStepSize.stepSize;
-                        }, {
-                            initial: true
-                        }
-                    );
+                    this.#scaleWatcher = this._getScaleWatcher(view, model, vm);
                 } else {
                     this.#scaleWatcher.remove();
                     this.#scaleWatcher = undefined;
                     vm.stepSize = model.stepSize;
                 }
             });
+
+            // handle inital activation adjustStepSize via config
+            if (model.adjustStepSize) {
+                this.#scaleWatcher = this._getScaleWatcher(view, model, vm);
+            }
 
             this.#binding = Binding.for(vm, model)
                 .syncAllToRight("innerRadius", "outerRadius", "adjustStepSize")
@@ -193,6 +191,17 @@ export default class CircleSpatialInputAction {
 
     removeGraphicFromView() {
         this.#highlighter.clear();
+    }
+
+    _getScaleWatcher(view, model, vm) {
+        return reactiveUtils.watch(
+            () => [view.scale], ([scale]) => {
+                const adjustedStepSize = this._adjustStepSize(scale, model);
+                vm.stepSize = adjustedStepSize.stepSize;
+            }, {
+                initial: true
+            }
+        );
     }
 
     _adjustStepSize(scale, model) {
