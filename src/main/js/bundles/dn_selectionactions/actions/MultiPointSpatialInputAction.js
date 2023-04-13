@@ -79,7 +79,7 @@ export default class MultiPointSpatialInputAction {
             oncancel(() => {
                 this.#clickHandle.remove();
                 this.#doubleClickHandle.remove();
-                this._highlighter.clear();
+                this.#highlighter.clear();
                 console.debug("MultiPointSpatialInputAction was canceled...");
             });
         });
