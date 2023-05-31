@@ -24,7 +24,7 @@ module.exports = {
         },
         full_extent: {
             title: "\u00dcberall",
-            description: "Klicken Sie in die Karte, um \u00fcberall nach Objekten suchen."
+            description: "Klicken Sie in die Karte, um \u00fcberall nach Objekten zu suchen."
         },
         area_select: {
             title: "Gebiet",
