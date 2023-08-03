@@ -80,6 +80,7 @@ export default class {
 
             oncancel(() => {
                 this.#moveHandle.remove();
+                this.#moveHandle = null;
                 clickHandle.remove();
                 this.removeGraphicFromView();
                 console.debug("GraphicSpatialInputAction was canceled...");
