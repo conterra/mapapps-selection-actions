@@ -20,6 +20,7 @@ import CircleSpatialInputWidget from "../widgets/CircleSpatialInputWidget.vue";
 import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
+import * as reactiveUtils from "esri/core/reactiveUtils";
 
 export default class CircleSpatialInputAction {
 
@@ -28,6 +29,7 @@ export default class CircleSpatialInputAction {
     #highlighter = undefined;
     #serviceRegistration = undefined;
     #bundleContext = undefined;
+    #scaleWatcher = undefined;
 
     activate(componentContext) {
         this.#bundleContext = componentContext.getBundleContext();
@@ -62,6 +64,8 @@ export default class CircleSpatialInputAction {
                 model.innerRadius = 0;
             }
 
+            const view = this._mapWidgetModel.get("view");
+
             const vm = new Vue(CircleSpatialInputWidget);
             vm.i18n = this.i18n;
             vm.enableDonut = model.enableDonut;
@@ -70,10 +74,26 @@ export default class CircleSpatialInputAction {
             vm.innerRadius = model.innerRadius;
             vm.outerRadius = model.outerRadius;
             vm.stepSize = model.stepSize;
+            vm.adjustStepSize = model.adjustStepSize;
             vm.unit = model.unit;
 
+            vm.$on("adjustStepSize-changed", adjustStepSize => {
+                if (adjustStepSize) {
+                    this.#scaleWatcher = this._getScaleWatcher(view, model, vm);
+                } else {
+                    this.#scaleWatcher.remove();
+                    this.#scaleWatcher = undefined;
+                    vm.stepSize = model.stepSize;
+                }
+            });
+
+            // handle inital activation adjustStepSize via config
+            if (model.adjustStepSize) {
+                this.#scaleWatcher = this._getScaleWatcher(view, model, vm);
+            }
+
             this.#binding = Binding.for(vm, model)
-                .syncAllToRight("innerRadius", "outerRadius")
+                .syncAllToRight("innerRadius", "outerRadius", "adjustStepSize")
                 .enable();
 
             const widget = new VueDijit(vm);
@@ -85,7 +105,6 @@ export default class CircleSpatialInputAction {
                 this.#serviceRegistration = this.#bundleContext.registerService(interfaces, widget, serviceProperties);
             }
 
-            const view = this._mapWidgetModel.get("view");
             const clickHandle = view.on("click", (evt) => {
                 this.removeGraphicFromView();
                 clickHandle.remove();
@@ -171,5 +190,20 @@ export default class CircleSpatialInputAction {
 
     removeGraphicFromView() {
         this.#highlighter.clear();
+    }
+
+    _getScaleWatcher(view, model, vm) {
+        return reactiveUtils.watch(
+            () => [view.scale], ([scale]) => {
+                const adjustedStepSize = this._adjustStepSize(scale, model);
+                vm.stepSize = adjustedStepSize.stepSize;
+            }, {
+                initial: true
+            }
+        );
+    }
+
+    _adjustStepSize(scale, model) {
+        return model.stepSizeRanges.find(range => range.scaleRange[0] <= scale && range.scaleRange[1] >= scale)
     }
 }

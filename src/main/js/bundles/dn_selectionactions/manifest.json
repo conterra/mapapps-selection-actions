@@ -159,6 +159,17 @@
                 "innerRadius": 0,
                 "outerRadius": 100000,
                 "stepSize": 1000,
+                "adjustStepSize": true,
+                "stepSizeRanges": [
+                    {
+                        "scaleRange": [1, 100000],
+                        "stepSize": 1
+                    },
+                    {
+                        "scaleRange": [100000, 100000000],
+                        "stepSize": 100
+                    }
+                ],
                 "unit": "meters"
             }
         },
