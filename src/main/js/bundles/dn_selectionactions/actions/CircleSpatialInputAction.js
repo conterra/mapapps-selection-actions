@@ -204,6 +204,6 @@ export default class CircleSpatialInputAction {
     }
 
     _adjustStepSize(scale, model) {
-        return model.stepSizeRanges.find(range => range.scaleRange[0] <= scale && range.scaleRange[1] >= scale)
+        return model.stepSizeRanges.find(range => range.scaleRange[0] <= scale && range.scaleRange[1] >= scale);
     }
 }
