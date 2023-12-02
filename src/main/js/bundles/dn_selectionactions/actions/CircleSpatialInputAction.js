@@ -21,6 +21,7 @@ import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
 import * as reactiveUtils from "esri/core/reactiveUtils";
+import async from "apprt-core/async";
 
 export default class CircleSpatialInputAction {
 
@@ -122,9 +123,12 @@ export default class CircleSpatialInputAction {
 
             oncancel(() => {
                 clickHandle.remove();
-                this.removeGraphicFromView();
                 this.closeWidget();
                 console.debug("CircleSpatialInputAction was canceled...");
+                this.removeGraphicFromView();
+                async(() => {
+                    this.removeGraphicFromView();
+                }, 500);
             });
         });
     }
