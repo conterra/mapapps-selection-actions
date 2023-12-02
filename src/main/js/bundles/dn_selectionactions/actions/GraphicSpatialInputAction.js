@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
+import async from "apprt-core/async";
 
 export default class {
 
@@ -81,8 +82,10 @@ export default class {
                 this.#moveHandle.remove();
                 this.#moveHandle = null;
                 clickHandle.remove();
-                this.removeGraphicFromView();
                 console.debug("GraphicSpatialInputAction was canceled...");
+                async(() => {
+                    this.removeGraphicFromView();
+                }, 500);
             });
         });
     }
