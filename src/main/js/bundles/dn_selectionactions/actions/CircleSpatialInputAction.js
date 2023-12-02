@@ -112,7 +112,7 @@ export default class CircleSpatialInputAction {
                 evt.stopPropagation();
                 const point = view.toMap({x: evt.x, y: evt.y});
                 const circleGeometry = this.#geometry = this.createDonutOrCircle(point);
-                if (args.queryBuilderSelection) {
+                if (args?.queryBuilderSelection) {
                     this.closeWidget();
                 } else {
                     this.addGraphicToView(circleGeometry);
