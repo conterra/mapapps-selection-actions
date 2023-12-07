@@ -71,6 +71,8 @@ export default class {
                     if (results.length) {
                         const graphic = results[0].graphic;
                         const geometry = graphic.geometry;
+                        this.#moveHandle.remove();
+                        this.#moveHandle = null;
                         resolve(geometry);
                     } else {
                         resolve(null);
