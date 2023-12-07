@@ -118,6 +118,10 @@
                     {
                         "topic": "dn_hierarchicalsearch/RESULT",
                         "method": "_handleHierarchicalSearchResult"
+                    },
+                    {
+                        "topic": "search-api/SELECTED",
+                        "method": "_handleSearchApiResult"
                     }
                 ]
             },

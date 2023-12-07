@@ -32,6 +32,11 @@ export default class SearchSpatialInputAction {
         this._input = item;
     }
 
+    // search-api handle method
+    _handleSearchApiResult(evt) {
+        this._input = evt.getProperty("item");
+    }
+
     // hierarchical search handle method
     _handleHierarchicalSearchResult(evt) {
         this._input = evt.getProperty("result");

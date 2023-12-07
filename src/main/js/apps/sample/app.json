@@ -14,7 +14,7 @@
             "map-init",
             "mapnavigation",
             "notifier",
-            "omnisearch",
+            "search-ui",
             "popups-default",
             "selection-resultcenter",
             "selection-tools",
@@ -126,15 +126,12 @@
                         "suggestContains": true
                     },
                     "useIn": [
-                        "omnisearch",
+                        "search",
                         "selection-actions-area"
                     ],
                     "priority": 2,
-                    "omniSearchLabelAttr": "kreis_name",
-                    "omniSearchSearchAttr": "kreis_name",
-                    "omniSearchTypingDelay": 500,
-                    "omniSearchPageSize": 20,
-                    "omniSearchDefaultLabel": "Kreis suchen ..."
+                    "searchLabel": "kreis_name",
+                    "searchAttribute": "kreis_name"
                 },
                 {
                     "id": "bundeslaender",
