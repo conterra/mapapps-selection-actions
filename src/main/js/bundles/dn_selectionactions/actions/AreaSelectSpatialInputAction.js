@@ -19,6 +19,8 @@ import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
 import ServiceResolver from "apprt/ServiceResolver";
+import{buffer} from "esri/geometry/geometryEngine";
+
 
 export default class AreaSelectSpatialInputAction {
 
@@ -28,6 +30,7 @@ export default class AreaSelectSpatialInputAction {
     #serviceResolver = undefined;
     #serviceRegistration = undefined;
     #bundleContext = undefined;
+
 
     activate(componentContext) {
         const serviceResolver = this.#serviceResolver = new ServiceResolver();
@@ -61,11 +64,15 @@ export default class AreaSelectSpatialInputAction {
 
             const model = this._areaSelectSpatialInputWidgetModel;
             const vm = new Vue(AreaSelectSpatialInputWidget);
+            vm.buffer = model.buffer;
+            vm.stepSize = model.stepSize;
+            vm.unit = model.unit;
             vm.i18n = this.i18n;
 
             this.#binding = Binding.for(vm, model)
                 .syncAllToLeft("storeData")
                 .syncAll("selectedStoreId")
+                .syncAllToRight("buffer")
                 .enable()
                 .syncToLeftNow();
 
@@ -89,7 +96,7 @@ export default class AreaSelectSpatialInputAction {
                     if (!featureGeometry) {
                         resolve(null);
                     }
-                    this.#geometry = featureGeometry;
+                    this.#geometry = buffer(featureGeometry, model.buffer, model.unit);
                     if (args.queryBuilderSelection) {
                         this.closeWidget();
                     } else {

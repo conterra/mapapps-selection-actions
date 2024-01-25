@@ -29,7 +29,8 @@ module.exports = {
             title: "Gebiet",
             description: "Klicken Sie in die Karte, um ein Gebiet auszuw\u00e4hlen.",
             widgetTitle: "Gebietsauswahl konfigurieren",
-            source: "Datenquelle ausw\u00e4hlen"
+            source: "Datenquelle ausw\u00e4hlen",
+            buffer: "Buffer"
         },
         circle: {
             title: "Kreis",
