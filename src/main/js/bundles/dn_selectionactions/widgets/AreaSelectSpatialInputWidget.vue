@@ -28,6 +28,43 @@
             :label="i18n.source"
             hide-details
         />
+
+        <v-layout
+            row
+            wrap
+            justify-space-between
+        >
+            <v-flex
+                grow
+                px-3
+            >
+                <div>
+                    {{ i18n.buffer }}
+                </div>
+                <v-slider
+                    v-model="buffer"
+                    :step="stepSize"
+                    hide-details
+                />
+            </v-flex>
+            <v-flex shrink>
+                <v-text-field
+                    v-model="buffer"
+                    :step="stepSize"
+                    :suffix="unitSuffix"
+                    type="number"
+                    hide-details
+                />
+            </v-flex>
+            <v-flex md12>
+                <v-switch
+                    v-model="adjustStepSize"
+                    :label="i18n.adjustStepSize"
+                    color="primary"
+                    @change="$emit('adjustStepSize-changed', adjustStepSize)"
+                />
+            </v-flex>
+        </v-layout>
     </v-container>
 </template>
 <script>
@@ -36,6 +73,18 @@
     export default {
         mixins: [Bindable],
         props: {
+            buffer: {
+                type: Number,
+                default: 0
+            },
+            stepSize: {
+                type: Number,
+                default: 1000
+            },
+            unit: {
+                type: String,
+                default: "meters"
+            },
             storeData: {
                 type: Array,
                 default: () => []

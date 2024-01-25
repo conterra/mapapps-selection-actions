@@ -201,7 +201,11 @@
             "impl": "./widgets/AreaSelectSpatialInputWidgetModel",
             "provides": "dn_selectionactions.AreaSelectSpatialInputWidgetModel",
             "propertiesConstructor": true,
-            "properties": {},
+            "properties": {
+                "buffer": 0,
+                "stepSize": 1000,
+                "unit": "meters"
+            },
             "references": [
                 {
                     "name": "store",

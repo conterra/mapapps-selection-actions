@@ -30,7 +30,8 @@ module.exports = {
                 title: "Area",
                 description: "Click on the map to select an area.",
                 widgetTitle: "Configure area selection",
-                source: "Select source"
+                source: "Select source",
+                buffer: "Buffer"
             },
             circle: {
                 title: "Circle",

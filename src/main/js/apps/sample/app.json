@@ -50,6 +50,9 @@
                 "unit": "kilometers"
             },
             "AreaSelectSpatialInputWidgetModel": {
+                "buffer": 100,
+                "stepSize": 1,
+                "unit": "kilometers",
                 "storeIds": [
                     "kreise1",
                     "bundeslaender"

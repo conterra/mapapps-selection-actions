@@ -20,6 +20,9 @@ export default declare({
     storeData: [],
     selectedStoreId: null,
     stores: [],
+    buffer: 0,
+    unit: 0,
+    stepSize:1000,
 
     activate() {
         const properties = this._properties;
