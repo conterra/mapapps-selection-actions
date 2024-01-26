@@ -49,6 +49,21 @@
                     "w": 300
                 }
             }
+        },
+        {
+            "widgetRole": "graphicSpatialInputWidget",
+            "window": {
+                "title": "${ui.graphic.widgetTitle}",
+                "closable": true,
+                "maximizable": false,
+                "minimizeOnClose": true,
+                "resizable": true,
+                "marginBox": {
+                    "t": 125,
+                    "r": 20,
+                    "w": 300
+                }
+            }
         }
     ],
     "components": [
@@ -99,10 +114,38 @@
                     "providing": "map-widget.MapWidgetModel"
                 },
                 {
+                    "name": "_graphicSpatialInputWidgetModel",
+                    "providing": "dn_selectionactions.GraphicSpatialInputWidgetModel"
+                },
+                {
                     "name": "_highlighterFactory",
                     "providing": "highlights.HighlighterFactory"
                 }
             ]
+        },
+        {
+            "name": "GraphicSpatialInputWidgetModel",
+            "impl": "./widgets/GraphicSpatialInputWidgetModel",
+            "provides": "dn_selectionactions.GraphicSpatialInputWidgetModel",
+            "propertiesConstructor": true,
+            "properties": {
+                "buffer":0,
+                "stepSize": 100,
+                "minBuffer": 0,
+                "maxBuffer": 50000,
+                "adjustStepSize": true,
+                "stepSizeRanges": [
+                    {
+                        "scaleRange": [1, 100000],
+                        "stepSize": 1
+                    },
+                    {
+                        "scaleRange": [100000, 100000000],
+                        "stepSize": 100
+                    }
+                ],
+                "unit": "meters"
+            }
         },
         {
             "name": "SearchSpatialInputAction",

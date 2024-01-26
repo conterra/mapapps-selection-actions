@@ -23,3 +23,4 @@ import "./actions/SearchSpatialInputAction";
 import "./actions/MultiPointSpatialInputAction";
 import "./widgets/AreaSelectSpatialInputWidgetModel";
 import "./widgets/CircleSpatialInputWidgetModel";
+import "./widgets/GraphicSpatialInputWidgetModel";

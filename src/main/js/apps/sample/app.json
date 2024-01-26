@@ -47,16 +47,21 @@
                 "innerRadius": 0,
                 "outerRadius": 100,
                 "stepSize": 1,
-                "unit": "kilometers"
+                "unit": "meters"
             },
+
             "AreaSelectSpatialInputWidgetModel": {
                 "buffer": 100,
                 "stepSize": 1,
-                "unit": "kilometers",
+                "unit": "meters",
                 "storeIds": [
                     "kreise1",
                     "bundeslaender"
                 ]
+            },
+            "GraphicSpatialInputWidgetModel": {
+                "buffer": 0,
+                "unit": "meters"
             },
             "MultiPointSpatialInputAction": {
                 "clickTolerance": 5

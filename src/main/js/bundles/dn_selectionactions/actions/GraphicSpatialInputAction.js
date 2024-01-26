@@ -14,15 +14,26 @@
  * limitations under the License.
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
+import GraphicSpatialInputWidget from "../widgets/GraphicSpatialInputWidget.vue";
 import async from "apprt-core/async";
+import { buffer } from "esri/geometry/geometryEngine";
+import Vue from "apprt-vue/Vue";
+import VueDijit from "apprt-vue/VueDijit";
+import Binding from "apprt-binding/Binding";
+
 
 export default class {
-
+    #serviceRegistration = undefined;
+    #bundleContext = undefined;
     #moveHandle = undefined;
     #highlighter = undefined;
 
-    activate() {
-        const i18n = this._i18n.get().ui.graphic;
+    #geometry = undefined;
+    #binding = undefined;
+
+    activate(componentContext) {
+        this.#bundleContext = componentContext.getBundleContext();
+        const i18n = this.i18n = this._i18n.get().ui.graphic;
         this.id = "graphic";
         this.title = i18n.title;
         this.description = i18n.description;
@@ -33,6 +44,9 @@ export default class {
 
     deactivate() {
         this.removeGraphicFromView();
+        this.#binding?.unbind();
+        this.#binding = undefined;
+        this.closeWidget();
     }
 
     onSelectionExecuting() {
@@ -46,7 +60,32 @@ export default class {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
+            if (this.#geometry) {
+                this.addGraphicToView(this.#geometry);
+            }
+            const model = this._graphicSpatialInputWidgetModel;
             const view = this._mapWidgetModel.get("view");
+
+            const vm = new Vue(GraphicSpatialInputWidget);
+            vm.i18n = this.i18n;
+            vm.stepSize = model.stepSize;
+            vm.unit = model.unit;
+            vm.buffer = model.buffer;
+
+            this.#binding = Binding.for(vm, model)
+                .syncAllToRight("buffer")
+                .enable()
+                .syncToLeftNow();
+
+            const widget = new VueDijit(vm);
+            const serviceProperties = {
+                "widgetRole": "graphicSpatialInputWidget"
+            };
+            const interfaces = ["dijit.Widget"];
+            if (!this.#serviceRegistration) {
+                this.#serviceRegistration = this.#bundleContext.registerService(interfaces, widget, serviceProperties);
+            }
+
             this.#moveHandle = view.on("pointer-move", (evt) => {
                 // prevent popup
                 evt.stopPropagation();
@@ -56,6 +95,8 @@ export default class {
                         const graphic = results[0].graphic;
                         const geometry = graphic.geometry;
                         if (geometry) {
+                            let geometry = graphic.geometry;
+                            geometry = buffer(geometry, model.buffer, model.unit);
                             this.addGraphicToView(geometry);
                         }
                     }
@@ -70,7 +111,8 @@ export default class {
                     const results = response.results;
                     if (results.length) {
                         const graphic = results[0].graphic;
-                        const geometry = graphic.geometry;
+                        let geometry = graphic.geometry;
+                        geometry = buffer(geometry, model.buffer, model.unit);
                         this.#moveHandle.remove();
                         this.#moveHandle = null;
                         resolve(geometry);
@@ -91,7 +133,17 @@ export default class {
             });
         });
     }
+    closeWidget() {
+        const registration = this.#serviceRegistration;
 
+        // clear the reference
+        this.#serviceRegistration = null;
+
+        if (registration) {
+            // call unregister
+            registration.unregister();
+        }
+    }
     addGraphicToView(geometry) {
         this.removeGraphicFromView();
         let symbol;

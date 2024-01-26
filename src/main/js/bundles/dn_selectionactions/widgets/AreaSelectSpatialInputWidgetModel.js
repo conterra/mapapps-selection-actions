@@ -21,7 +21,7 @@ export default declare({
     selectedStoreId: null,
     stores: [],
     buffer: 0,
-    unit: 0,
+    unit: "meters",
     stepSize:1000,
 
     activate() {
