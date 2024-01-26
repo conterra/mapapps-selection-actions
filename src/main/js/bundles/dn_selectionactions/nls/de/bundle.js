@@ -47,7 +47,9 @@ module.exports = {
         },
         graphic: {
             title: "Grafik",
-            description: "Klicken Sie auf eine Grafik in der Karte, um Objekte auszuw\u00e4hlen."
+            description: "Klicken Sie auf eine Grafik in der Karte, um Objekte auszuw\u00e4hlen.",
+            widgetTitle: "Grafikauswahl konfigurieren",
+            buffer: "Buffer"
         },
         multipoint: {
             title: "Multiselect",
