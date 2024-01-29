@@ -89,18 +89,24 @@ export default class {
             this.#moveHandle = view.on("pointer-move", (evt) => {
                 // prevent popup
                 evt.stopPropagation();
-                view.hitTest(evt).then((response) => {
-                    const results = response.results;
-                    if (results.length) {
-                        const graphic = results[0].graphic;
-                        const geometry = graphic.geometry;
-                        if (geometry) {
-                            let geometry = graphic.geometry;
-                            geometry = buffer(geometry, model.buffer, model.unit);
-                            this.addGraphicToView(geometry);
+                const timeout = 50;
+                clearTimeout(this.moveTimeout);
+                this.moveTimeout = setTimeout(() => {
+                    view.hitTest(evt).then((response) => {
+                        const results = response.results;
+                        if (results.length) {
+                            const graphic = results[0].graphic;
+                            const geometry = graphic.geometry;
+                            if (geometry) {
+                                let geometry = graphic.geometry;
+                                if(model.buffer > 0) {
+                                    geometry = buffer(geometry, model.buffer, model.unit);
+                                }
+                                this.addGraphicToView(geometry);
+                            }
                         }
-                    }
-                });
+                    });
+                }, timeout);
             });
             const clickHandle = view.on("click", (evt) => {
                 this.removeGraphicFromView();

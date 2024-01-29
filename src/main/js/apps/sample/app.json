@@ -327,7 +327,17 @@
                                     "marginBox": {
                                         "t": 60,
                                         "r": 20,
-                                        "w": 300
+                                        "w": 400
+                                    }
+                                }
+                            },
+                            {
+                                "widgetRole": "graphicSpatialInputWidget",
+                                "window": {
+                                    "marginBox": {
+                                        "t": 60,
+                                        "r": 20,
+                                        "w": 400
                                     }
                                 }
                             },
