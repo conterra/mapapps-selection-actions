@@ -24,6 +24,14 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 ```
 
 ## Configuration Reference
+### CircleSpatialInputWidgetModel:
+```json
+"AreaSelectSpatialInputWidgetModel": {
+    "buffer": 0,
+    "stepSize": 1000,
+    "unit": "meters"
+}
+```
 
 ### CircleSpatialInputWidgetModel:
 ```json
@@ -35,6 +43,28 @@ Configure the available selection methods in the selection-ui bundle. The ones a
     "outerRadius": 100000,
     "stepSize": 1000,
     "adjustStepSize": false,
+    "stepSizeRanges": [
+        {
+            "scaleRange": [1, 100000],
+            "stepSize": 1
+        },
+        {
+            "scaleRange": [100000, 100000000],
+            "stepSize": 100
+        }
+    ],
+    "unit": "meters"
+}
+```
+
+### GraphicSpatialInputWidgetModel:
+```json
+"CircleSpatialInputWidgetModel": {
+    "buffer":0,
+    "stepSize": 100,
+    "minBuffer": 0,
+    "maxBuffer": 50000,
+    "adjustStepSize": true,
     "stepSizeRanges": [
         {
             "scaleRange": [1, 100000],
