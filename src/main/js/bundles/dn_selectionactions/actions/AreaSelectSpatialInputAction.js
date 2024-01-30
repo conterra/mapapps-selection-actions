@@ -19,7 +19,7 @@ import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
 import ServiceResolver from "apprt/ServiceResolver";
-import{buffer} from "esri/geometry/geometryEngine";
+import { buffer } from "esri/geometry/geometryEngine";
 
 
 export default class AreaSelectSpatialInputAction {
@@ -91,7 +91,7 @@ export default class AreaSelectSpatialInputAction {
                 clickHandle.remove();
                 // prevent popup
                 evt.stopPropagation();
-                const point = view.toMap({x: evt.x, y: evt.y});
+                const point = view.toMap({ x: evt.x, y: evt.y });
                 this.getFeature(point).then((featureGeometry) => {
                     if (!featureGeometry) {
                         resolve(null);
@@ -137,7 +137,7 @@ export default class AreaSelectSpatialInputAction {
             }
             store.query(
                 {
-                    geometry: {$intersects: point}
+                    geometry: { $intersects: point }
                 },
                 {
                     fields: {

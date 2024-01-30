@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {declare} from "apprt-core/Mutable";
+import { declare } from "apprt-core/Mutable";
 
 export default declare({
     buffer: 0,
@@ -21,5 +21,4 @@ export default declare({
     minBuffer: 0,
     maxBuffer: 1000,
     stepSize: 1
-
 });

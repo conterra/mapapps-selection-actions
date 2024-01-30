@@ -99,7 +99,7 @@ export default class {
                             const geometry = graphic.geometry;
                             if (geometry) {
                                 let geometry = graphic.geometry;
-                                if(model.buffer > 0) {
+                                if (model.buffer > 0) {
                                     geometry = buffer(geometry, model.buffer, model.unit);
                                 }
                                 this.addGraphicToView(geometry);
