@@ -133,17 +133,6 @@
                 "stepSize": 100,
                 "minBuffer": 0,
                 "maxBuffer": 50000,
-                "adjustStepSize": true,
-                "stepSizeRanges": [
-                    {
-                        "scaleRange": [1, 100000],
-                        "stepSize": 1
-                    },
-                    {
-                        "scaleRange": [100000, 100000000],
-                        "stepSize": 100
-                    }
-                ],
                 "unit": "meters"
             }
         },

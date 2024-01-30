@@ -47,6 +47,17 @@
                 "innerRadius": 0,
                 "outerRadius": 100,
                 "stepSize": 1,
+                "adjustStepSize": true,
+                "stepSizeRanges": [
+                    {
+                        "scaleRange": [1, 100000],
+                        "stepSize": 1
+                    },
+                    {
+                        "scaleRange": [100000, 100000000],
+                        "stepSize": 100
+                    }
+                ],
                 "unit": "meters"
             },
 
@@ -61,7 +72,10 @@
             },
             "GraphicSpatialInputWidgetModel": {
                 "buffer": 0,
-                "unit": "meters"
+                "unit": "meters",
+                "stepSize": 100,
+                "minBuffer": 0,
+                "maxBuffer": 50000
             },
             "MultiPointSpatialInputAction": {
                 "clickTolerance": 5

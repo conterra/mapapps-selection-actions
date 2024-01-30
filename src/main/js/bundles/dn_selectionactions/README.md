@@ -36,8 +36,6 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 |--------------------------------|---------|--------------------------------------------------------|------------------|-------------------------------------------------------------------------------------------------------------------------|
 | buffer                    | Number |                       | ```0```       |Buffer                                  |                                                                                           |
 | stepSize                       | Number  |                                                        | ```1000```       | Step size                                                                                                               |
-| adjustStepSize                 | Boolean | ```true``` &#124; ```false```                          | ```false```      | Enables or disables scale based stepSize adjustments                                                                    |
-| stepSizeRanges                 | Array   |                                                        | ```see sample``` | Array containing objects with disjunct scale ranges desired stepSize for these ranges                                   |
 | unit                           | String  | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | ```meters```     | |
 ### CircleSpatialInputWidgetModel:
 ```json
@@ -81,17 +79,6 @@ Configure the available selection methods in the selection-ui bundle. The ones a
     "stepSize": 100,
     "minBuffer": 0,
     "maxBuffer": 50000,
-    "adjustStepSize": true,
-    "stepSizeRanges": [
-        {
-            "scaleRange": [1, 100000],
-            "stepSize": 1
-        },
-        {
-            "scaleRange": [100000, 100000000],
-            "stepSize": 100
-        }
-    ],
     "unit": "meters"
 }
 ```
@@ -102,8 +89,6 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 | minBuffer                      | Number  |                                                        | ```0```          | Minimal buffer                                                                                                          |
 | maxBuffer                      | Number  |                                                        | ```500000```     | Maximum buffer                                                                                                          |
 | stepSize                       | Number  |                                                        | ```1000```       | Step size                                                                                                               |
-| adjustStepSize                 | Boolean | ```true``` &#124; ```false```                          | ```false```      | Enables or disables scale based stepSize adjustments                                                                    |
-| stepSizeRanges                 | Array   |                                                        | ```see sample``` | Array containing objects with disjunct scale ranges desired stepSize for these ranges                                   |
 | unit                           | String  | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | ```meters```     |  |
 
 ### AreaSelectSpatialInputWidgetModel:
