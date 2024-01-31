@@ -56,14 +56,6 @@
                     hide-details
                 />
             </v-flex>
-            <v-flex md12>
-                <v-switch
-                    v-model="adjustStepSize"
-                    :label="i18n.adjustStepSize"
-                    color="primary"
-                    @change="$emit('adjustStepSize-changed', adjustStepSize)"
-                />
-            </v-flex>
         </v-layout>
     </v-container>
 </template>
@@ -76,6 +68,14 @@
             buffer: {
                 type: Number,
                 default: 0
+            },
+            minBuffer: {
+                type: Number,
+                default: 0
+            },
+            maxBuffer: {
+                type: Number,
+                default: 5000
             },
             stepSize: {
                 type: Number,

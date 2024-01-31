@@ -235,6 +235,8 @@
             "propertiesConstructor": true,
             "properties": {
                 "buffer": 0,
+                "minBuffer": 0,
+                "maxBuffer": 50000,
                 "stepSize": 1000,
                 "unit": "meters"
             },
