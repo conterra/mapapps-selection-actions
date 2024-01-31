@@ -37,7 +37,9 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 
 | Property | Type   | Possible Values                                        | Default      | Description |
 | -------- | ------ | ------------------------------------------------------ | ------------ | ----------- |
-| buffer   | Number |                                                        | ```0```      | Buffer      |  |
+| buffer   | Number |                                                        | ```0```      | Buffer      |
+| minBuffer | Number |                                                        | ```0```      | Minimal buffer |
+| maxBuffer | Number |                                                        | ```500000``` | Maximum buffer |
 | stepSize | Number |                                                        | ```1000```   | Step size   |
 | unit     | String | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | ```meters``` |             |
 
