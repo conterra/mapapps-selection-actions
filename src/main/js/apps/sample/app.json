@@ -69,8 +69,8 @@
             "AreaSelectSpatialInputWidgetModel": {
                 "buffer": 0,
                 "minBuffer": 0,
-                "maxBuffer": 500000,
-                "stepSize": 1000,
+                "maxBuffer": 5000,
+                "stepSize": 100,
                 "unit": "meters",
                 "storeIds": [
                     "kreise1",

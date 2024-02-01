@@ -30,7 +30,9 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 ```json
 "AreaSelectSpatialInputWidgetModel": {
     "buffer": 0,
-    "stepSize": 1000,
+    "minBuffer": 0,
+    "maxBuffer": 5000,
+    "stepSize": 100,
     "unit": "meters"
 }
 ```
@@ -39,8 +41,8 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 | --------- | ------ | ------------------------------------------------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------- |
 | buffer    | Number |                                                        | ```0```      | Buffer                                                                                                                  |
 | minBuffer | Number |                                                        | ```0```      | Minimal buffer                                                                                                          |
-| maxBuffer | Number |                                                        | ```500000``` | Maximum buffer                                                                                                          |
-| stepSize  | Number |                                                        | ```1000```   | Step size                                                                                                               |
+| maxBuffer | Number |                                                        | ```5000```   | Maximum buffer                                                                                                          |
+| stepSize  | Number |                                                        | ```100```    | Step size                                                                                                               |
 | unit      | String | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | ```meters``` | Buffer radius unit (https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-Circle.html#radiusUnit) |
 
 Use _selection-actions-area_ useIn-property to show stores in the area selection widget.
