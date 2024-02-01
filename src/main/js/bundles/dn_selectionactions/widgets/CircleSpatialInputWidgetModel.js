@@ -13,16 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {declare} from "apprt-core/Mutable";
+import { declare } from "apprt-core/Mutable";
 
 export default declare({
 
     enableDonut: true,
     minRadius: 0,
-    maxRadius: 0,
+    maxRadius: 500000,
     innerRadius: 0,
-    outerRadius: 0,
-    stepSize: 1,
-    adjustStepSize: false
+    outerRadius: 100000,
+    stepSize: 1000,
+    adjustStepSize: false,
+    stepSizeRanges: [
+        {
+            scaleRange: [
+                1,
+                100000
+            ],
+            stepSize: 1
+        },
+        {
+            scaleRange: [
+                100000,
+                100000000
+            ],
+            stepSize: 100
+        }
+    ]
 
 });
