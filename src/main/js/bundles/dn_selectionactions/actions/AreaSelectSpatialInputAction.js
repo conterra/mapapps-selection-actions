@@ -31,7 +31,6 @@ export default class AreaSelectSpatialInputAction {
     #serviceRegistration = undefined;
     #bundleContext = undefined;
 
-
     activate(componentContext) {
         const serviceResolver = this.#serviceResolver = new ServiceResolver();
         const bundleCtx = this.#bundleContext = componentContext.getBundleContext();
@@ -65,6 +64,8 @@ export default class AreaSelectSpatialInputAction {
             const model = this._areaSelectSpatialInputWidgetModel;
             const vm = new Vue(AreaSelectSpatialInputWidget);
             vm.buffer = model.buffer;
+            vm.minBuffer = model.minBuffer;
+            vm.maxBuffer = model.maxBuffer;
             vm.stepSize = model.stepSize;
             vm.unit = model.unit;
             vm.i18n = this.i18n;
