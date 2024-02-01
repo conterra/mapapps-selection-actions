@@ -43,6 +43,8 @@
                 </div>
                 <v-slider
                     v-model="buffer"
+                    :min="minBuffer"
+                    :max="maxBuffer"
                     :step="stepSize"
                     hide-details
                 />
@@ -75,7 +77,7 @@
             },
             maxBuffer: {
                 type: Number,
-                default: 5000
+                default: 500000
             },
             stepSize: {
                 type: Number,
@@ -99,6 +101,26 @@
                     return {
                         source: "Datenquelle"
                     };
+                }
+            }
+        },
+        computed: {
+            unitSuffix: function () {
+                switch (this.unit) {
+                    case "meters":
+                        return "m";
+                    case "kilometers":
+                        return "km";
+                    case "feet":
+                        return "ft";
+                    case "miles":
+                        return "mi";
+                    case "nautical-miles":
+                        return "nmi";
+                    case "yards":
+                        return "yd";
+                    default:
+                        return "";
                 }
             }
         }
