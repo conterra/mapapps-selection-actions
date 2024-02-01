@@ -31,10 +31,10 @@
         >
             <v-flex
                 grow
-                px-3
             >
                 <v-slider
                     v-model="innerRadius"
+                    class="px-2"
                     :min="minRadius"
                     :max="maxRadius"
                     :step="stepSize"
@@ -64,10 +64,10 @@
         >
             <v-flex
                 grow
-                px-3
             >
                 <v-slider
                     v-model="outerRadius"
+                    class="px-2"
                     :min="minRadius"
                     :max="maxRadius"
                     :step="stepSize"
