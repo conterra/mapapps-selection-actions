@@ -28,21 +28,18 @@
             :label="i18n.source"
             hide-details
         />
-
+        <div class="pt-2">
+            {{ i18n.buffer }}
+        </div>
         <v-layout
             row
             wrap
             justify-space-between
         >
-            <v-flex
-                grow
-                px-3
-            >
-                <div>
-                    {{ i18n.buffer }}
-                </div>
+            <v-flex grow>
                 <v-slider
                     v-model="buffer"
+                    class="mt-1 px-2"
                     :min="minBuffer"
                     :max="maxBuffer"
                     :step="stepSize"
@@ -52,6 +49,7 @@
             <v-flex shrink>
                 <v-text-field
                     v-model="buffer"
+                    class="pt-0"
                     :step="stepSize"
                     :suffix="unitSuffix"
                     type="number"
