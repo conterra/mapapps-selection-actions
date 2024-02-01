@@ -77,11 +77,11 @@
             },
             maxBuffer: {
                 type: Number,
-                default: 500000
+                default: 5000
             },
             stepSize: {
                 type: Number,
-                default: 1000
+                default: 100
             },
             unit: {
                 type: String,

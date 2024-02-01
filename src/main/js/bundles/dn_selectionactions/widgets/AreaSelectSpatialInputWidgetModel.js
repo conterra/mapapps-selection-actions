@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {declare} from "apprt-core/Mutable";
+import { declare } from "apprt-core/Mutable";
 
 export default declare({
 
@@ -22,9 +22,9 @@ export default declare({
     stores: [],
     buffer: 0,
     minBuffer: 0,
-    maxBuffer: 1000,
+    maxBuffer: 5000,
+    stepSize: 100,
     unit: "meters",
-    stepSize:1000,
 
     activate() {
         const properties = this._properties;
