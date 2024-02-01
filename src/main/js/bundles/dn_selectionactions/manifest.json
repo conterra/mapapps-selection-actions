@@ -16,7 +16,9 @@
     "cssThemesExtension": [
         {
             "name": "*",
-            "files": ["./css/styles.css"]
+            "files": [
+                "./css/styles.css"
+            ]
         }
     ],
     "layout-widgets": [
@@ -129,10 +131,10 @@
             "provides": "dn_selectionactions.GraphicSpatialInputWidgetModel",
             "propertiesConstructor": true,
             "properties": {
-                "buffer":0,
-                "stepSize": 100,
+                "buffer": 0,
                 "minBuffer": 0,
-                "maxBuffer": 50000,
+                "maxBuffer": 500000,
+                "stepSize": 1000,
                 "unit": "meters"
             }
         },
@@ -167,7 +169,9 @@
         {
             "name": "CircleSpatialInputAction",
             "impl": "./actions/CircleSpatialInputAction",
-            "provides": ["selection-services.SpatialInputAction"],
+            "provides": [
+                "selection-services.SpatialInputAction"
+            ],
             "references": [
                 {
                     "name": "_mapWidgetModel",
@@ -198,11 +202,17 @@
                 "adjustStepSize": true,
                 "stepSizeRanges": [
                     {
-                        "scaleRange": [1, 100000],
+                        "scaleRange": [
+                            1,
+                            100000
+                        ],
                         "stepSize": 1
                     },
                     {
-                        "scaleRange": [100000, 100000000],
+                        "scaleRange": [
+                            100000,
+                            100000000
+                        ],
                         "stepSize": 100
                     }
                 ],
@@ -212,7 +222,9 @@
         {
             "name": "AreaSelectSpatialInputAction",
             "impl": "./actions/AreaSelectSpatialInputAction",
-            "provides": ["selection-services.SpatialInputAction"],
+            "provides": [
+                "selection-services.SpatialInputAction"
+            ],
             "references": [
                 {
                     "name": "_mapWidgetModel",
@@ -236,9 +248,10 @@
             "properties": {
                 "buffer": 0,
                 "minBuffer": 0,
-                "maxBuffer": 50000,
+                "maxBuffer": 500000,
                 "stepSize": 1000,
-                "unit": "meters"
+                "unit": "meters",
+                "storeIds": []
             },
             "references": [
                 {
