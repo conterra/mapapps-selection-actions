@@ -50,21 +50,24 @@
                 "adjustStepSize": true,
                 "stepSizeRanges": [
                     {
-                        "scaleRange": [1, 100000],
+                        "scaleRange": [
+                            1,
+                            100000
+                        ],
                         "stepSize": 1
                     },
                     {
-                        "scaleRange": [100000, 100000000],
+                        "scaleRange": [
+                            100000,
+                            100000000
+                        ],
                         "stepSize": 100
                     }
                 ],
                 "unit": "meters"
             },
-
             "AreaSelectSpatialInputWidgetModel": {
                 "buffer": 100,
-                "minBuffer": 0,
-                "maxBuffer": 50000,
                 "stepSize": 1,
                 "unit": "meters",
                 "storeIds": [
@@ -82,370 +85,370 @@
             "MultiPointSpatialInputAction": {
                 "clickTolerance": 5
             }
-        },
-        "selection-services": {
-            "SearchSourceModel": {
-                "respectLayerVisibility": true,
-                "useScaleForVisibility": true,
-                "useExtentForVisibility": false
-            }
-        },
-        "selection-ui": {
-            "Config": {
-                "selectionMethods": [
-                    "point",
-                    "polygon",
-                    "rectangle",
-                    "circle",
-                    "current_extent",
-                    "full_extent",
-                    "area_select",
-                    "graphic",
-                    "searchaction",
-                    "multipoint"
-                ],
-                "preselectSources": "all",
-                "activateSelectionMethod": false,
-                "closeOnSelection": false,
-                "selectionOptions": {
-                    "point": {
-                        "clickTolerance": 3
-                    }
+        }
+    },
+    "selection-services": {
+        "SearchSourceModel": {
+            "respectLayerVisibility": true,
+            "useScaleForVisibility": true,
+            "useExtentForVisibility": false
+        }
+    },
+    "selection-ui": {
+        "Config": {
+            "selectionMethods": [
+                "point",
+                "polygon",
+                "rectangle",
+                "circle",
+                "current_extent",
+                "full_extent",
+                "area_select",
+                "graphic",
+                "searchaction",
+                "multipoint"
+            ],
+            "preselectSources": "all",
+            "activateSelectionMethod": false,
+            "closeOnSelection": false,
+            "selectionOptions": {
+                "point": {
+                    "clickTolerance": 3
                 }
             }
-        },
-        "selection-tools": {
-            "Config": {
-                "tools": [
-                    {
-                        "id": "searchSelection",
-                        "title": "SearchSelection",
-                        "selectionMethod": "circle",
-                        "sourceIds": [
-                            "kreise1"
-                        ],
-                        "deactivateOnSelection": false
-                    },
-                    {
-                        "id": "searchSelection1",
-                        "title": "SearchSelection",
-                        "selectionMethod": "searchaction",
-                        "sourceIds": [
-                            "kreise1"
-                        ],
-                        "deactivateOnSelection": false
-                    }
-                ]
-            }
-        },
-        "agssearch": {
-            "AGSStore": [
+        }
+    },
+    "selection-tools": {
+        "Config": {
+            "tools": [
                 {
-                    "id": "kreise1",
-                    "layerId": "kreise",
-                    "title": "Kreise",
-                    "description": "Kreise",
-                    "fetchIdProperty": true,
-                    "filterOptions": {
-                        "suggestContains": true
-                    },
-                    "useIn": [
-                        "search",
-                        "selection-actions-area"
+                    "id": "searchSelection",
+                    "title": "SearchSelection",
+                    "selectionMethod": "circle",
+                    "sourceIds": [
+                        "kreise1"
                     ],
-                    "priority": 2,
-                    "searchLabel": "kreis_name",
-                    "searchAttribute": "kreis_name"
+                    "deactivateOnSelection": false
                 },
                 {
-                    "id": "bundeslaender",
-                    "url": "https://services.conterra.de/arcgis/rest/services/common/grenzen/FeatureServer/2",
-                    "title": "Bundesländer",
-                    "description": "Bundesländer",
-                    "fetchIdProperty": true,
-                    "filterOptions": {
-                        "suggestContains": true
-                    },
-                    "priority": 1,
-                    "useIn": [
-                        "selection",
-                        "selection-actions-area"
-                    ]
-                },
-                {
-                    "id": "bathingwater0",
-                    "layerId": "bathingwater/0",
-                    "title": "Bathing Water0",
-                    "fetchIdProperty": true,
-                    "useIn": [
-                        "selection"
-                    ]
-                },
-                {
-                    "id": "bathingwater1",
-                    "layerId": "bathingwater/1",
-                    "title": "Bathing Water1",
-                    "fetchIdProperty": true,
-                    "useIn": [
-                        "selection"
-                    ]
-                },
-                {
-                    "id": "bathingwater2",
-                    "layerId": "bathingwater/2",
-                    "title": "Bathing Water2",
-                    "fetchIdProperty": true,
-                    "useIn": [
-                        "selection"
-                    ]
-                },
-                {
-                    "id": "bathingwater3",
-                    "layerId": "bathingwater/3",
-                    "title": "Bathing Water3",
-                    "fetchIdProperty": true,
-                    "useIn": [
-                        "selection"
-                    ]
-                },
-                {
-                    "id": "bathingwater4",
-                    "layerId": "bathingwater/4",
-                    "title": "Bathing Water4",
-                    "fetchIdProperty": true,
-                    "useIn": [
-                        "selection"
-                    ]
-                },
-                {
-                    "id": "bathingwater5",
-                    "layerId": "bathingwater/5",
-                    "title": "Bathing Water5",
-                    "fetchIdProperty": true,
-                    "useIn": [
-                        "selection"
-                    ]
-                },
-                {
-                    "id": "bathingwater6",
-                    "layerId": "bathingwater/6",
-                    "title": "Bathing Water6",
-                    "fetchIdProperty": true,
-                    "useIn": [
-                        "selection"
-                    ]
+                    "id": "searchSelection1",
+                    "title": "SearchSelection",
+                    "selectionMethod": "searchaction",
+                    "sourceIds": [
+                        "kreise1"
+                    ],
+                    "deactivateOnSelection": false
                 }
             ]
-        },
-        "banner": {
-            "BannerWidget": {
-                "label": "Developer Network",
-                "imagePosition": "above",
-                "image": "resource('${app}:/images/logo_conterra.png')",
-                "imageWidth": 200,
-                "link": "https://developernetwork.conterra.de"
-            }
-        },
-        "map-init": {
-            "Config": {
-                "basemaps": [
-                    {
-                        "id": "streets",
-                        "title": "${map.basemaps.streets}",
-                        "basemap": "streets-vector",
-                        "selected": true
-                    },
-                    {
-                        "id": "topo",
-                        "title": "${map.basemaps.topo}",
-                        "basemap": "topo-vector",
-                        "icon": "filter_hdr"
-                    },
-                    {
-                        "id": "satellite",
-                        "title": "${map.basemaps.satellite}",
-                        "basemap": "satellite",
-                        "icon": "photo_camera"
-                    }
-                ],
-                "map": {
-                    "layers": [
-                        {
-                            "id": "kreise",
-                            "url": "https://services.conterra.de/arcgis/rest/services/common/grenzen/FeatureServer",
-                            "type": "AGS_FEATURE",
-                            "layerId": 1
-                        },
-                        {
-                            "id": "bathingwater",
-                            "type": "AGS_DYNAMIC",
-                            "url": "https://water.discomap.eea.europa.eu/arcgis/rest/services/BathingWater/BathingWater_Dyna_WM/MapServer",
-                            "sublayers": [
-                                {
-                                    "id": 0
-                                },
-                                {
-                                    "id": 1
-                                },
-                                {
-                                    "id": 2
-                                },
-                                {
-                                    "id": 3
-                                },
-                                {
-                                    "id": 4
-                                }
-                            ]
-                        }
-                    ]
+        }
+    },
+    "agssearch": {
+        "AGSStore": [
+            {
+                "id": "kreise1",
+                "layerId": "kreise",
+                "title": "Kreise",
+                "description": "Kreise",
+                "fetchIdProperty": true,
+                "filterOptions": {
+                    "suggestContains": true
                 },
-                "view": {
-                    "viewmode": "2D",
-                    "extent": {
-                        "xmin": 600000,
-                        "ymin": 5800000,
-                        "xmax": 1700000,
-                        "ymax": 7600000,
-                        "spatialReference": 3857
-                    }
-                }
-            }
-        },
-        "themes": {
-            "ThemeModel": {
-                "_selectedTheme": "autumn"
+                "useIn": [
+                    "search",
+                    "selection-actions-area"
+                ],
+                "priority": 2,
+                "searchLabel": "kreis_name",
+                "searchAttribute": "kreis_name"
             },
-            "ThemeSelector": {
-                "componentEnabled": true
+            {
+                "id": "bundeslaender",
+                "url": "https://services.conterra.de/arcgis/rest/services/common/grenzen/FeatureServer/2",
+                "title": "Bundesländer",
+                "description": "Bundesländer",
+                "fetchIdProperty": true,
+                "filterOptions": {
+                    "suggestContains": true
+                },
+                "priority": 1,
+                "useIn": [
+                    "selection",
+                    "selection-actions-area"
+                ]
+            },
+            {
+                "id": "bathingwater0",
+                "layerId": "bathingwater/0",
+                "title": "Bathing Water0",
+                "fetchIdProperty": true,
+                "useIn": [
+                    "selection"
+                ]
+            },
+            {
+                "id": "bathingwater1",
+                "layerId": "bathingwater/1",
+                "title": "Bathing Water1",
+                "fetchIdProperty": true,
+                "useIn": [
+                    "selection"
+                ]
+            },
+            {
+                "id": "bathingwater2",
+                "layerId": "bathingwater/2",
+                "title": "Bathing Water2",
+                "fetchIdProperty": true,
+                "useIn": [
+                    "selection"
+                ]
+            },
+            {
+                "id": "bathingwater3",
+                "layerId": "bathingwater/3",
+                "title": "Bathing Water3",
+                "fetchIdProperty": true,
+                "useIn": [
+                    "selection"
+                ]
+            },
+            {
+                "id": "bathingwater4",
+                "layerId": "bathingwater/4",
+                "title": "Bathing Water4",
+                "fetchIdProperty": true,
+                "useIn": [
+                    "selection"
+                ]
+            },
+            {
+                "id": "bathingwater5",
+                "layerId": "bathingwater/5",
+                "title": "Bathing Water5",
+                "fetchIdProperty": true,
+                "useIn": [
+                    "selection"
+                ]
+            },
+            {
+                "id": "bathingwater6",
+                "layerId": "bathingwater/6",
+                "title": "Bathing Water6",
+                "fetchIdProperty": true,
+                "useIn": [
+                    "selection"
+                ]
             }
-        },
-        "templates": {
-            "TemplateModel": {
-                "_selectedTemplate": "seasons",
-                "_templates": [
+        ]
+    },
+    "banner": {
+        "BannerWidget": {
+            "label": "Developer Network",
+            "imagePosition": "above",
+            "image": "resource('${app}:/images/logo_conterra.png')",
+            "imageWidth": 200,
+            "link": "https://developernetwork.conterra.de"
+        }
+    },
+    "map-init": {
+        "Config": {
+            "basemaps": [
+                {
+                    "id": "streets",
+                    "title": "${map.basemaps.streets}",
+                    "basemap": "streets-vector",
+                    "selected": true
+                },
+                {
+                    "id": "topo",
+                    "title": "${map.basemaps.topo}",
+                    "basemap": "topo-vector",
+                    "icon": "filter_hdr"
+                },
+                {
+                    "id": "satellite",
+                    "title": "${map.basemaps.satellite}",
+                    "basemap": "satellite",
+                    "icon": "photo_camera"
+                }
+            ],
+            "map": {
+                "layers": [
                     {
-                        "name": "seasons",
-                        "widgets": [
+                        "id": "kreise",
+                        "url": "https://services.conterra.de/arcgis/rest/services/common/grenzen/FeatureServer",
+                        "type": "AGS_FEATURE",
+                        "layerId": 1
+                    },
+                    {
+                        "id": "bathingwater",
+                        "type": "AGS_DYNAMIC",
+                        "url": "https://water.discomap.eea.europa.eu/arcgis/rest/services/BathingWater/BathingWater_Dyna_WM/MapServer",
+                        "sublayers": [
                             {
-                                "widgetRole": "circleSpatialInputWidget",
-                                "window": {
-                                    "marginBox": {
-                                        "t": 60,
-                                        "r": 20,
-                                        "w": 400
-                                    }
-                                }
+                                "id": 0
                             },
                             {
-                                "widgetRole": "areaSelectSpatialInputWidget",
-                                "window": {
-                                    "marginBox": {
-                                        "t": 60,
-                                        "r": 20,
-                                        "w": 400
-                                    }
-                                }
+                                "id": 1
                             },
                             {
-                                "widgetRole": "graphicSpatialInputWidget",
-                                "window": {
-                                    "marginBox": {
-                                        "t": 60,
-                                        "r": 20,
-                                        "w": 400
-                                    }
-                                }
+                                "id": 2
                             },
                             {
-                                "widgetRole": "selection-ui",
-                                "window": {
-                                    "marginBox": {
-                                        "l": 20,
-                                        "t": 125,
-                                        "w": 550,
-                                        "h": 239
-                                    }
-                                }
+                                "id": 3
+                            },
+                            {
+                                "id": 4
                             }
                         ]
                     }
                 ]
+            },
+            "view": {
+                "viewmode": "2D",
+                "extent": {
+                    "xmin": 600000,
+                    "ymin": 5800000,
+                    "xmax": 1700000,
+                    "ymax": 7600000,
+                    "spatialReference": 3857
+                }
             }
+        }
+    },
+    "themes": {
+        "ThemeModel": {
+            "_selectedTheme": "autumn"
         },
-        "toolset": {
-            "ToolsetManager": {
-                "toolsets": [
-                    {
-                        "id": "mapview_tools",
-                        "tools": [
-                            "sketchToggleTool",
-                            "zoomInTool",
-                            "zoomOutTool",
-                            "compassTool",
-                            "restoreInitialViewTool"
-                        ],
-                        "registerWidget": {
-                            "widgetRole": "mapview_tools"
+        "ThemeSelector": {
+            "componentEnabled": true
+        }
+    },
+    "templates": {
+        "TemplateModel": {
+            "_selectedTemplate": "seasons",
+            "_templates": [
+                {
+                    "name": "seasons",
+                    "widgets": [
+                        {
+                            "widgetRole": "circleSpatialInputWidget",
+                            "window": {
+                                "marginBox": {
+                                    "t": 60,
+                                    "r": 20,
+                                    "w": 400
+                                }
+                            }
                         },
-                        "container": "ignore",
-                        "windowType": "container",
-                        "cssClass": "muted"
+                        {
+                            "widgetRole": "areaSelectSpatialInputWidget",
+                            "window": {
+                                "marginBox": {
+                                    "t": 60,
+                                    "r": 20,
+                                    "w": 400
+                                }
+                            }
+                        },
+                        {
+                            "widgetRole": "graphicSpatialInputWidget",
+                            "window": {
+                                "marginBox": {
+                                    "t": 60,
+                                    "r": 20,
+                                    "w": 400
+                                }
+                            }
+                        },
+                        {
+                            "widgetRole": "selection-ui",
+                            "window": {
+                                "marginBox": {
+                                    "l": 20,
+                                    "t": 125,
+                                    "w": 550,
+                                    "h": 239
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "toolset": {
+        "ToolsetManager": {
+            "toolsets": [
+                {
+                    "id": "mapview_tools",
+                    "tools": [
+                        "sketchToggleTool",
+                        "zoomInTool",
+                        "zoomOutTool",
+                        "compassTool",
+                        "restoreInitialViewTool"
+                    ],
+                    "registerWidget": {
+                        "widgetRole": "mapview_tools"
                     },
-                    {
-                        "id": "selection_tools",
-                        "title": "Selection",
-                        "container": "map",
-                        "windowType": "fixed",
-                        "window": {
-                            "closable": true
-                        },
-                        "tooltip": "Selection",
-                        "__isDirty": true,
-                        "cssClass": "notitle",
-                        "position": {
-                            "rel_l": 20,
-                            "rel_b": 60
-                        },
-                        "tools": [
-                            "selection-ui-tool",
-                            "searchSelection",
-                            "searchSelection1"
-                        ]
+                    "container": "ignore",
+                    "windowType": "container",
+                    "cssClass": "muted"
+                },
+                {
+                    "id": "selection_tools",
+                    "title": "Selection",
+                    "container": "map",
+                    "windowType": "fixed",
+                    "window": {
+                        "closable": true
                     },
-                    {
-                        "id": "sketchingTools",
-                        "title": "Zeichnen",
-                        "activationTool": "sketchToggleTool",
-                        "container": "map",
-                        "window": {
-                            "closable": true,
-                            "resizable": false,
-                            "dndDraggable": false
-                        },
-                        "position": {
-                            "rel_l": 22,
-                            "rel_t": 100
-                        },
-                        "tools": [
-                            "rectangleSketchTool",
-                            "polygonSketchTool",
-                            "circleSketchTool",
-                            "deleteSelectedSketchTool",
-                            "deleteAllSketchTool",
-                            "pointSketchTool",
-                            "lineSketchTool"
-                        ]
-                    }
-                ]
-            }
-        },
-        "toolrules": {
-            "ToolActiveStateManager": {
-                "activateOnStartToolIds": [
-                    "selection-ui-tool"
-                ]
-            }
+                    "tooltip": "Selection",
+                    "__isDirty": true,
+                    "cssClass": "notitle",
+                    "position": {
+                        "rel_l": 20,
+                        "rel_b": 60
+                    },
+                    "tools": [
+                        "selection-ui-tool",
+                        "searchSelection",
+                        "searchSelection1"
+                    ]
+                },
+                {
+                    "id": "sketchingTools",
+                    "title": "Zeichnen",
+                    "activationTool": "sketchToggleTool",
+                    "container": "map",
+                    "window": {
+                        "closable": true,
+                        "resizable": false,
+                        "dndDraggable": false
+                    },
+                    "position": {
+                        "rel_l": 22,
+                        "rel_t": 100
+                    },
+                    "tools": [
+                        "rectangleSketchTool",
+                        "polygonSketchTool",
+                        "circleSketchTool",
+                        "deleteSelectedSketchTool",
+                        "deleteAllSketchTool",
+                        "pointSketchTool",
+                        "lineSketchTool"
+                    ]
+                }
+            ]
+        }
+    },
+    "toolrules": {
+        "ToolActiveStateManager": {
+            "activateOnStartToolIds": [
+                "selection-ui-tool"
+            ]
         }
     }
 }
