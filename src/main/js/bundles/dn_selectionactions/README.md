@@ -35,13 +35,13 @@ Configure the available selection methods in the selection-ui bundle. The ones a
 }
 ```
 
-| Property | Type   | Possible Values                                        | Default      | Description |
-| -------- | ------ | ------------------------------------------------------ | ------------ | ----------- |
-| buffer   | Number |                                                        | ```0```      | Buffer      |
-| minBuffer | Number |                                                        | ```0```      | Minimal buffer |
-| maxBuffer | Number |                                                        | ```500000``` | Maximum buffer |
-| stepSize | Number |                                                        | ```1000```   | Step size   |
-| unit     | String | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | ```meters``` |             |
+| Property  | Type   | Possible Values                                        | Default      | Description                                                                                                             |
+| --------- | ------ | ------------------------------------------------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| buffer    | Number |                                                        | ```0```      | Buffer                                                                                                                  |
+| minBuffer | Number |                                                        | ```0```      | Minimal buffer                                                                                                          |
+| maxBuffer | Number |                                                        | ```500000``` | Maximum buffer                                                                                                          |
+| stepSize  | Number |                                                        | ```1000```   | Step size                                                                                                               |
+| unit      | String | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | ```meters``` | Buffer radius unit (https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-Circle.html#radiusUnit) |
 
 Use _selection-actions-area_ useIn-property to show stores in the area selection widget.
 Use the priority property to define an order of the stores (Stores with a higher priority are placed at the top of the store selection list).
@@ -113,13 +113,13 @@ Use the priority property to define an order of the stores (Stores with a higher
 }
 ```
 
-| Property  | Type   | Possible Values                                        | Default      | Description    |
-| --------- | ------ | ------------------------------------------------------ | ------------ | -------------- |
-| buffer    | Number |                                                        | ```0```      | Buffer         |
-| minBuffer | Number |                                                        | ```0```      | Minimal buffer |
-| maxBuffer | Number |                                                        | ```500000``` | Maximum buffer |
-| stepSize  | Number |                                                        | ```1000```   | Step size      |
-| unit      | String | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | ```meters``` |                |
+| Property  | Type   | Possible Values                                        | Default      | Description                                                                                                             |
+| --------- | ------ | ------------------------------------------------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| buffer    | Number |                                                        | ```0```      | Buffer                                                                                                                  |
+| minBuffer | Number |                                                        | ```0```      | Minimal buffer                                                                                                          |
+| maxBuffer | Number |                                                        | ```500000``` | Maximum buffer                                                                                                          |
+| stepSize  | Number |                                                        | ```1000```   | Step size                                                                                                               |
+| unit      | String | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | ```meters``` | Buffer radius unit (https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-Circle.html#radiusUnit) |
 
 ### MultiPointSpatialInputAction
 The MultiPointSpatialInputAction allows for the configuration of buffering around the clicked location. The default value and necessary configuration are depicted below.
