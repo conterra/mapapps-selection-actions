@@ -72,7 +72,7 @@
             },
             stepSize: {
                 type: Number,
-                default: 1
+                default: 100
             },
             unit: {
                 type: String,

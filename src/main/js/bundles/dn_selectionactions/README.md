@@ -105,10 +105,10 @@ Use the priority property to define an order of the stores (Stores with a higher
 
 ```json
 "GraphicSpatialInputWidgetModel": {
-    "buffer":0,
-    "stepSize": 100,
+    "buffer": 0,
     "minBuffer": 0,
-    "maxBuffer": 50000,
+    "maxBuffer": 5000,
+    "stepSize": 100,
     "unit": "meters"
 }
 ```
@@ -117,8 +117,8 @@ Use the priority property to define an order of the stores (Stores with a higher
 | --------- | ------ | ------------------------------------------------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------- |
 | buffer    | Number |                                                        | ```0```      | Buffer                                                                                                                  |
 | minBuffer | Number |                                                        | ```0```      | Minimal buffer                                                                                                          |
-| maxBuffer | Number |                                                        | ```500000``` | Maximum buffer                                                                                                          |
-| stepSize  | Number |                                                        | ```1000```   | Step size                                                                                                               |
+| maxBuffer | Number |                                                        | ```5000```   | Maximum buffer                                                                                                          |
+| stepSize  | Number |                                                        | ```100```    | Step size                                                                                                               |
 | unit      | String | ```meters``` &#124; ```kilometers``` &#124; ```feet``` | ```meters``` | Buffer radius unit (https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-Circle.html#radiusUnit) |
 
 ### MultiPointSpatialInputAction

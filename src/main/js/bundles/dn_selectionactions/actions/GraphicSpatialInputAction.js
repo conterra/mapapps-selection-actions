@@ -68,9 +68,11 @@ export default class {
 
             const vm = new Vue(GraphicSpatialInputWidget);
             vm.i18n = this.i18n;
+            vm.buffer = model.buffer;
+            vm.minBuffer = model.minBuffer;
+            vm.maxBuffer = model.maxBuffer;
             vm.stepSize = model.stepSize;
             vm.unit = model.unit;
-            vm.buffer = model.buffer;
 
             this.#binding = Binding.for(vm, model)
                 .syncAllToRight("buffer")
