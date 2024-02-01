@@ -87,6 +87,11 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>de.conterra.mapapps</groupId>
+                    <artifactId>mapapps-maven-plugin</artifactId>
+                    <version>${mapapps.version}</version>
+                </plugin>
+                <plugin>
                     <groupId>de.conterra.jsregistry</groupId>
                     <artifactId>ct-jsregistry-maven-plugin</artifactId>
                     <version>${ct.jsregistry.version}</version>
