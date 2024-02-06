@@ -21,13 +21,15 @@ import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
 
-
 export default class {
     #serviceRegistration = undefined;
     #bundleContext = undefined;
     #moveHandle = undefined;
     #highlighter = undefined;
     #binding = undefined;
+    #geometry = undefined;
+    #clickHighlight = undefined;
+    #moveHighlight = undefined;
 
     activate(componentContext) {
         this.#bundleContext = componentContext.getBundleContext();
@@ -41,7 +43,8 @@ export default class {
     }
 
     deactivate() {
-        this.removeGraphicFromView();
+        this.removeClickGraphicFromView();
+        this.removeTempGraphicFromView();
         this.#binding?.unbind();
         this.#binding = undefined;
         this.closeWidget();
@@ -58,6 +61,10 @@ export default class {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
+            if (this.#geometry) {
+                this.addClickGraphicToView(this.#geometry);
+            }
+
             const model = this._graphicSpatialInputWidgetModel;
             const view = this._mapWidgetModel.get("view");
 
@@ -94,15 +101,14 @@ export default class {
                         const geometry = graphic.geometry;
                         if (geometry) {
                             const geometry = graphic.geometry;
-                            this.#lastGeometry = geometry;
-                            this.addGraphicToView(geometry);
+                            this.addMoveGraphicToView(geometry);
                         }
                     }
                 });
             });
 
             const clickHandle = view.on("click", (evt) => {
-                this.removeGraphicFromView();
+                this.removeClickGraphicFromView();
                 clickHandle.remove();
                 // prevent popup
                 evt.stopPropagation();
@@ -112,6 +118,7 @@ export default class {
                         const graphic = results[0].graphic;
                         let geometry = graphic.geometry;
                         geometry = buffer(geometry, model.buffer, model.unit);
+                        this.addClickGraphicToView(geometry);
                         this.#moveHandle.remove();
                         this.#moveHandle = null;
                         resolve(geometry);
@@ -124,16 +131,16 @@ export default class {
             oncancel(() => {
                 this.#moveHandle.remove();
                 this.#moveHandle = null;
-                this.#bufferWatcher.remove();
                 clickHandle.remove();
                 this.closeWidget();
                 console.debug("GraphicSpatialInputAction was canceled...");
                 async(() => {
-                    this.removeGraphicFromView();
+                    this.removeClickGraphicFromView();
                 }, 500);
             });
         });
     }
+
     closeWidget() {
         const registration = this.#serviceRegistration;
 
@@ -145,8 +152,9 @@ export default class {
             registration.unregister();
         }
     }
-    addGraphicToView(geometry) {
-        this.removeGraphicFromView();
+
+    addClickGraphicToView(geometry) {
+        this.removeClickGraphicFromView();
         let symbol;
         switch (geometry.type) {
             case "point":
@@ -183,10 +191,58 @@ export default class {
             geometry: geometry,
             symbol: symbol
         };
-        this.#highlighter.highlight(graphic);
+        this.#clickHighlight = this.#highlighter.highlight(graphic);
     }
 
-    removeGraphicFromView() {
-        this.#highlighter.clear();
+    addMoveGraphicToView(geometry) {
+        this.removeMoveGraphicFromView();
+        let symbol;
+        switch (geometry.type) {
+            case "point":
+                symbol = {
+                    type: "simple-marker",
+                    color: [0, 255, 0, 0.25],
+                    style: "backward-diagonal",
+                    outline: {
+                        color: [0, 255, 0, 1],
+                        width: "2px",
+                        style: "solid"
+                    }
+                };
+                break;
+            case "polyline":
+                symbol = {
+                    type: "simple-line",
+                    color: [0, 255, 0, 1],
+                    width: "4px",
+                    style: "solid"
+                };
+                break;
+            case "polygon":
+                symbol = {
+                    type: "simple-fill",
+                    color: [0, 255, 0, 0.25],
+                    style: "backward-diagonal",
+                    outline: {
+                        color: [0, 255, 0, 1],
+                        width: "2px",
+                        style: "solid"
+                    }
+                };
+                break;
+        }
+        const graphic = {
+            geometry: geometry,
+            symbol: symbol
+        };
+        this.#moveHighlight = this.#highlighter.highlight(graphic);
+    }
+
+    removeClickGraphicFromView() {
+        this.#clickHighlight?.remove();
+    }
+
+    removeMoveGraphicFromView() {
+        this.#moveHighlight?.remove();
     }
 }

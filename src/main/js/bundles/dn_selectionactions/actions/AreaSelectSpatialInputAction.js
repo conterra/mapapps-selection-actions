@@ -21,7 +21,6 @@ import Binding from "apprt-binding/Binding";
 import ServiceResolver from "apprt/ServiceResolver";
 import { buffer } from "esri/geometry/geometryEngine";
 
-
 export default class AreaSelectSpatialInputAction {
 
     #binding = undefined;
