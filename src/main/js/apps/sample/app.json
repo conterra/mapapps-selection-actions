@@ -155,6 +155,7 @@
                     },
                     "useIn": [
                         "search",
+                        "selection",
                         "selection-actions-area"
                     ],
                     "priority": 2,
@@ -172,7 +173,6 @@
                     },
                     "priority": 1,
                     "useIn": [
-                        "selection",
                         "selection-actions-area"
                     ]
                 },
@@ -316,6 +316,24 @@
                                     "id": 4
                                 }
                             ]
+                        },
+                        {
+                            "id": "feldnotizen0",
+                            "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Feldnotizen_erfassen/FeatureServer",
+                            "type": "AGS_FEATURE",
+                            "layerId": 0
+                        },
+                        {
+                            "id": "feldnotizen1",
+                            "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Feldnotizen_erfassen/FeatureServer",
+                            "type": "AGS_FEATURE",
+                            "layerId": 1
+                        },
+                        {
+                            "id": "feldnotizen2",
+                            "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Feldnotizen_erfassen/FeatureServer",
+                            "type": "AGS_FEATURE",
+                            "layerId": 2
                         }
                     ]
                 },
