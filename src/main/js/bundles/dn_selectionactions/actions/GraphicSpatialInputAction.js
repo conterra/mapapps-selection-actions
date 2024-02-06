@@ -134,6 +134,7 @@ export default class {
                 this.#moveHandle.remove();
                 this.#moveHandle = null;
                 clickHandle.remove();
+                this.closeWidget();
                 console.debug("GraphicSpatialInputAction was canceled...");
                 async(() => {
                     this.removeGraphicFromView();
