@@ -9,14 +9,13 @@
         ],
         "allowedBundles": [
             "banner",
-            "console",
             "agssearch",
             "map-init",
             "mapnavigation",
             "notifier",
             "search-ui",
             "popups-default",
-            "selection-resultcenter",
+            "result-ui",
             "selection-tools",
             "selection-ui",
             "sketching",
@@ -279,7 +278,22 @@
                             "id": "kreise",
                             "url": "https://services.conterra.de/arcgis/rest/services/common/grenzen/FeatureServer",
                             "type": "AGS_FEATURE",
-                            "layerId": 1
+                            "layerId": 1,
+                            "renderer": {
+                                "type": "simple",
+                                "symbol": {
+                                    "type": "simple-fill",
+                                    "outline": {
+                                        "color": [
+                                            128,
+                                            128,
+                                            128,
+                                            1
+                                        ],
+                                        "width": "0.5px"
+                                    }
+                                }
+                            }
                         },
                         {
                             "id": "bathingwater",
