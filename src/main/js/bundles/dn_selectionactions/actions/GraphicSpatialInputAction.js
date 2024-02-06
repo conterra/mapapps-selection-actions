@@ -27,8 +27,6 @@ export default class {
     #bundleContext = undefined;
     #moveHandle = undefined;
     #highlighter = undefined;
-
-    #geometry = undefined;
     #binding = undefined;
 
     activate(componentContext) {
@@ -60,9 +58,6 @@ export default class {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
-            if (this.#geometry) {
-                this.addGraphicToView(this.#geometry);
-            }
             const model = this._graphicSpatialInputWidgetModel;
             const view = this._mapWidgetModel.get("view");
 
@@ -91,25 +86,21 @@ export default class {
             this.#moveHandle = view.on("pointer-move", (evt) => {
                 // prevent popup
                 evt.stopPropagation();
-                const timeout = 50;
                 clearTimeout(this.moveTimeout);
-                this.moveTimeout = setTimeout(() => {
-                    view.hitTest(evt).then((response) => {
-                        const results = response.results;
-                        if (results.length) {
-                            const graphic = results[0].graphic;
+                view.hitTest(evt).then((response) => {
+                    const results = response.results;
+                    if (results.length) {
+                        const graphic = results[0].graphic;
+                        const geometry = graphic.geometry;
+                        if (geometry) {
                             const geometry = graphic.geometry;
-                            if (geometry) {
-                                let geometry = graphic.geometry;
-                                if (model.buffer > 0) {
-                                    geometry = buffer(geometry, model.buffer, model.unit);
-                                }
-                                this.addGraphicToView(geometry);
-                            }
+                            this.#lastGeometry = geometry;
+                            this.addGraphicToView(geometry);
                         }
-                    });
-                }, timeout);
+                    }
+                });
             });
+
             const clickHandle = view.on("click", (evt) => {
                 this.removeGraphicFromView();
                 clickHandle.remove();
@@ -133,6 +124,7 @@ export default class {
             oncancel(() => {
                 this.#moveHandle.remove();
                 this.#moveHandle = null;
+                this.#bufferWatcher.remove();
                 clickHandle.remove();
                 this.closeWidget();
                 console.debug("GraphicSpatialInputAction was canceled...");
