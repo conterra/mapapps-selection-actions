@@ -117,7 +117,9 @@ export default class {
                     if (results.length) {
                         const graphic = results[0].graphic;
                         let geometry = graphic.geometry;
-                        geometry = buffer(geometry, model.buffer, model.unit);
+                        if (model.buffer !== 0) {
+                            geometry = buffer(geometry, model.buffer, model.unit);
+                        }
                         this.addClickGraphicToView(geometry);
                         this.#moveHandle.remove();
                         this.#moveHandle = null;

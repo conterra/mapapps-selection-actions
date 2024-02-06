@@ -96,7 +96,10 @@ export default class AreaSelectSpatialInputAction {
                     if (!featureGeometry) {
                         resolve(null);
                     }
-                    featureGeometry = this.#geometry = buffer(featureGeometry, model.buffer, model.unit);
+                    if (model.buffer !== 0) {
+                        featureGeometry = buffer(featureGeometry, model.buffer, model.unit);
+                    }
+                    this.#geometry = featureGeometry;
                     if (args.queryBuilderSelection) {
                         this.closeWidget();
                     } else {
