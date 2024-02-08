@@ -44,7 +44,7 @@ export default class {
 
     deactivate() {
         this.removeClickGraphicFromView();
-        this.removeTempGraphicFromView();
+        this.removeMoveGraphicFromView();
         this.#binding?.unbind();
         this.#binding = undefined;
         this.closeWidget();
@@ -138,6 +138,7 @@ export default class {
                 console.debug("GraphicSpatialInputAction was canceled...");
                 async(() => {
                     this.removeClickGraphicFromView();
+                    this.removeMoveGraphicFromView();
                 }, 500);
             });
         });
@@ -153,6 +154,7 @@ export default class {
             // call unregister
             registration.unregister();
         }
+
     }
 
     addClickGraphicToView(geometry) {
