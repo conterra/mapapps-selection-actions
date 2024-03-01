@@ -165,11 +165,6 @@
                     <artifactId>setproperties-maven-plugin</artifactId>
                     <version>1.0.2</version>
                 </plugin>
-                <plugin>
-                    <groupId>de.conterra.jsrt</groupId>
-                    <artifactId>ct-jsrt-test-maven-plugin</artifactId>
-                    <version>${ct.jsrt-test.version}</version>
-                </plugin>
             </plugins>
         </pluginManagement>
         <sourceDirectory>src/main/js</sourceDirectory>
@@ -207,9 +202,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- add here properties which are used in plugin configuration resolution -->
                     <properties>
-                        <!-- deployment of map.apps installation -->
                         <mapapps.remote.base>.</mapapps.remote.base>
                     </properties>
                 </configuration>
@@ -336,6 +329,9 @@
                         <include>**/gulpfile.js</include>
                         <include>**/pom.xml</include>
                     </includes>
+                    <excludes>
+                        <exclude>src/main/js/**/*.min.js</exclude>
+                    </excludes>
                     <mapping>
                         <vue>XML_STYLE</vue>
                     </mapping>
@@ -416,6 +412,24 @@
                             <goal>deployApps</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>build-app-template</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>deployAppTemplate</goal>
+                        </goals>
+                        <configuration>
+                            <templateFile>${project.build.directory}/${project.artifactId}-sample-app.zip</templateFile>
+                            <templateResources>
+                                <templateResource>
+                                    <directory>${js.build.outputPath}/apps/sample</directory>
+                                    <includes>
+                                        <include>**/*</include>
+                                    </includes>
+                                </templateResource>
+                            </templateResources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -469,16 +483,16 @@
         <root.build.outputPath>${project.build.directory}/webapp</root.build.outputPath>
         <js.build.outputPath>${root.build.outputPath}/js</js.build.outputPath>
 
-        <mapapps.version>4.16.0</mapapps.version>
+        <mapapps.version>4.17.0</mapapps.version>
         <vuetify.version>1.5.28</vuetify.version>
         <!-- JS lib versions -->
         <apprt.version>${mapapps.version}</apprt.version>
         <!-- java lib versions -->
-        <ct.jsregistry.version>1.5.14</ct.jsregistry.version>
+        <ct.jsregistry.version>2.0.1</ct.jsregistry.version>
         <ct.jsrt-test.version>2.0.2</ct.jsrt-test.version>
 
         <!-- the default app, replaced in the *.html files to switch app names-->
-        <default.app.name>sample</default.app.name>
+        <default.app.name>Demo</default.app.name>
 
         <!-- don't do this in production configuration! This allows to go any http traffic over the
         /proxy endpoint -->
@@ -504,7 +518,7 @@
         required -->
         <mapapps.useChunkedRequestEncoding>true</mapapps.useChunkedRequestEncoding>
         <!-- enable this if "upload" profile should only deploy bundles -->
-        <skip.apps.upload>true</skip.apps.upload>
+        <skip.apps.upload>false</skip.apps.upload>
         <!-- enable this if "upload" profile should pre-optimize apps -->
         <triggerPreOptimization>false</triggerPreOptimization>
     </properties>
@@ -645,12 +659,6 @@
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-deploy-plugin</artifactId>
-                        <configuration>
-                            <updateReleaseInfo>true</updateReleaseInfo>
-                        </configuration>
-                    </plugin>
-                    <plugin>
                         <groupId>de.conterra.jsregistry</groupId>
                         <artifactId>ct-jsregistry-maven-plugin</artifactId>
                         <executions>
@@ -692,8 +700,6 @@
                         <configuration>
                             <skipDeploy>${skip.apps.upload}</skipDeploy>
                             <deployAsApp>true</deployAsApp>
-                            <appName>${project.artifactId}</appName>
-                            <appTitle>${project.artifactId}-${project.version}</appTitle>
                             <appEditorState>PUBLISHED</appEditorState>
                             <serverResourcesEndpoint>${mapapps.remote.base}/resources</serverResourcesEndpoint>
                             <username>${mapapps.user}</username>
