@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
-import Observers from "apprt-core/Observers";
 
 export default class {
 
@@ -24,7 +23,7 @@ export default class {
         this.title = i18n.title;
         this.description = i18n.description;
         this.iconClass = "icon-extent";
-        this.interactive = true;
+        this.interactive = false;
     }
 
     trigger() {
@@ -34,29 +33,9 @@ export default class {
                 reject("MapWidgetModel not available!");
             }
 
-            const observers = Observers();
-
-            function connectToView(view) {
-                const group = observers.group("view");
-                group.clean();
-                if (!view) {
-                    return;
-                }
-                group.add(view.on("click", (evt) => {
-                    // prevent popup
-                    evt.stopPropagation();
-                    observers.destroy();
-                    resolve(model.extent);
-                }));
-            }
-
-            connectToView(model.view);
-            observers.add(model.watch("view", ({value}) => {
-                connectToView(value);
-            }));
+            resolve(model.extent);
             oncancel(() => {
                 console.debug("MapExtentSpatialInputAction was canceled...");
-                observers.destroy();
             });
         });
     }
