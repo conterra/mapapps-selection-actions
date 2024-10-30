@@ -56,6 +56,58 @@ export default class {
         }
     }
 
+    enable() {
+        const view = this._mapWidgetModel.get("view");
+        const model = this._graphicSpatialInputWidgetModel;
+
+        const vm = new Vue(GraphicSpatialInputWidget);
+        vm.i18n = this.i18n;
+        vm.buffer = model.buffer;
+        vm.minBuffer = model.minBuffer;
+        vm.maxBuffer = model.maxBuffer;
+        vm.stepSize = model.stepSize;
+        vm.unit = model.unit;
+
+        this.#binding = Binding.for(vm, model)
+            .syncAllToRight("buffer")
+            .enable()
+            .syncToLeftNow();
+
+        const widget = new VueDijit(vm);
+        const serviceProperties = {
+            "widgetRole": "graphicSpatialInputWidget"
+        };
+        const interfaces = ["dijit.Widget"];
+        if (!this.#serviceRegistration) {
+            this.#serviceRegistration = this.#bundleContext.registerService(interfaces, widget, serviceProperties);
+        }
+
+        this.#moveHandle = view.on("pointer-move", (evt) => {
+            // prevent popup
+            evt.stopPropagation();
+            clearTimeout(this.moveTimeout);
+            view.hitTest(evt).then((response) => {
+                const results = response.results;
+                if (results.length) {
+                    const graphic = results[0].graphic;
+                    const geometry = graphic.geometry;
+                    if (geometry) {
+                        const geometry = graphic.geometry;
+                        this.addMoveGraphicToView(geometry);
+                    }
+                }
+            });
+        });
+    }
+
+    disable() {
+        this.#moveHandle.remove();
+        this.#moveHandle = null;
+        this.closeWidget();
+        this.removeClickGraphicFromView();
+        this.removeMoveGraphicFromView();
+    }
+
     trigger() {
         return new CancelablePromise((resolve, reject, oncancel) => {
             if (!this._mapWidgetModel) {
@@ -65,47 +117,8 @@ export default class {
                 this.addClickGraphicToView(this.#geometry);
             }
 
-            const model = this._graphicSpatialInputWidgetModel;
             const view = this._mapWidgetModel.get("view");
-
-            const vm = new Vue(GraphicSpatialInputWidget);
-            vm.i18n = this.i18n;
-            vm.buffer = model.buffer;
-            vm.minBuffer = model.minBuffer;
-            vm.maxBuffer = model.maxBuffer;
-            vm.stepSize = model.stepSize;
-            vm.unit = model.unit;
-
-            this.#binding = Binding.for(vm, model)
-                .syncAllToRight("buffer")
-                .enable()
-                .syncToLeftNow();
-
-            const widget = new VueDijit(vm);
-            const serviceProperties = {
-                "widgetRole": "graphicSpatialInputWidget"
-            };
-            const interfaces = ["dijit.Widget"];
-            if (!this.#serviceRegistration) {
-                this.#serviceRegistration = this.#bundleContext.registerService(interfaces, widget, serviceProperties);
-            }
-
-            this.#moveHandle = view.on("pointer-move", (evt) => {
-                // prevent popup
-                evt.stopPropagation();
-                clearTimeout(this.moveTimeout);
-                view.hitTest(evt).then((response) => {
-                    const results = response.results;
-                    if (results.length) {
-                        const graphic = results[0].graphic;
-                        const geometry = graphic.geometry;
-                        if (geometry) {
-                            const geometry = graphic.geometry;
-                            this.addMoveGraphicToView(geometry);
-                        }
-                    }
-                });
-            });
+            const model = this._graphicSpatialInputWidgetModel;
 
             const clickHandle = view.on("click", (evt) => {
                 this.removeClickGraphicFromView();
@@ -131,10 +144,7 @@ export default class {
             });
 
             oncancel(() => {
-                this.#moveHandle.remove();
-                this.#moveHandle = null;
                 clickHandle.remove();
-                this.closeWidget();
                 console.debug("GraphicSpatialInputAction was canceled...");
                 async(() => {
                     this.removeClickGraphicFromView();

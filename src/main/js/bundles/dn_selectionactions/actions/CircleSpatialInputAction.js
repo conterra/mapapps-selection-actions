@@ -100,6 +100,7 @@ export default class CircleSpatialInputAction {
 
     disable() {
         this.closeWidget();
+        this.removeGraphicFromView();
     }
 
     trigger(args) {

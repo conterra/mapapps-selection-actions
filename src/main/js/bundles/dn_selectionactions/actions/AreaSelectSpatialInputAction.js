@@ -51,6 +51,38 @@ export default class AreaSelectSpatialInputAction {
         this.#highlighter?.destroy();
     }
 
+    enable() {
+        const model = this._areaSelectSpatialInputWidgetModel;
+        const vm = new Vue(AreaSelectSpatialInputWidget);
+        vm.buffer = model.buffer;
+        vm.minBuffer = model.minBuffer;
+        vm.maxBuffer = model.maxBuffer;
+        vm.stepSize = model.stepSize;
+        vm.unit = model.unit;
+        vm.i18n = this.i18n;
+
+        this.#binding = Binding.for(vm, model)
+            .syncAllToLeft("storeData")
+            .syncAll("selectedStoreId")
+            .syncAllToRight("buffer")
+            .enable()
+            .syncToLeftNow();
+
+        const widget = new VueDijit(vm);
+        const serviceProperties = {
+            "widgetRole": "areaSelectSpatialInputWidget"
+        };
+        const interfaces = ["dijit.Widget"];
+        if (!this.#serviceRegistration) {
+            this.#serviceRegistration = this.#bundleContext.registerService(interfaces, widget, serviceProperties);
+        }
+    }
+
+    disable() {
+        this.closeWidget();
+        this.removeGraphicFromView();
+    }
+
     trigger(args) {
         return new CancelablePromise((resolve, reject, oncancel) => {
             if (!this._mapWidgetModel) {
@@ -61,31 +93,8 @@ export default class AreaSelectSpatialInputAction {
             }
 
             const model = this._areaSelectSpatialInputWidgetModel;
-            const vm = new Vue(AreaSelectSpatialInputWidget);
-            vm.buffer = model.buffer;
-            vm.minBuffer = model.minBuffer;
-            vm.maxBuffer = model.maxBuffer;
-            vm.stepSize = model.stepSize;
-            vm.unit = model.unit;
-            vm.i18n = this.i18n;
-
-            this.#binding = Binding.for(vm, model)
-                .syncAllToLeft("storeData")
-                .syncAll("selectedStoreId")
-                .syncAllToRight("buffer")
-                .enable()
-                .syncToLeftNow();
-
-            const widget = new VueDijit(vm);
-            const serviceProperties = {
-                "widgetRole": "areaSelectSpatialInputWidget"
-            };
-            const interfaces = ["dijit.Widget"];
-            if (!this.#serviceRegistration) {
-                this.#serviceRegistration = this.#bundleContext.registerService(interfaces, widget, serviceProperties);
-            }
-
             const view = this._mapWidgetModel.get("view");
+
             const clickHandle = view.on("click", (evt) => {
                 this.removeGraphicFromView();
                 clickHandle.remove();
@@ -112,7 +121,6 @@ export default class AreaSelectSpatialInputAction {
             oncancel(() => {
                 clickHandle.remove();
                 this.removeGraphicFromView();
-                this.closeWidget();
                 console.debug("AreaSelectSpatialInputAction was canceled...");
             });
         });
@@ -134,7 +142,7 @@ export default class AreaSelectSpatialInputAction {
         const model = this._areaSelectSpatialInputWidgetModel;
         const storeId = model.selectedStoreId;
         const store = this.getStore(storeId);
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             if (!store) {
                 resolve(null);
             }
