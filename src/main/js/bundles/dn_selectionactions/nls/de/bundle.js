@@ -43,7 +43,7 @@ module.exports = {
         },
         search: {
             title: "Suchergebnis",
-            description: "Finden Sie ein Feature \u00fcber die Omnisuche und verwenden Sie dessen Geometrie, um Objekte auszuw\u00e4hlen."
+            description: "Finden Sie ein Feature \u00fcber die Suche und verwenden Sie dessen Geometrie, um Objekte auszuw\u00e4hlen."
         },
         graphic: {
             title: "Grafik",
