@@ -51,6 +51,58 @@ export default class CircleSpatialInputAction {
         this.#highlighter?.destroy();
     }
 
+    enable() {
+        const view = this._mapWidgetModel.get("view");
+        const model = this._circleSpatialInputWidgetModel;
+        if (!model.enableDonut) {
+            model.innerRadius = 0;
+        }
+
+        const vm = this.vm = new Vue(CircleSpatialInputWidget);
+        vm.i18n = this.i18n;
+        vm.enableDonut = model.enableDonut;
+        vm.minRadius = model.minRadius;
+        vm.maxRadius = model.maxRadius;
+        vm.innerRadius = model.innerRadius;
+        vm.outerRadius = model.outerRadius;
+        vm.stepSize = model.stepSize;
+        vm.adjustStepSize = model.adjustStepSize;
+        vm.unit = model.unit;
+
+        vm.$on("adjustStepSize-changed", adjustStepSize => {
+            if (adjustStepSize) {
+                this.#scaleWatcher = this._getScaleWatcher(view, model, vm);
+            } else {
+                this.#scaleWatcher.remove();
+                this.#scaleWatcher = undefined;
+                vm.stepSize = model.stepSize;
+            }
+        });
+
+        // handle inital activation adjustStepSize via config
+        if (model.adjustStepSize) {
+            this.#scaleWatcher = this._getScaleWatcher(view, model, vm);
+        }
+
+        this.#binding = Binding.for(vm, model)
+            .syncAllToRight("innerRadius", "outerRadius", "adjustStepSize")
+            .enable();
+
+        const widget = new VueDijit(vm);
+        const serviceProperties = {
+            "widgetRole": "circleSpatialInputWidget"
+        };
+        const interfaces = ["dijit.Widget"];
+        if (!this.#serviceRegistration) {
+            this.#serviceRegistration = this.#bundleContext.registerService(interfaces, widget, serviceProperties);
+        }
+    }
+
+    disable() {
+        this.closeWidget();
+        this.removeGraphicFromView();
+    }
+
     trigger(args) {
         return new CancelablePromise((resolve, reject, oncancel) => {
             if (!this._mapWidgetModel) {
@@ -60,51 +112,7 @@ export default class CircleSpatialInputAction {
                 this.addGraphicToView(this.#geometry);
             }
 
-            const model = this._circleSpatialInputWidgetModel;
-            if (!model.enableDonut) {
-                model.innerRadius = 0;
-            }
-
             const view = this._mapWidgetModel.get("view");
-
-            const vm = new Vue(CircleSpatialInputWidget);
-            vm.i18n = this.i18n;
-            vm.enableDonut = model.enableDonut;
-            vm.minRadius = model.minRadius;
-            vm.maxRadius = model.maxRadius;
-            vm.innerRadius = model.innerRadius;
-            vm.outerRadius = model.outerRadius;
-            vm.stepSize = model.stepSize;
-            vm.adjustStepSize = model.adjustStepSize;
-            vm.unit = model.unit;
-
-            vm.$on("adjustStepSize-changed", adjustStepSize => {
-                if (adjustStepSize) {
-                    this.#scaleWatcher = this._getScaleWatcher(view, model, vm);
-                } else {
-                    this.#scaleWatcher.remove();
-                    this.#scaleWatcher = undefined;
-                    vm.stepSize = model.stepSize;
-                }
-            });
-
-            // handle inital activation adjustStepSize via config
-            if (model.adjustStepSize) {
-                this.#scaleWatcher = this._getScaleWatcher(view, model, vm);
-            }
-
-            this.#binding = Binding.for(vm, model)
-                .syncAllToRight("innerRadius", "outerRadius", "adjustStepSize")
-                .enable();
-
-            const widget = new VueDijit(vm);
-            const serviceProperties = {
-                "widgetRole": "circleSpatialInputWidget"
-            };
-            const interfaces = ["dijit.Widget"];
-            if (!this.#serviceRegistration) {
-                this.#serviceRegistration = this.#bundleContext.registerService(interfaces, widget, serviceProperties);
-            }
 
             const clickHandle = view.on("click", (evt) => {
                 this.removeGraphicFromView();
@@ -123,7 +131,6 @@ export default class CircleSpatialInputAction {
 
             oncancel(() => {
                 clickHandle.remove();
-                this.closeWidget();
                 console.debug("CircleSpatialInputAction was canceled...");
                 this.removeGraphicFromView();
                 async(() => {
