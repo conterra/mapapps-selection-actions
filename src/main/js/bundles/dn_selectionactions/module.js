@@ -21,6 +21,7 @@ import "./actions/GraphicSpatialInputAction";
 import "./actions/MapExtentSpatialInputAction";
 import "./actions/SearchSpatialInputAction";
 import "./actions/MultiPointSpatialInputAction";
+import "./actions/PolylineSpatialInputAction";
 import "./widgets/AreaSelectSpatialInputWidgetModel";
 import "./widgets/CircleSpatialInputWidgetModel";
 import "./widgets/GraphicSpatialInputWidgetModel";

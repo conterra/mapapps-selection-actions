@@ -96,6 +96,7 @@
                 "selectionMethods": [
                     "point",
                     "polygon",
+                    "polyline",
                     "rectangle",
                     "circle",
                     "current_extent",
