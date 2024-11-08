@@ -55,6 +55,10 @@ module.exports = {
             multipoint: {
                 title: "Multiselect",
                 description: "Click on the map to add multiple points to select objects. Double click finishes the selection."
+            },
+            polyline: {
+                title: "Polyline",
+                description: "Click on the map to create a polyline to select objects. Double click finishes the selection."
             }
         }
     }),

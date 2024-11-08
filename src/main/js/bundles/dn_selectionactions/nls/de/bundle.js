@@ -54,6 +54,10 @@ module.exports = {
         multipoint: {
             title: "Multiselect",
             description: "Klicken Sie auf die Karte um mehrere Punkte auszuwählen. Die Selektion wird per Doppelklick beendet."
+        },
+        polyline: {
+            title: "Polylinie",
+            description: "Klicken Sie auf die Karte mittels einer Polylinie auszuwählen. Die Selektion wird per Doppelklick beendet"
         }
     }
 };
