@@ -10,7 +10,6 @@
         "apprt-vue": "^4.3.0",
         "apprt-binding": "^4.3.0",
         "apprt-vuetify": "^4.3.0",
-        "resultcenter": "^4.3.0",
         "highlights": "^4.3.0"
     },
     "cssThemesExtension": [
