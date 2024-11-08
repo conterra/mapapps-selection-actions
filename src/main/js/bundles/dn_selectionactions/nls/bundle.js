@@ -44,7 +44,7 @@ module.exports = {
             },
             search: {
                 title: "Searchresult",
-                description: "Find a feature via the omnisearch and use it's geometry to select objects."
+                description: "Find a feature via the search and use it's geometry to select objects."
             },
             graphic: {
                 title: "Graphic",
