@@ -114,7 +114,7 @@ export default class PolylineSpatialInputAction {
         this.removeGraphicFromView();
         const symbol = {
             type: "simple-line",
-            color: [255, 0, 0, 0.25],
+            color: [255, 0, 0, 1],
             style: "solid",
             width: "2px"
         };
