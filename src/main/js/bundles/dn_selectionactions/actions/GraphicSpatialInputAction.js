@@ -101,8 +101,11 @@ export default class {
     }
 
     disable() {
-        this.#moveHandle.remove();
-        this.#moveHandle = null;
+        if (this.#moveHandle) {
+            this.#moveHandle.remove();
+            this.#moveHandle = null;
+        }
+
         this.closeWidget();
         this.removeClickGraphicFromView();
         this.removeMoveGraphicFromView();
