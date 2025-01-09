@@ -40,9 +40,10 @@
     </pluginRepositories>
     <dependencyManagement>
         <dependencies>
+            <!-- dependency versions available -->
             <dependency>
                 <groupId>de.conterra.mapapps</groupId>
-                <artifactId>ct-mapapps</artifactId>
+                <artifactId>ct-mapapps-js-bom</artifactId>
                 <version>${mapapps.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -50,31 +51,12 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-        <!-- include for vue-devtools support -->
+        <!-- include only if old intern test libs are required -->
         <dependency>
-            <groupId>org.vuejs</groupId>
-            <artifactId>vue</artifactId>
-            <classifier>dev</classifier>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.vuetifyjs</groupId>
-            <artifactId>vuetify</artifactId>
-            <classifier>dev</classifier>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- test support libs -->
-        <dependency>
-            <groupId>de.conterra.jsrt</groupId>
-            <artifactId>ct-jsrt-test-intern</artifactId>
-            <version>${ct.jsrt-test.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.conterra.jsrt</groupId>
-            <artifactId>ct-jsrt-test-uitest</artifactId>
-            <version>${ct.jsrt-test.version}</version>
+            <groupId>de.conterra.mapapps</groupId>
+            <artifactId>ct-mapapps-js-bom-dev-test</artifactId>
+            <version>${mapapps.version}</version>
+            <type>pom</type>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -277,7 +259,6 @@
                                     <!-- unpack stylus files provided by beautify to map.apps themes -->
                                     <groupId>org.vuetifyjs</groupId>
                                     <artifactId>vuetify</artifactId>
-                                    <version>${vuetify.version}</version>
                                     <classifier>dev</classifier>
                                     <outputDirectory>${project.build.directory}/unpacked/layout</outputDirectory>
                                     <includes>vuetify/stylus/**</includes>
@@ -293,6 +274,8 @@
                         </goals>
                         <configuration>
                             <outputDirectory>${project.build.directory}/bundle-imports</outputDirectory>
+                            <includeTypes>jar</includeTypes>
+                            <stripVersion>true</stripVersion>
                         </configuration>
                     </execution>
                 </executions>
@@ -512,13 +495,12 @@
         <root.build.outputPath>${project.build.directory}/webapp</root.build.outputPath>
         <js.build.outputPath>${root.build.outputPath}/js</js.build.outputPath>
 
-        <mapapps.version>4.18.1</mapapps.version>
-        <vuetify.version>1.5.30</vuetify.version>
+        <mapapps.version>4.18.3</mapapps.version>
         <!-- JS lib versions -->
         <apprt.version>${mapapps.version}</apprt.version>
+
         <!-- java lib versions -->
-        <ct.jsregistry.version>2.1.1</ct.jsregistry.version>
-        <ct.jsrt-test.version>2.0.2</ct.jsrt-test.version>
+        <ct.jsregistry.version>2.1.3</ct.jsregistry.version>
 
         <!-- the default app, replaced in the *.html files to switch app names-->
         <default.app.name>sample</default.app.name>
@@ -547,7 +529,7 @@
         required -->
         <mapapps.useChunkedRequestEncoding>true</mapapps.useChunkedRequestEncoding>
         <!-- enable this if "upload" profile should only deploy bundles -->
-        <skip.apps.upload>false</skip.apps.upload>
+        <skip.apps.upload>true</skip.apps.upload>
         <!-- enable this if "upload" profile should pre-optimize apps -->
         <triggerPreOptimization>false</triggerPreOptimization>
     </properties>
@@ -557,47 +539,9 @@
             <dependencies>
                 <dependency>
                     <groupId>de.conterra.mapapps</groupId>
-                    <artifactId>ct-mapapps-js</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.dojotoolkit</groupId>
-                    <artifactId>dojo-release</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.dojotoolkit</groupId>
-                    <artifactId>dgrid</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.dojotoolkit</groupId>
-                    <artifactId>dstore</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>com.esri.js</groupId>
-                    <artifactId>ags-js-api4</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>com.esri</groupId>
-                    <artifactId>terraformer-js</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>moment-js</groupId>
-                    <artifactId>moment-js</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>de.conterra.js</groupId>
-                    <artifactId>apprt-polyfill</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>de.conterra.js</groupId>
-                    <artifactId>reactivity</artifactId>
+                    <artifactId>ct-mapapps-js-bom-dev</artifactId>
+                    <version>${mapapps.version}</version>
+                    <type>pom</type>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
