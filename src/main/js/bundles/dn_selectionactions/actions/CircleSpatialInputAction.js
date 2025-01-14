@@ -26,7 +26,6 @@ import async from "apprt-core/async";
 export default class CircleSpatialInputAction {
 
     #binding = undefined;
-    #geometry = undefined;
     #highlighter = undefined;
     #serviceRegistration = undefined;
     #bundleContext = undefined;
@@ -108,9 +107,6 @@ export default class CircleSpatialInputAction {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
-            if (this.#geometry) {
-                this.addGraphicToView(this.#geometry);
-            }
 
             const view = this._mapWidgetModel.get("view");
 
@@ -120,7 +116,7 @@ export default class CircleSpatialInputAction {
                 // prevent popup
                 evt.stopPropagation();
                 const point = view.toMap({x: evt.x, y: evt.y});
-                const circleGeometry = this.#geometry = this.createDonutOrCircle(point);
+                const circleGeometry = this.createDonutOrCircle(point);
                 if (args?.queryBuilderSelection) {
                     this.closeWidget();
                 } else {

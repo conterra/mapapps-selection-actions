@@ -24,7 +24,6 @@ import { buffer } from "esri/geometry/geometryEngine";
 export default class AreaSelectSpatialInputAction {
 
     #binding = undefined;
-    #geometry = undefined;
     #highlighter = undefined;
     #serviceResolver = undefined;
     #serviceRegistration = undefined;
@@ -88,9 +87,6 @@ export default class AreaSelectSpatialInputAction {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
             }
-            if (this.#geometry) {
-                this.addGraphicToView(this.#geometry);
-            }
 
             const model = this._areaSelectSpatialInputWidgetModel;
             const view = this._mapWidgetModel.get("view");
@@ -108,7 +104,6 @@ export default class AreaSelectSpatialInputAction {
                     if (model.buffer !== 0) {
                         featureGeometry = buffer(featureGeometry, model.buffer, model.unit);
                     }
-                    this.#geometry = featureGeometry;
                     if (args.queryBuilderSelection) {
                         this.closeWidget();
                     } else {
