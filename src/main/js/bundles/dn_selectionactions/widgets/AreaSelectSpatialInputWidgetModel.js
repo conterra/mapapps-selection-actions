@@ -93,10 +93,6 @@ export default declare({
         if (this.storeData.length && !this.selectedStoreId) {
             this.selectedStoreId = this.storeData[0].id;
         }
-    },
-
-    _getFilteredStores() {
-        return this.stores.filter((store) => this.storeIds.includes(store.id));
     }
 
 });

@@ -67,11 +67,7 @@
                 "minBuffer": 0,
                 "maxBuffer": 5000,
                 "stepSize": 100,
-                "unit": "meters",
-                "storeIds": [
-                    "kreise1",
-                    "bundeslaender"
-                ]
+                "unit": "meters"
             },
             "GraphicSpatialInputWidgetModel": {
                 "buffer": 0,
