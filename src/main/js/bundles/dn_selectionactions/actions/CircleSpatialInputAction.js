@@ -15,7 +15,7 @@
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
 import Circle from "esri/geometry/Circle";
-import {difference} from "esri/geometry/geometryEngine";
+import { difference } from "esri/geometry/geometryEngine";
 import CircleSpatialInputWidget from "../widgets/CircleSpatialInputWidget.vue";
 import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
@@ -98,6 +98,8 @@ export default class CircleSpatialInputAction {
     }
 
     disable() {
+        this.#scaleWatcher.remove();
+        this.#scaleWatcher = undefined;
         this.closeWidget();
         this.removeGraphicFromView();
     }
@@ -115,7 +117,7 @@ export default class CircleSpatialInputAction {
                 clickHandle.remove();
                 // prevent popup
                 evt.stopPropagation();
-                const point = view.toMap({x: evt.x, y: evt.y});
+                const point = view.toMap({ x: evt.x, y: evt.y });
                 const circleGeometry = this.createDonutOrCircle(point);
                 if (args?.queryBuilderSelection) {
                     this.closeWidget();
@@ -204,7 +206,8 @@ export default class CircleSpatialInputAction {
             () => [view.scale], ([scale]) => {
                 const adjustedStepSize = this._adjustStepSize(scale, model);
                 vm.stepSize = adjustedStepSize.stepSize;
-            }, {
+            },
+            {
                 initial: true
             }
         );
