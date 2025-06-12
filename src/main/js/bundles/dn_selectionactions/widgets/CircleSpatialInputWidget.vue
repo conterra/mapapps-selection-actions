@@ -37,15 +37,16 @@
                     class="px-2"
                     :min="minRadius"
                     :max="maxRadius"
-                    :step="stepSize"
+                    :step="innerRadiusStepSize"
                     hide-details
                 />
             </v-flex>
             <v-flex shrink>
                 <v-text-field
                     v-model="innerRadius"
-                    :step="stepSize"
                     :suffix="unitSuffix"
+                    @focus="innerRadiusStepSize = 1"
+                    @blur="innerRadiusStepSize = stepSize"
                     type="number"
                     hide-details
                 />
@@ -70,15 +71,16 @@
                     class="px-2"
                     :min="minRadius"
                     :max="maxRadius"
-                    :step="stepSize"
+                    :step="outerRadiusStepSize"
                     hide-details
                 />
             </v-flex>
             <v-flex shrink>
                 <v-text-field
                     v-model="outerRadius"
-                    :step="stepSize"
                     :suffix="unitSuffix"
+                    @focus="outerRadiusStepSize = 1"
+                    @blur="outerRadiusStepSize = stepSize"
                     type="number"
                     hide-details
                 />
@@ -140,6 +142,19 @@
                         description: "Click on the map to select objects using a circle."
                     };
                 }
+            }
+        },
+        mounted() {
+            // innerRadiusStepSize and outerRadiusStepSize are set to 1 whenever the text fields next to the sliders
+            // are focused and changed back to their original step sizes when text fields lose focus. This prevents the
+            // slider from changing a manually entered text box value to the next step value. See DN-64.
+            this.innerRadiusStepSize = this.stepSize;
+            this.outerRadiusStepSize = this.stepSize;
+        },
+        data(){
+            return {
+                innerRadiusStepSize: 1,
+                outerRadiusStepSize: 1
             }
         },
         computed: {
