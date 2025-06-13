@@ -38,6 +38,7 @@
                     :min="minRadius"
                     :max="maxRadius"
                     :step="innerRadiusStepSize"
+                    @start="innerRadiusStepSize = stepSize"
                     hide-details
                 />
             </v-flex>
@@ -46,7 +47,6 @@
                     v-model="innerRadius"
                     :suffix="unitSuffix"
                     @focus="innerRadiusStepSize = 1"
-                    @blur="innerRadiusStepSize = stepSize"
                     type="number"
                     hide-details
                 />
@@ -72,6 +72,7 @@
                     :min="minRadius"
                     :max="maxRadius"
                     :step="outerRadiusStepSize"
+                    @start="outerRadiusStepSize = stepSize"
                     hide-details
                 />
             </v-flex>
@@ -80,7 +81,6 @@
                     v-model="outerRadius"
                     :suffix="unitSuffix"
                     @focus="outerRadiusStepSize = 1"
-                    @blur="outerRadiusStepSize = stepSize"
                     type="number"
                     hide-details
                 />
