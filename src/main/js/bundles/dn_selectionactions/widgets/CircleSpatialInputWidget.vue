@@ -37,17 +37,18 @@
                     class="px-2"
                     :min="minRadius"
                     :max="maxRadius"
-                    :step="stepSize"
+                    :step="innerRadiusStepSize"
                     hide-details
+                    @start="innerRadiusStepSize = stepSize"
                 />
             </v-flex>
             <v-flex shrink>
                 <v-text-field
                     v-model="innerRadius"
-                    :step="stepSize"
                     :suffix="unitSuffix"
                     type="number"
                     hide-details
+                    @focus="innerRadiusStepSize = 1"
                 />
             </v-flex>
         </v-layout>
@@ -70,17 +71,18 @@
                     class="px-2"
                     :min="minRadius"
                     :max="maxRadius"
-                    :step="stepSize"
+                    :step="outerRadiusStepSize"
                     hide-details
+                    @start="outerRadiusStepSize = stepSize"
                 />
             </v-flex>
             <v-flex shrink>
                 <v-text-field
                     v-model="outerRadius"
-                    :step="stepSize"
                     :suffix="unitSuffix"
                     type="number"
                     hide-details
+                    @focus="outerRadiusStepSize = 1"
                 />
             </v-flex>
             <v-flex md12>
@@ -142,6 +144,12 @@
                 }
             }
         },
+        data(){
+            return {
+                innerRadiusStepSize: 1,
+                outerRadiusStepSize: 1
+            };
+        },
         computed: {
             unitSuffix: function () {
                 switch (this.unit) {
@@ -161,6 +169,13 @@
                         return "";
                 }
             }
+        },
+        mounted() {
+            // innerRadiusStepSize and outerRadiusStepSize are set to 1 whenever the text fields next to the sliders
+            // are focused and changed back to their original step sizes when text fields lose focus. This prevents the
+            // slider from changing a manually entered text box value to the next step value. See DN-64.
+            this.innerRadiusStepSize = this.stepSize;
+            this.outerRadiusStepSize = this.stepSize;
         }
     };
 </script>
