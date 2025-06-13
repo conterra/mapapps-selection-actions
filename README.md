@@ -1,7 +1,7 @@
 # Selection Actions
 This bundle provides additional selection input actions for map.apps selection-services bundle.
 
-![Screenshot App](https://github.com/conterra/mapapps-selection-actions/blob/main/screenshot.JPG)
+![Screenshot App](https://github.com/conterra/mapapps-selection-actions/blob/main/screenshot.png)
 
 ## Sample App
 https://demos.conterra.de/mapapps/resources/apps/downloads_selectionactions/index.html
