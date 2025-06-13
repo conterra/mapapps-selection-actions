@@ -38,17 +38,17 @@
                     :min="minRadius"
                     :max="maxRadius"
                     :step="innerRadiusStepSize"
-                    @start="innerRadiusStepSize = stepSize"
                     hide-details
+                    @start="innerRadiusStepSize = stepSize"
                 />
             </v-flex>
             <v-flex shrink>
                 <v-text-field
                     v-model="innerRadius"
                     :suffix="unitSuffix"
-                    @focus="innerRadiusStepSize = 1"
                     type="number"
                     hide-details
+                    @focus="innerRadiusStepSize = 1"
                 />
             </v-flex>
         </v-layout>
@@ -72,17 +72,17 @@
                     :min="minRadius"
                     :max="maxRadius"
                     :step="outerRadiusStepSize"
-                    @start="outerRadiusStepSize = stepSize"
                     hide-details
+                    @start="outerRadiusStepSize = stepSize"
                 />
             </v-flex>
             <v-flex shrink>
                 <v-text-field
                     v-model="outerRadius"
                     :suffix="unitSuffix"
-                    @focus="outerRadiusStepSize = 1"
                     type="number"
                     hide-details
+                    @focus="outerRadiusStepSize = 1"
                 />
             </v-flex>
             <v-flex md12>
@@ -144,18 +144,11 @@
                 }
             }
         },
-        mounted() {
-            // innerRadiusStepSize and outerRadiusStepSize are set to 1 whenever the text fields next to the sliders
-            // are focused and changed back to their original step sizes when text fields lose focus. This prevents the
-            // slider from changing a manually entered text box value to the next step value. See DN-64.
-            this.innerRadiusStepSize = this.stepSize;
-            this.outerRadiusStepSize = this.stepSize;
-        },
         data(){
             return {
                 innerRadiusStepSize: 1,
                 outerRadiusStepSize: 1
-            }
+            };
         },
         computed: {
             unitSuffix: function () {
@@ -176,6 +169,13 @@
                         return "";
                 }
             }
+        },
+        mounted() {
+            // innerRadiusStepSize and outerRadiusStepSize are set to 1 whenever the text fields next to the sliders
+            // are focused and changed back to their original step sizes when text fields lose focus. This prevents the
+            // slider from changing a manually entered text box value to the next step value. See DN-64.
+            this.innerRadiusStepSize = this.stepSize;
+            this.outerRadiusStepSize = this.stepSize;
         }
     };
 </script>
