@@ -144,7 +144,7 @@
                 }
             }
         },
-        data(){
+        data() {
             return {
                 innerRadiusStepSize: 1,
                 outerRadiusStepSize: 1

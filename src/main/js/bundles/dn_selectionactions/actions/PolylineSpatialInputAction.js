@@ -41,7 +41,7 @@ export default class PolylineSpatialInputAction {
         this.#highlighter?.destroy();
     }
 
-    trigger(args) {
+    trigger() {
         return new CancelablePromise((resolve, reject, oncancel) => {
             if (!this._mapWidgetModel) {
                 reject("MapWidgetModel not available!");
