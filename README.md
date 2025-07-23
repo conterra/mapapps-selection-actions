@@ -4,7 +4,7 @@ This bundle provides additional selection input actions for map.apps selection-s
 ![Screenshot App](https://github.com/conterra/mapapps-selection-actions/blob/main/screenshot.png)
 
 ## Sample App
-https://demos.conterra.de/mapapps/resources/apps/downloads_selectionactions/index.html
+https://demos.conterra.de/mapapps/resources/apps/public_demo_selectionactions/index.html
 
 ## Installation Guide
 **Requirement: map.apps 4.3.0**
