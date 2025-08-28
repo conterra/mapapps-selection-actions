@@ -146,6 +146,20 @@
             }
         },
         "agssearch": {
+            "AGSStore": [
+                {
+                    "id": "precints_area_selection",
+                    "layerId": "precints",
+                    "title": "${map.koeln1.precints.title}",
+                    "fetchIdProperty": true,
+                    "filterOptions": {
+                        "suggestContains": true
+                    },
+                    "useIn": [
+                        "selection-actions-area"
+                    ]
+                }
+            ],
             "AutoStoreRegistration": {
                 "componentEnabled": true
             }
@@ -200,7 +214,7 @@
                 ],
                 "map": {
                     "layers": [
-                         {
+                        {
                             "id": "koeln1",
                             "title": "${map.koeln1.title}",
                             "type": "GROUP",
@@ -270,6 +284,7 @@
                                     }
                                 },
                                 {
+                                    "id": "precints",
                                     "title": "${map.koeln1.precints.title}",
                                     "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/6",
                                     "type": "AGS_FEATURE",
@@ -507,7 +522,7 @@
                     ]
                 },
                 "view": {
-                   "viewmode": "2D",
+                    "viewmode": "2D",
                     "center": {
                         "x": 774853,
                         "y": 6610677,
@@ -516,7 +531,6 @@
                     "scale": 140000
                 }
             }
-
         },
         "templates": {
             "TemplateModel": {
