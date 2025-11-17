@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
-import Circle from "esri/geometry/Circle";
-import { difference } from "esri/geometry/geometryEngine";
+import Circle from "@arcgis/core/geometry/Circle";
+import { difference } from "@arcgis/core/geometry/geometryEngine";
 import CircleSpatialInputWidget from "../widgets/CircleSpatialInputWidget.vue";
 import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
-import * as reactiveUtils from "esri/core/reactiveUtils";
+import * as reactiveUtils from "@arcgis/core/core/reactiveUtils";
 import async from "apprt-core/async";
 
 export default class CircleSpatialInputAction {

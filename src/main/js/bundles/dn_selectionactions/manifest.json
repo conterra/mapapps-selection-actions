@@ -6,11 +6,12 @@
     "vendor": "con terra GmbH",
     "productName": "devnet-mapapps-selectionactions",
     "dependencies": {
-        "selection-services": "^4.3.0",
-        "apprt-vue": "^4.3.0",
-        "apprt-binding": "^4.3.0",
-        "apprt-vuetify": "^4.3.0",
-        "highlights": "^4.3.0"
+        "@arcgis/core": "^4.33.0",
+        "selection-services": "^4.20.0",
+        "apprt-vue": "^4.20.0",
+        "apprt-binding": "^4.20.0",
+        "apprt-vuetify": "^4.20.0",
+        "highlights": "^4.20.0"
     },
     "cssThemesExtension": [
         {

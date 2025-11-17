@@ -15,7 +15,7 @@
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
 import when from "apprt-core/when";
-import Extent from "esri/geometry/Extent";
+import Extent from "@arcgis/core/geometry/Extent";
 
 export default class {
 

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
-import Circle from "esri/geometry/Circle";
-import * as geometryEngine from "esri/geometry/geometryEngine";
+import Circle from "@arcgis/core/geometry/Circle";
+import * as geometryEngine from "@arcgis/core/geometry/geometryEngine";
 
 export default class MultiPointSpatialInputAction {
 

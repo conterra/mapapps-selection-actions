@@ -19,7 +19,7 @@ import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
 import ServiceResolver from "apprt/ServiceResolver";
-import { buffer } from "esri/geometry/geometryEngine";
+import { buffer } from "@arcgis/core/geometry/geometryEngine";
 
 export default class AreaSelectSpatialInputAction {
 

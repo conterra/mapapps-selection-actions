@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import CancelablePromise from "apprt-core/CancelablePromise";
-import Polyline from "esri/geometry/Polyline";
+import Polyline from "@arcgis/core/geometry/Polyline";
 
 export default class PolylineSpatialInputAction {
 

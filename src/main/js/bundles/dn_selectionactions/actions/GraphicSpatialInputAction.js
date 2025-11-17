@@ -16,7 +16,7 @@
 import CancelablePromise from "apprt-core/CancelablePromise";
 import GraphicSpatialInputWidget from "../widgets/GraphicSpatialInputWidget.vue";
 import async from "apprt-core/async";
-import { buffer } from "esri/geometry/geometryEngine";
+import { buffer } from "@arcgis/core/geometry/geometryEngine";
 import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 import Binding from "apprt-binding/Binding";
